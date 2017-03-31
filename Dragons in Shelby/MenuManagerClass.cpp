@@ -4,6 +4,11 @@
 
 MenuManagerClass::MenuManagerClass()
 {
+	mainMenu.ref(0) = "New Game";
+	mainMenu.ref(1) = "Show High Scores";
+	mainMenu.ref(2) = "Exit Program";
+
+	defaultOptions.ref(0) = "Quit game?";
 }
 
 MenuManagerClass::~MenuManagerClass()
@@ -12,10 +17,22 @@ MenuManagerClass::~MenuManagerClass()
 
 int MenuManagerClass::DisplayMainMenu()
 {
-	return 0;
+	return DisplayMenu(mainMenu);
 }
 
-int MenuManagerClass::DisplayMenu()
+int MenuManagerClass::DisplayMenu(Options choices)
 {
+
+	for (int i = 0; i < choices.giveNumOfOptions(); i++) 
+	{
+
+		cout << "Option " << i << ": " << choices.ref(i) << endl;
+
+
+	}
+
+
+
+
 	return 0;
 }

@@ -10,8 +10,11 @@ public:
 	~MenuManagerClass();
 
 	int DisplayMainMenu();
-	int DisplayMenu();
+	int DisplayMenu(Options choices);
+private:
 
+	Options mainMenu = Options(3);
+	Options defaultOptions = Options(1);
 };
 
 #endif

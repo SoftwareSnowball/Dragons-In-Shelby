@@ -6,7 +6,7 @@ class GameInstanceClass
 {
 public:
 	GameInstanceClass();
-	~GameInstanceClass();
+	~GameInstanceClass(); //This is a fully comment.
 };
 
 #endif

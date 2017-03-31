@@ -6,6 +6,9 @@
 #include <string>
 
 using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
 
 #define VictoryExitCode -4
 #define DefeatExitCode -3
@@ -21,8 +24,15 @@ struct StatValues {
 
 };
 
-struct Options {
-	string options[7];
+class Options {
+public:
+	Options(int i);
+	~Options();
+	string& ref(int i);
+	int giveNumOfOptions();
+
+private:
+	string * options;
 	int NumOfOptions;
 };
 
