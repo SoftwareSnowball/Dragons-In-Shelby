@@ -21,13 +21,13 @@ http://www.cplusplus.com/reference/cstdlib/rand/
 int main()
 {
 
-	srand(time(NULL));
+	srand(time(0));
 
 	int i = 0;
 
 	MenuManagerClass * menuInterface = new MenuManagerClass();
 	GameInstanceClass * gameInstance = 0;
-	ScoreManagerClass * scoreInterface = 0;
+	ScoreManagerClass * scoreInterface = 0; //fluffy
 
 
 	while (i == 0)
