@@ -35,8 +35,6 @@ typedef unsigned short int flag;
 #define ErrorExitCode -1
 
 
-
-
 #define MaxOptions 8
 
 struct CharacterStats {
