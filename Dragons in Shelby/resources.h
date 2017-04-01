@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <cassert>
-#include <string>
 #include <random>
 #include <time.h>
 
@@ -48,17 +47,19 @@ struct CharacterStats {
 };
 
 
-class Options 
+struct Options 
 {
 public:
-	Options(int i);
-	~Options();
-	string& ref(int i);
-	int giveNumOfOptions();
+	char opt1[100] = "";
+	char opt2[100] = ""; //herp derp
+	char opt3[100] = "";
+	char opt4[100] = "";
+	char opt5[100] = "";
+	char opt6[100] = "";
+	char opt7[100] = "";
 
-private:
-	string options[MaxOptions];
-	int NumOfOptions;
+	int optsUsed = 0;
+
 };
 
 class Encounter
@@ -68,7 +69,7 @@ public:
 	Encounter();
 	~Encounter();
 
-	const string encounterName = "Default Encounter";
+	const char encounterName[40] = "Default Encounter";
 
 	void diplayEncounter();
 	Options giveOptions();
@@ -77,7 +78,7 @@ public:
 
 protected:
 
-	Options encounterOptions = Options(1);
+	Options encounterOptions;
 
 };
 
