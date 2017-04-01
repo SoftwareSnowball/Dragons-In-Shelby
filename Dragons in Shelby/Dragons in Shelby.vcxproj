@@ -145,18 +145,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EncounterManagerClass.h" />
     <ClInclude Include="GameInstanceClass.h" />
     <ClInclude Include="MenuManagerClass.h" />
     <ClInclude Include="PlayerCharacterClass.h" />
     <ClInclude Include="resources.h" />
+    <ClInclude Include="ScoreManagerClass.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EncounterManagerClass.cpp" />
     <ClCompile Include="GameInstanceClass.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuManagerClass.cpp" />
     <ClCompile Include="PlayerCharacterClass.cpp" />
+    <ClCompile Include="resources.cpp" />
+    <ClCompile Include="ScoreManagerClass.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
