@@ -1,5 +1,10 @@
 #include "resources.h"
 
+Options::Options()
+{
+	Options(1);
+}
+
 Options::Options(int i)
 {
 	assert(i > 0 && i <= MaxOptions);
@@ -27,7 +32,9 @@ int Options::giveNumOfOptions()
 
 Encounter::Encounter()
 {
+	encounterOptions = Options(1);
 	encounterOptions.ref(0) = "There are no choices here";
+	encounterName = "default encounter";
 }
 
 Encounter::~Encounter()

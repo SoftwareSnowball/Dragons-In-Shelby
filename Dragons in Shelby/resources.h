@@ -41,16 +41,17 @@ typedef unsigned short int flag;
 struct CharacterStats 
 {
 
-	int intelligence = 0;
-	int money = 0;
-	int time = 0;
+	int intelligence;
+	int money;
+	int time;
 
 };
 
 struct CharacterData
 {
+
 	CharacterStats stats;
-	int position = 0;
+	int position;
 };
 
 
@@ -58,6 +59,7 @@ struct CharacterData
 class Options 
 {
 public:
+	Options();
 	Options(int i);
 	~Options();
 	string& ref(int i);
@@ -75,7 +77,7 @@ public:
 	Encounter();
 	~Encounter();
 
-	const string encounterName = "Default Encounter";
+	string encounterName;
 
 	void diplayEncounter();
 	Options giveOptions();
@@ -84,7 +86,7 @@ public:
 
 protected:
 
-	Options encounterOptions = Options(1);
+	Options encounterOptions;
 
 };
 
