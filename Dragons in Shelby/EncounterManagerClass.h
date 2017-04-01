@@ -21,9 +21,9 @@ private:
 	void processEncounterOptions(); //Should handle encounter text output and user input using menuClass
 
 
-	MenuManagerClass * menuInterface;
-	Encounter * current;
-	flag statusFlag;
+	MenuManagerClass * menuInterface = 0;
+	Encounter * current = 0;
+	flag statusFlag = 0;
 	CharacterStats encounterResults;
 
 };

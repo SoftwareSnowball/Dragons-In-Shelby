@@ -17,6 +17,7 @@ using std::endl;
 #define DefeatByTimeFlag 04
 #define FunctionErrorFlag 08
 #define UserExitFlag 16 //do not confuse with UserExitCode. This is used in variables of type flag.
+#define VictoryFlag 32
 typedef unsigned short int flag;
 
 #define StartIntRange 10 //Defines the difference between the max start intelligence and the minimum start intelligence
@@ -29,8 +30,6 @@ typedef unsigned short int flag;
 #define MinStartTime 10
 
 //Used in menu situations
-#define VictoryExitCode -4
-#define DefeatExitCode -3
 #define UserExitCode -2 //This is used in type int returns from functions that take user inputs.
 #define ErrorExitCode -1
 

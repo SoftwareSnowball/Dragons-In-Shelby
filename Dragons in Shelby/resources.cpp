@@ -27,7 +27,7 @@ int Options::giveNumOfOptions()
 
 Encounter::Encounter()
 {
-	encounterOptions.ref(0) = "There are no choices here\n";
+	encounterOptions.ref(0) = "There are no choices here";
 }
 
 Encounter::~Encounter()

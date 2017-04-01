@@ -21,16 +21,27 @@ int main()
 
 	srand(time(NULL));
 
-	//MenuManagerClass * menuInterface = new MenuManagerClass();
+	Options stuff = Options(1);
+	stuff.ref(0) = "Insert comment here";
+	
 
-	//EncounterManagerClass * encounterInterface = new EncounterManagerClass(menuInterface);
+	MenuManagerClass * pmenu = new MenuManagerClass();
 
-	//encounterInterface->manageEncounter();
+	EncounterManagerClass * ehandle = new EncounterManagerClass(pmenu);
 
-	char fluf[30] = "This is a random thing\n";
 
-	cout << fluf;
+	ehandle->manageEncounter();
 
+
+
+
+	
+
+
+	delete pmenu;
+
+	delete ehandle;
+	
 
 	int hold;
 	std::cin >> hold;

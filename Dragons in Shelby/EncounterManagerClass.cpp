@@ -4,7 +4,6 @@ EncounterManagerClass::EncounterManagerClass(MenuManagerClass * inputMenuInterfa
 {
 
 	menuInterface = inputMenuInterface;
-	cleanEncounter();
 
 }
 
