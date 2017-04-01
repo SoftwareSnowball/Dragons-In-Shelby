@@ -22,9 +22,9 @@ flag EncounterManagerClass::manageEncounter()
 	return statusFlag;
 }
 
-CharacterStats EncounterManagerClass::giveResults()
+CharacterData EncounterManagerClass::giveResults()
 {
-	return encounterResults;
+	return encounterEffects;
 }
 
 void EncounterManagerClass::cleanEncounter()
@@ -37,7 +37,7 @@ void EncounterManagerClass::cleanEncounter()
 	}
 
 
-	encounterResults = CharacterStats();
+	encounterEffects = CharacterData();
 
 }
 
@@ -60,7 +60,7 @@ void EncounterManagerClass::processEncounterOptions()
 	}
 
 
-	encounterResults = current->getOptionResult(i);
+	encounterEffects = current->getOptionResult(i);
 
 
 }

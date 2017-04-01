@@ -29,6 +29,8 @@ typedef unsigned short int flag;
 #define StartTimeRange 20
 #define MinStartTime 10
 
+#define HallLength 20
+
 //Used in menu situations
 #define UserExitCode -2 //This is used in type int returns from functions that take user inputs.
 #define ErrorExitCode -1
@@ -36,13 +38,21 @@ typedef unsigned short int flag;
 
 #define MaxOptions 8
 
-struct CharacterStats {
+struct CharacterStats 
+{
 
 	int intelligence = 0;
 	int money = 0;
 	int time = 0;
 
 };
+
+struct CharacterData
+{
+	CharacterStats stats;
+	int position = 0;
+};
+
 
 
 class Options 
@@ -69,7 +79,7 @@ public:
 
 	void diplayEncounter();
 	Options giveOptions();
-	CharacterStats getOptionResult(int i);
+	CharacterData getOptionResult(int i);
 
 
 protected:

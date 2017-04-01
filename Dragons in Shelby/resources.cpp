@@ -44,7 +44,7 @@ Options Encounter::giveOptions()
 	return encounterOptions;
 }
 
-CharacterStats Encounter::getOptionResult(int i)
+CharacterData Encounter::getOptionResult(int i)
 {
-	return CharacterStats();
+	return CharacterData();
 }

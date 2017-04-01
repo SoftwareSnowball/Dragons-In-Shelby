@@ -15,36 +15,40 @@ http://www.cplusplus.com/reference/cstdlib/rand/
 #include "MenuManagerClass.h"
 #include "PlayerCharacterClass.h"
 #include "EncounterManagerClass.h"
+#include "GameInstanceClass.h"
+#include "ScoreManagerClass.h"
 
 int main()
 {
 
 	srand(time(NULL));
 
-	Options stuff = Options(1);
-	stuff.ref(0) = "Insert comment here";
+	int i = 0;
+
+	MenuManagerClass * menuInterface = new MenuManagerClass();
+	GameInstanceClass * gameInstance = 0;
+	ScoreManagerClass * scoreInterface = 0;
+
+
+	while (i == 0)
+	{
+
+		i = menuInterface->DisplayMainMenu();
+
+		if (i == 0)
+		{
+
+			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
+			gameInstance->run();
+			gameInstance->clean();
+
+		}
+
+	}
+
+
+	delete menuInterface;
 	
-
-	MenuManagerClass * pmenu = new MenuManagerClass();
-
-	EncounterManagerClass * ehandle = new EncounterManagerClass(pmenu);
-
-
-	ehandle->manageEncounter();
-
-
-
-
-	
-
-
-	delete pmenu;
-
-	delete ehandle;
-	
-
-	int hold;
-	std::cin >> hold;
 
 
     return 0;

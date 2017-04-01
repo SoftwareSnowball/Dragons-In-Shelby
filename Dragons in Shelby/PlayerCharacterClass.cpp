@@ -9,11 +9,23 @@ PlayerCharacterClass::PlayerCharacterClass()
 	myStats.money = MinStartMoney + rand() % (StartMoneyRange + 1);
 	myStats.time = MinStartTime + rand() % (StartTimeRange + 1);
 
+	position = 0;
+
 }
 
 
 PlayerCharacterClass::~PlayerCharacterClass()
 {
+}
+
+flag PlayerCharacterClass::affectCharacterData(CharacterData input)
+{
+
+	flag statusFlags = affectStats(input.stats);
+
+	statusFlags = statusFlags | affectPosition(input.position);
+
+	return statusFlags;
 }
 
 flag PlayerCharacterClass::affectStats(CharacterStats offset)
@@ -46,6 +58,26 @@ flag PlayerCharacterClass::affectStats(CharacterStats offset)
 
 }
 
+flag PlayerCharacterClass::affectPosition(int input)
+{
+
+	position += input;
+
+	flag statusFlags = 0;
+
+	if (position < 0)
+	{
+		position = 0;
+	}
+
+	if (position >= HallLength)
+	{
+		statusFlags = statusFlags | VictoryFlag;
+	}
+
+	return statusFlags;
+}
+
 void PlayerCharacterClass::displayStats()
 {
 	cout << "You have...\n";
@@ -59,3 +91,10 @@ CharacterStats PlayerCharacterClass::giveStats()
 {
 	return myStats;
 }
+
+int PlayerCharacterClass::getPosition()
+{
+	return 0;
+}
+
+

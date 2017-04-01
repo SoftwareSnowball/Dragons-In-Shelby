@@ -12,7 +12,7 @@ public:
 	~EncounterManagerClass();
 
 	flag manageEncounter();
-	CharacterStats giveResults();
+	CharacterData giveResults();
 	void cleanEncounter(); //Deletes current and sets it to 0. Also reseults flags and encounter results.
 
 private:
@@ -24,7 +24,7 @@ private:
 	MenuManagerClass * menuInterface = 0;
 	Encounter * current = 0;
 	flag statusFlag = 0;
-	CharacterStats encounterResults;
+	CharacterData encounterEffects;
 
 };
 

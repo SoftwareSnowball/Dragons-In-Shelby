@@ -14,15 +14,20 @@ public:
 	~GameInstanceClass(); 
 
 	flag run();
+	bool clean();
 
 private:
 
 	MenuManagerClass * menuInterface;
 	ScoreManagerClass * scoreInterface;
-	PlayerCharacterClass playerCharacter;
-	EncounterManagerClass encounterInterface;
+	PlayerCharacterClass * characterInterface;
+	EncounterManagerClass * encounterInterface;
 
 	flag gameFlags = 0;
+
+	int score;
+
+	Options defaultOptions = Options(4);
 
 
 };
