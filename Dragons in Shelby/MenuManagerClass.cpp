@@ -4,11 +4,11 @@
 
 MenuManagerClass::MenuManagerClass()
 {
-	mainMenu.ref(0) = "New Game";
-	mainMenu.ref(1) = "Show High Scores";
+	mainMenu.ref(0) = "Start a new game of Shelby and Dragons!";
+	mainMenu.ref(1) = "View top 10 high scores";
 	mainMenu.ref(2) = "Exit Program";
 
-	defaultOptions.ref(0) = "Quit game?";
+	exitOption.ref(0) = "Quit game?";
 }
 
 MenuManagerClass::~MenuManagerClass()
@@ -17,22 +17,62 @@ MenuManagerClass::~MenuManagerClass()
 
 int MenuManagerClass::DisplayMainMenu()
 {
-	return DisplayMenu(mainMenu);
+	WriteOptionSet(mainMenu);
+
+	return ProcessInput(mainMenu.giveNumOfOptions());
+
 }
 
-int MenuManagerClass::DisplayMenu(Options choices)
+int MenuManagerClass::DisplayMenu(Options set)
 {
 
-	for (int i = 0; i < choices.giveNumOfOptions(); i++) 
+	WriteOptionSet(set);
+	WriteOptionSet(exitOption, set.giveNumOfOptions() + 1);
+
+	return ProcessInput(set.giveNumOfOptions() + 1);
+
+
+}
+
+void MenuManagerClass::WriteOptionSet(Options set)
+{
+
+	WriteOptionSet(set, 1);
+
+}
+
+void MenuManagerClass::WriteOptionSet(Options set, int j)
+{
+
+	for (int i = 0; i < set.giveNumOfOptions(); i++)
 	{
 
-		cout << "Option " << i << ": " << choices.ref(i) << endl;
-
+		cout << "Option " << j++ << ": " << set.ref(i) << endl;
 
 	}
 
 
+}
+
+int MenuManagerClass::ProcessInput(int OptNum)
+{
+	int input;
+	do
+	{
+		cout << "Please input on of the numbers on the menu\n";
+		cin >> input;
+	} while (input < 1 || input > OptNum);
 
 
-	return 0;
+	if (input == OptNum)
+	{
+		input = UserExitCode;
+	}
+	else
+	{
+		input--;
+	}
+
+
+	return input;
 }

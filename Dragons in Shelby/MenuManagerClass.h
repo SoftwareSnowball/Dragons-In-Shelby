@@ -10,11 +10,15 @@ public:
 	~MenuManagerClass();
 
 	int DisplayMainMenu();
-	int DisplayMenu(Options choices);
+	int DisplayMenu(Options set);
 private:
 
+	void WriteOptionSet(Options set);
+	void WriteOptionSet(Options set, int j);
+	int ProcessInput(int OptNum);
+
 	Options mainMenu = Options(3);
-	Options defaultOptions = Options(1);
+	Options exitOption = Options(1);
 };
 
 #endif

@@ -4,27 +4,52 @@
 #include <iostream>
 #include <cassert>
 #include <string>
+#include <random>
+#include <time.h>
 
 using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
 
+#define DefeatByIntFlag 01
+#define DefeatByMoneyFlag 02
+#define DefeatByTimeFlag 04
+#define FunctionErrorFlag 08
+#define UserExitFlag 16 //do not confuse with UserExitCode. This is used in variables of type flag.
+typedef unsigned short int flag;
+
+#define StartIntRange 10 //Defines the difference between the max start intelligence and the minimum start intelligence
+#define MinStartInt 10
+
+#define StartMoneyRange 10
+#define MinStartMoney 10
+
+#define StartTimeRange 20
+#define MinStartTime 10
+
+//Used in menu situations
 #define VictoryExitCode -4
 #define DefeatExitCode -3
-#define UserExitCode -2
+#define UserExitCode -2 //This is used in type int returns from functions that take user inputs.
 #define ErrorExitCode -1
 
 
-struct StatValues {
 
-	int intelligence;
-	int money;
-	int time;
+
+#define MaxOptions 8
+
+struct CharacterStats {
+
+	int intelligence = 0;
+	int money = 0;
+	int time = 0;
 
 };
 
-class Options {
+
+class Options 
+{
 public:
 	Options(int i);
 	~Options();
@@ -32,11 +57,29 @@ public:
 	int giveNumOfOptions();
 
 private:
-	string * options;
+	string options[MaxOptions];
 	int NumOfOptions;
 };
 
+class Encounter
+{
+public:
 
+	Encounter();
+	~Encounter();
+
+	const string encounterName = "Default Encounter";
+
+	void diplayEncounter();
+	Options giveOptions();
+	CharacterStats getOptionResult(int i);
+
+
+protected:
+
+	Options encounterOptions = Options(1);
+
+};
 
 
 #endif

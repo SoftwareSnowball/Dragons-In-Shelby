@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EncounterManagerClass.h" />
     <ClInclude Include="GameInstanceClass.h" />
     <ClInclude Include="MenuManagerClass.h" />
     <ClInclude Include="PlayerCharacterClass.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EncounterManagerClass.cpp" />
     <ClCompile Include="GameInstanceClass.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuManagerClass.cpp" />
