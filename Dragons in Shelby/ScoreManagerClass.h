@@ -15,7 +15,9 @@ public:
 
 private:
 
-	void readScores();
+	bool readScores();
+	bool writeScores();
+	void shiftDown(int i);
 	ScoreContainer scores[10];
 
 	char fileName[20] = "Scores.txt";

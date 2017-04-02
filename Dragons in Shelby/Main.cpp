@@ -13,6 +13,7 @@ http://www.cprogramming.com/tutorial/lesson9.html
 http://stackoverflow.com/questions/3323675/c-fastest-method-to-return-a-c-string
 http://stackoverflow.com/questions/4847100/c-inheritance-inaccessible-base
 http://www.studytonight.com/cpp/virtual-functions.php
+http://www.cplusplus.com/reference/ios/left/
 
 */
 

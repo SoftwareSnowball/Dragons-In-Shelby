@@ -26,11 +26,12 @@ void DebugEncounter::displayEncounter()
 
 CharacterData DebugEncounter::getOptionResult(int i)
 {
-
+	cout << i;
 	switch (i)
 	{
 	case 0:
-		break;
+		return CharacterData(CharacterStats(), 0);
+		break;	
 	case 1:
 		return CharacterData(CharacterStats(), -1);
 		break;

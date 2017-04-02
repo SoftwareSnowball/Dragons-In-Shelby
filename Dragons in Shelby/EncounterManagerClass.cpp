@@ -43,7 +43,7 @@ void EncounterManagerClass::cleanEncounter()
 
 void EncounterManagerClass::generateEncounter()
 {
-	current = new CthulhuEncounter();
+	current = new DebugEncounter();
 }
 
 void EncounterManagerClass::processEncounterOptions()
@@ -62,7 +62,7 @@ void EncounterManagerClass::processEncounterOptions()
 	}
 
 	cout << endl;
-
+	cout << i;
 	encounterEffects = current->getOptionResult(i);
 
 	cout << endl;

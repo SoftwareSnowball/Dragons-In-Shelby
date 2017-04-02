@@ -59,7 +59,7 @@ int MenuManagerClass::ProcessInput(int OptNum)
 	int input;
 	do
 	{
-		cout << "Please input on of the numbers on the menu\n";
+		cout << "Please input one of the numbers on the menu\n";
 		cin >> input;
 	} while (input < 1 || input > OptNum);
 

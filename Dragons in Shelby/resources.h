@@ -18,6 +18,10 @@ help the other classes to run smoothly.
 #include <string>
 #include <random>
 #include <time.h>
+#include <fstream>
+
+using std::ifstream;
+using std::ofstream;
 
 using std::string;
 using std::cout;
@@ -150,7 +154,7 @@ struct ScoreContainer
 	ScoreContainer();
 	ScoreContainer(string inputName, int inputScore);
 
-	char name[20];
+	string name;
 	int score;
 };
 
