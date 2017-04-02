@@ -48,3 +48,13 @@ CharacterData Encounter::getOptionResult(int i)
 {
 	return CharacterData();
 }
+
+CharacterData::CharacterData()
+{
+}
+
+CharacterData::CharacterData(CharacterStats inputStats, int inputPosition)
+{
+	stats = inputStats;
+	position = inputPosition;
+}

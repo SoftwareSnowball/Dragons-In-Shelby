@@ -94,7 +94,7 @@ CharacterStats PlayerCharacterClass::giveStats()
 
 int PlayerCharacterClass::getPosition()
 {
-	return 0;
+	return position;
 }
 
 

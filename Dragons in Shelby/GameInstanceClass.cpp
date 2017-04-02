@@ -31,7 +31,6 @@ flag GameInstanceClass::run()
 	cout << endl;
 
 	int input;
-	CharacterData temp;
 
 	while (gameFlags == 0)
 	{
@@ -48,33 +47,18 @@ flag GameInstanceClass::run()
 			break;
 
 		case 0:
-			gameFlags = gameFlags | characterInterface->affectPosition(1);
-
-			if (gameFlags != 0)
-			{
-				break;
-			}
-
-			gameFlags = gameFlags | encounterInterface->manageEncounter();
-
-			if (gameFlags != 0)
-			{
-				cout << "There was a problem in encounterInterface.\n";
-				break;
-			}
-
-			temp = encounterInterface->giveResults();
-
-			gameFlags = gameFlags | characterInterface->affectCharacterData(temp);
+			cout << endl;
+			moveForward();
 			break;
 
 		case 1:
-			cout << "You seriously thought that would make you any smarter?\n";
+			cout << endl;
+			readTechnicalPaper();
 			break;
 
 		case 2:
-
-			cout << "I suppose you could always get lucky, or you could move back into your parents basement.\n";
+			cout << endl;
+			searchForChange();
 			break;
 
 		case 3:
@@ -84,8 +68,40 @@ flag GameInstanceClass::run()
 
 		}
 
+		cout << endl;
 
 	}
+
+	if ((gameFlags & VictoryFlag) != 0)
+	{
+		cout << "Congratulations! You won the game!\n";
+		cout << "Yay!\n";
+		cout << "Parties!\n";
+		cout << "Okay, stop gloating and get back to work.\n";
+	}
+	else if ((gameFlags & DefeatByIntFlag) != 0)
+	{
+		cout << "You become a blabbering idiot\n";
+	}
+	else if ((gameFlags & DefeatByMoneyFlag) != 0)
+	{
+		cout << "Oh, look who's broke.\n";
+	}
+	else if ((gameFlags & DefeatByTimeFlag) != 0)
+	{
+		cout << "You die of old age before graduation. So sad.\n";
+	}
+	else if ((gameFlags & UserExitFlag) != 0)
+	{
+		cout << "Fine then. Quit, you loser.\n";
+	}
+	else
+	{
+		cout << "Something went wrong.\n";
+		cout << "Best error message ever.\n";
+	}
+
+	cout << "\n\n\n";
 
 
 	return gameFlags;
@@ -109,3 +125,83 @@ bool GameInstanceClass::clean()
 
 	return true;
 }
+
+
+void GameInstanceClass::moveForward()
+{
+	gameFlags = gameFlags | characterInterface->affectPosition(1);
+
+
+	if (gameFlags != 0)
+	{
+		return;
+	}
+
+	gameFlags = gameFlags | encounterInterface->manageEncounter();
+
+
+	if (gameFlags != 0)
+	{
+		cout << "There was a problem in encounterInterface.\n";
+		return;
+	}
+
+	CharacterData tempData = encounterInterface->giveResults();
+
+	gameFlags = gameFlags | characterInterface->affectCharacterData(tempData);
+
+}
+
+
+void GameInstanceClass::readTechnicalPaper()
+{
+
+	CharacterStats effects = CharacterStats();
+	effects.intelligence = rand() % (TechPaperMaxGain + 1);
+	effects.time = -TechPaperTimeCost;
+
+
+	assert(effects.money == 0);
+	assert(effects.intelligence >= 0 && effects.intelligence <= TechPaperMaxGain);
+
+	if (effects.intelligence == 0)
+	{
+		cout << "You seriously thought that would make you smarter?\n";
+	}
+	else
+	{
+		cout << "After several hours of reading you feel you understand the universe a little better\n";
+		cout << "You gain " << effects.intelligence << " intelligence\n";
+		cout << "You lose " << effects.time << " units of time\n";
+	}
+
+
+	gameFlags = gameFlags | characterInterface->affectStats(effects);
+
+}
+
+void GameInstanceClass::searchForChange()
+{
+	CharacterStats effects = CharacterStats();
+	effects.money = rand() % (LooseChangeSearchMAXGain + 1);
+	effects.time = -LooseChangeSearchTimeCost;
+
+	assert(effects.intelligence == 0);
+	assert(effects.money >= 0 && effects.intelligence <= LooseChangeSearchMAXGain);
+
+	if (effects.money == 0)
+	{
+		cout << "I suppose you could always get lucky, or you could move back into your parents' basement.\n";
+	}
+	else
+	{
+		cout << "Desperate times call for desperate measures, but at least you have a bit more spending money\n";
+		cout << "You gained $" << effects.money << endl;
+		cout << "You lose " << effects.time << " units of time\n";
+	}
+
+	gameFlags = gameFlags | characterInterface->affectStats(effects);
+}
+
+
+

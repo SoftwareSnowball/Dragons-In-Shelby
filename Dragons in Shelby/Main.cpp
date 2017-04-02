@@ -30,9 +30,8 @@ int main()
 	ScoreManagerClass * scoreInterface = 0; //fluffy
 
 
-	while (i == 0)
+	while (i != UserExitCode)
 	{
-
 		i = menuInterface->DisplayMainMenu();
 
 		if (i == 0)
@@ -41,9 +40,16 @@ int main()
 			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
 			gameInstance->run();
 			gameInstance->clean();
+			delete gameInstance;
+			gameInstance = 0;
 
 		}
+		else if (i == 1)
+		{
+			cout << "High scores are not yet implemented\n";
+		}
 
+		cout << endl;
 	}
 
 

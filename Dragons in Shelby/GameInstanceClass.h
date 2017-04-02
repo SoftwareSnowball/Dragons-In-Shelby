@@ -18,6 +18,11 @@ public:
 
 private:
 
+	void moveForward();
+	void readTechnicalPaper();
+	void searchForChange();
+
+
 	MenuManagerClass * menuInterface;
 	ScoreManagerClass * scoreInterface;
 	PlayerCharacterClass * characterInterface;
