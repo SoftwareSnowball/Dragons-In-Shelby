@@ -3,6 +3,7 @@
 
 #include "resources.h"
 #include "MenuManagerClass.h"
+#include "Encounters.h"
 
 
 class EncounterManagerClass

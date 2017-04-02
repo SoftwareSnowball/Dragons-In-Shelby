@@ -1,5 +1,46 @@
 #include "resources.h"
 
+
+CharacterStats::CharacterStats()
+{
+
+	intelligence = 0;
+	money = 0;
+	time = 0;
+
+}
+
+CharacterStats::CharacterStats(int inputInt, int inputMoney, int inputTime)
+{
+	intelligence = inputInt;
+	money = inputMoney;
+	time = inputTime;
+}
+
+CharacterData Encounter::getOptionResult(int i)
+{
+	return CharacterData();
+}
+
+CharacterData::CharacterData()
+{
+
+	CharacterData(CharacterStats(), 0);
+
+}
+
+CharacterData::CharacterData(CharacterStats inputStats, int inputPosition)
+{
+	stats = inputStats;
+	position = inputPosition;
+}
+
+
+Options::Options()
+{
+	Options(1);
+}
+
 Options::Options(int i)
 {
 	assert(i > 0 && i <= MaxOptions);
@@ -27,34 +68,26 @@ int Options::giveNumOfOptions()
 
 Encounter::Encounter()
 {
-	encounterOptions.ref(0) = "There are no choices here";
+	opts = Options(1);
+
+	encounterInfo = "This is a default encounter\n";
+	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
+	opts.ref(0) = "There are no choices here";
 }
 
 Encounter::~Encounter()
 {
 }
 
-void Encounter::diplayEncounter()
+void Encounter::displayEncounter()
 {
-	cout << "This is a default encounter\n";
+	cout << encounterInfo;
 }
 
 Options Encounter::giveOptions()
 {
-	return encounterOptions;
+	return opts;
 }
 
-CharacterData Encounter::getOptionResult(int i)
-{
-	return CharacterData();
-}
 
-CharacterData::CharacterData()
-{
-}
 
-CharacterData::CharacterData(CharacterStats inputStats, int inputPosition)
-{
-	stats = inputStats;
-	position = inputPosition;
-}

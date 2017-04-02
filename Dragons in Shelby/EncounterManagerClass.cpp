@@ -43,13 +43,15 @@ void EncounterManagerClass::cleanEncounter()
 
 void EncounterManagerClass::generateEncounter()
 {
-	current = new Encounter();
+	current = new CthulhuEncounter();
 }
 
 void EncounterManagerClass::processEncounterOptions()
 {
 
-	current->diplayEncounter();
+	current->displayEncounter();
+
+	cout << endl;
 
 	int i = menuInterface->DisplayMenu(current->giveOptions());
 
@@ -59,10 +61,11 @@ void EncounterManagerClass::processEncounterOptions()
 		return;
 	}
 
+	cout << endl;
 
 	encounterEffects = current->getOptionResult(i);
 
-
+	cout << endl;
 }
 
 

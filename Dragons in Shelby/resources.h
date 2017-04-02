@@ -82,10 +82,13 @@ and balance of certain game mechanics.
 //These are a few classes and structs to make life easier.
 struct CharacterStats 
 {
+	CharacterStats();
+	CharacterStats(int inputInt, int inputMoney, int inputTime);
 
-	int intelligence = 0;
-	int money = 0;
-	int time = 0;
+
+	int intelligence;
+	int money;
+	int time;
 
 };
 
@@ -95,14 +98,16 @@ struct CharacterData
 	CharacterData(CharacterStats inputStats, int inputPosition);
 
 	CharacterStats stats;
-	int position = 0;
+	int position;
 };
+
 
 
 
 class Options 
 {
 public:
+	Options();
 	Options(int i);
 	~Options();
 	string& ref(int i);
@@ -127,14 +132,15 @@ public:
 
 	const string encounterName = "Default Encounter";
 
-	void diplayEncounter();
-	Options giveOptions();
-	CharacterData getOptionResult(int i);
+	virtual void displayEncounter();
+	virtual Options giveOptions();
+	virtual CharacterData getOptionResult(int i);
 
 
 protected:
 
-	Options encounterOptions = Options(1);
+	Options opts;
+	string encounterInfo;
 
 };
 

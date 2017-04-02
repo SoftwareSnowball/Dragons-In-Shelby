@@ -137,7 +137,8 @@ void GameInstanceClass::moveForward()
 		return;
 	}
 
-	gameFlags = gameFlags | encounterInterface->manageEncounter();
+	cout << endl;
+	gameFlags = encounterInterface->manageEncounter();
 
 
 	if (gameFlags != 0)
@@ -148,7 +149,7 @@ void GameInstanceClass::moveForward()
 
 	CharacterData tempData = encounterInterface->giveResults();
 
-	gameFlags = gameFlags | characterInterface->affectCharacterData(tempData);
+	gameFlags = characterInterface->affectCharacterData(tempData);
 
 }
 
@@ -171,12 +172,12 @@ void GameInstanceClass::readTechnicalPaper()
 	else
 	{
 		cout << "After several hours of reading you feel you understand the universe a little better\n";
-		cout << "You gain " << effects.intelligence << " intelligence\n";
-		cout << "You lose " << effects.time << " units of time\n";
+		//cout << "You gain " << effects.intelligence << " intelligence\n";
+		//cout << "You lose " << effects.time << " units of time\n";
 	}
 
 
-	gameFlags = gameFlags | characterInterface->affectStats(effects);
+	gameFlags = characterInterface->affectStats(effects);
 
 }
 
@@ -196,11 +197,11 @@ void GameInstanceClass::searchForChange()
 	else
 	{
 		cout << "Desperate times call for desperate measures, but at least you have a bit more spending money\n";
-		cout << "You gained $" << effects.money << endl;
-		cout << "You lose " << effects.time << " units of time\n";
+		//cout << "You gained $" << effects.money << endl;
+		//cout << "You lose " << effects.time << " units of time\n";
 	}
 
-	gameFlags = gameFlags | characterInterface->affectStats(effects);
+	gameFlags = characterInterface->affectStats(effects);
 }
 
 
