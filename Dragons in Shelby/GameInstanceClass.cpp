@@ -26,6 +26,11 @@ flag GameInstanceClass::run()
 {
 
 	cout << "\nStarting Game...\n\n";
+	cout << "Input player name: ";
+	string name;
+	cin >> name;
+
+	cout << endl;
 
 	characterInterface->displayStats();
 	cout << endl;
@@ -78,6 +83,9 @@ flag GameInstanceClass::run()
 		cout << "Yay!\n";
 		cout << "Parties!\n";
 		cout << "Okay, stop gloating and get back to work.\n";
+		cout << endl;
+
+		scoreInterface->addScore(name, characterInterface->getScore());
 	}
 	else if ((gameFlags & DefeatByIntFlag) != 0)
 	{
@@ -101,7 +109,7 @@ flag GameInstanceClass::run()
 		cout << "Best error message ever.\n";
 	}
 
-	cout << "\n\n\n";
+	cout << "\n\n";
 
 
 	return gameFlags;
@@ -116,7 +124,7 @@ bool GameInstanceClass::clean()
 		characterInterface = 0;
 	}
 
-	if (encounterInterface) 
+	if (encounterInterface)
 	{
 		delete encounterInterface;
 		encounterInterface = 0;

@@ -89,5 +89,19 @@ Options Encounter::giveOptions()
 	return opts;
 }
 
+ScoreContainer::ScoreContainer()
+{
+
+	name = "empty";
+	score = 0;
+
+}
+
+ScoreContainer::ScoreContainer(string inputName, int inputScore)
+{
+
+	name = inputName;
+	score = inputScore;
 
 
+}

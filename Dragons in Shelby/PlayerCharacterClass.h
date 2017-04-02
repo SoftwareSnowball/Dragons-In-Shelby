@@ -18,6 +18,7 @@ public:
 	void displayStats();
 	CharacterStats giveStats();
 	int getPosition();
+	int getScore();
 
 
 

@@ -8,7 +8,23 @@ class ScoreManagerClass
 public:
 	ScoreManagerClass();
 	~ScoreManagerClass();
+
+	void addScore(string name, int score);
+	void outputScores();
+
+
+private:
+
+	void readScores();
+	ScoreContainer scores[10];
+
+	char fileName[20] = "Scores.txt";
+
 };
+
+
+
+
 
 
 #endif

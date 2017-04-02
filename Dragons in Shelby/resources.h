@@ -145,4 +145,14 @@ protected:
 };
 
 
+struct ScoreContainer
+{
+	ScoreContainer();
+	ScoreContainer(string inputName, int inputScore);
+
+	char name[20];
+	int score;
+};
+
+
 #endif

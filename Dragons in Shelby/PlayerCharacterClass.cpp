@@ -149,4 +149,9 @@ int PlayerCharacterClass::getPosition()
 	return position;
 }
 
+int PlayerCharacterClass::getScore()
+{
+	return myStats.intelligence * myStats.money * myStats.time;
+}
+
 
