@@ -132,7 +132,7 @@ class Encounter
 public:
 
 	Encounter();
-	~Encounter();
+	virtual ~Encounter();
 
 	const string encounterName = "Default Encounter";
 

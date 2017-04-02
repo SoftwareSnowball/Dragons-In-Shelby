@@ -13,7 +13,6 @@ GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, Scor
 	characterInterface = new PlayerCharacterClass();
 	encounterInterface = new EncounterManagerClass(menuInterface);
 	gameFlags = 0;
-	int score = 0;
 
 }
 

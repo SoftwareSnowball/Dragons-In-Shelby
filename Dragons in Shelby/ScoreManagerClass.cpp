@@ -3,15 +3,25 @@
 
 ScoreManagerClass::ScoreManagerClass()
 {
+
+
+	scores = new ScoreContainer[10]();
+
 	for (int i = 0; i < 10; i++)
 	{
 		scores[i] = ScoreContainer();
 	}
+
+	fileName = "Scores.txt";
+
 }
 
 
 ScoreManagerClass::~ScoreManagerClass()
 {
+
+	delete[] scores;
+
 }
 
 void ScoreManagerClass::addScore(string name, int score)
@@ -74,7 +84,7 @@ bool ScoreManagerClass::readScores()
 
 	ifstream reader;
 
-	reader.open(fileName);
+	reader.open(fileName.c_str());
 
 
 	if (reader.fail())
@@ -104,7 +114,7 @@ bool ScoreManagerClass::writeScores()
 {
 
 	ofstream writer;
-	writer.open(fileName);
+	writer.open(fileName.c_str());
 
 	if (writer.fail())
 	{

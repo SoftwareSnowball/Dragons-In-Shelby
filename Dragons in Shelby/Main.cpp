@@ -1,5 +1,23 @@
 /*
 
+Compilation:
+g++ -Wall -std=c++11 -c -o resources.o resources.cpp
+g++ -Wall -std=c++11 -c -o MMC.o MenuManagerClass.cpp
+g++ -Wall -std=c++11 -c -o SMC.o ScoreManagerClass.cpp
+g++ -Wall -std=c++11 -c -o EN.o Encounters.cpp
+g++ -Wall -std=c++11 -c -o EMC.o EncounterManagerClass.cpp
+g++ -Wall -std=c++11 -c -o PCC.o PlayerCharacterClass.cpp
+g++ -Wall -std=c++11 -c -o GIC.o GameInstanceClass.cpp
+g++ -Wall -std=c++11 -c -o Main.o Main.cpp
+
+g++ -Wall -std=c++11 -o EX02 resources.o MMC.o SMC.o EN.o EMC.o PCC.o GIC.o Main.o
+
+Yes I'm sorry about all this. Visual studio makes it a lot
+easier to use a bunch of files, so I wasn't thinking about the
+pain of command line compilation for my program.
+
+
+
 Sources:
 https://msdn.microsoft.com/en-us/library/cc953fe1.aspx
 http://www.cprogramming.com/tutorial/bitwise_operators.html

@@ -18,9 +18,11 @@ private:
 	bool readScores();
 	bool writeScores();
 	void shiftDown(int i);
-	ScoreContainer scores[10];
+	ScoreContainer * scores;
 
-	char fileName[20] = "Scores.txt";
+	string fileName;
+
+//	char fileName[20] = "Scores.txt";
 
 };
 

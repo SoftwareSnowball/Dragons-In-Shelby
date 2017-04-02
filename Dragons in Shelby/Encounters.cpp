@@ -52,6 +52,7 @@ CharacterData DebugEncounter::getOptionResult(int i)
 		break;
 	}
 
+	return CharacterData();
 
 }
 
