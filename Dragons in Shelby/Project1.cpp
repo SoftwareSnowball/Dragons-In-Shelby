@@ -76,18 +76,6 @@ int main()
 	ScoreManagerClass * scoreInterface = new ScoreManagerClass();
 
 
-/*
-cout << "Welcome player!\n";
-cout << "Please enter your name: ";
-cin >> name;
-
-*/
-
-
-
-
-
-
 	while (i != UserExitCode)
 	{
 		cout << "================================================\n";

@@ -15,6 +15,8 @@ help the other classes to run smoothly.
 In short this is something of a catch all file.
 */
 
+//Toggles for debug behavior
+
 
 //Initial includes and housekeeping shenanigans
 #include <iostream>
@@ -69,7 +71,7 @@ and balance of certain game mechanics.
 #define MinStartMoney 10
 
 #define StartTimeRange 20
-#define MinStartTime 10
+#define MinStartTime 15
 
 
 #define MovementTimeCost 2

@@ -257,7 +257,7 @@ void GameInstanceClass::pullAllNighter()
 	}
 	else
 	{
-		cout << "You work all through the night.\n";
+		cout << "You were able to make a fair bit of progress over the night.\n";
 	}
 
 	roll = rand() % 6;
@@ -265,11 +265,13 @@ void GameInstanceClass::pullAllNighter()
 	effects.intelligence = -roll;
 
 	cout << endl;
+	cout << "Additionally...\n";
+
 
 	if (roll == 0)
 	{
-		cout << "Sleep is totally for the weak! You feel fine! ...You perfect jerk.\n";
-		cout << "It's okay, I'm not jealous.\n";
+		cout << "Sleep is totally for the weak! You feel fine!\n";
+		cout << "...You perfect freak.\n";
 	}
 	else if (roll == 2)
 	{

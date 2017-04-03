@@ -339,27 +339,63 @@ CharacterData ProfessorEncounter::getOptionResult(int i)
 /************************************************/
 VideoGameEncounter::VideoGameEncounter()
 {
+
+	opts = Options(4);
+
+	opts.ref(0) = "I'll play for a few minutes.";
+	opts.ref(1) = "Who cares? COMPUTER GAMES!";
+	opts.ref(2) = "Uh... no. I don't have time for this! Or money for that matter.";
+	opts.ref(3) = "What's a video game?";
+
 }
 
 void VideoGameEncounter::displayEncounter()
 {
+	cout << "You feel the urge to play games\n";
+	cout << "but do you really have time for this?\n";
 }
 
 CharacterData VideoGameEncounter::getOptionResult(int i)
 {
 	CharacterStats stats = CharacterStats();
 	int position = 0;
+	int roll;
 
 
 	switch (i)
 	{
 	case 0:
+
+		roll = rand() % 2;
+
+		if (roll == 0)
+		{
+			cout << "Self discipline is such a nice thing to have\n";
+			cout << "You play for a bit and then go back to your work feeling refreshed\n";
+			cout << "from your little break.\n";
+
+			stats.intelligence = 2;
+		}
+		if (roll == 1)
+		{
+			cout << "One does not simply play for a few minutes.\n";
+			stats.time = -1 - (rand() % 3);
+		}
 		break;
+
 	case 1:
+
+		cout << "What's this adult thing again? Oh yeah, it's the thing you're not doing right now.\n";
+
+		stats.time = -2 - (rand() % 6);
 		break;
 	case 2:
+
+		cout << "Wow. Way to be an adult. So tell me, do you actually have a life?\n";
+
 		break;
 	case 3:
+		cout << "You monster.\n";
 		break;
 	}
 
@@ -725,3 +761,45 @@ CharacterData CthulhuEncounter::getOptionResult(int i)
 //			END OF CTHULHU ENCOUNTER
 /************************************************/
 
+/************************************************/
+//                DRAGON ENCOUNTER            
+/************************************************/
+
+DragonEncounter::DragonEncounter()
+{
+
+	opts = Options(4);
+
+	opts.ref(0) = "RUN!!!!";
+	opts.ref(1) = "Eat me! Why!?";
+	opts.ref(2) = "Why don't we play a game of riddles instead.\n";
+
+
+
+}
+
+DragonEncounter::~DragonEncounter()
+{
+}
+
+void DragonEncounter::displayEncounter()
+{
+
+	cout << "A fierce roar echos through campus and the ground begins to shake!\n";
+	cout << "You see a flash of red out of the corner of your eye. Then a great dragon\n";
+	cout << "lands in front of you! Its claws and teeth are pure white and its scales shimmer\n";
+	cout << "in a rippling pattern of red flames.\n";
+
+	cout << "It grins and says, \"A mortal. Perhaps I shall eat it\"\n";
+
+
+}
+
+CharacterData DragonEncounter::getOptionResult(int i)
+{
+	return CharacterData();
+}
+
+/************************************************/
+//                END OF DRAGON ENCOUNTER            
+/************************************************/

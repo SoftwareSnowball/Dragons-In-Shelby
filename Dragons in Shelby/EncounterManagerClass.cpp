@@ -68,6 +68,19 @@ void EncounterManagerClass::cleanEncounter()
 void EncounterManagerClass::generateEncounter()
 {
 
+#define ENCOUNTER_DEBUG 1
+
+#ifdef ENCOUNTER_DEBUG
+
+
+	current = new VideoGameEncounter();
+
+#endif
+
+
+
+#ifndef ENCOUNTER_DEBUG
+
 	int roll = rand() % 100;
 	int i;
 
@@ -114,6 +127,9 @@ void EncounterManagerClass::generateEncounter()
 	{
 		current = new CthulhuEncounter();
 	}
+
+
+#endif //ENCOUNTER_DEBUG
 
 }
 

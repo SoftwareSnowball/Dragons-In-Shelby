@@ -23,6 +23,7 @@ functions in the Encounter class.
 #define _ENCOUNTERS_H
 
 #include "resources.h"
+#include "MenuManagerClass.h"
 //===================================================
 //                 DEBUG ENCOUNTERS
 //===================================================
@@ -128,6 +129,24 @@ public:
 	CharacterData getOptionResult(int i);
 
 	const string encounterName = "CthulhuEncounter";
+
+
+};
+
+class DragonEncounter : public Encounter
+{
+public:
+	DragonEncounter();
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+
+	const string encounterName = "DragonEncounter\n";
+
+private:
+	MenuManagerClass dragonMenu;
+
+	int gameOfRiddles();
+
 
 
 };
