@@ -13,7 +13,9 @@ See header file for description
 
 */
 
-// DEBUG ENCOUNTER
+//===================================================
+//                 DEBUG ENCOUNTERS
+//===================================================
 
 DebugEncounter::DebugEncounter()
 {
@@ -68,100 +70,14 @@ CharacterData DebugEncounter::getOptionResult(int i)
 
 }
 
-// CTHULHU ENCOUNTER
 
-CthulhuEncounter::CthulhuEncounter()
-{
+//===========================================================================================//
+//									  COMMON ENCOUNTERS
+//===========================================================================================//
 
-	opts = Options(4);
-
-	opts.ref(0) = "Look at his face for a while";
-	opts.ref(1) = "Nope... Just nope. I'm out";
-	opts.ref(2) = "I will try to reason with it";
-	opts.ref(3) = "Throw money at it";
-
-
-}
-
-void CthulhuEncounter::displayEncounter()
-{
-
-cout << "A dark fiend has arisen! This evil creature will sap all your sanity\n";
-cout << "FEAR MORTAL FOR CTHULHU HAS COME TO CLAIM YOUR SOUL!\n\n";
-cout << "...Or maybe he's just here for tea. You never know about these things.\n";
-
-
-}
-
-
-
-CharacterData CthulhuEncounter::getOptionResult(int i)
-{
-	CharacterStats stats = CharacterStats();
-	int position = 0;
-	int roll = 0;
-
-	switch (i)
-	{
-	case 0:
-		cout << "You really thought that was a good idea?\n";
-		stats.intelligence = -10000000;
-		break;
-
-	case 1:
-
-		roll = rand() % 2;
-
-		if (roll == 1)
-		{
-			cout << "You retreat back to your previous position\n";
-			cout << "Let someone else deal with the fiend\n";
-			position = -1;
-			stats.time = -2;
-		}
-		else
-		{
-			cout << "You flee in terror. You don't think you'll ever be the same.\n";
-			stats.time = -3;
-			stats.intelligence = -5;
-			position = -1;
-		}
-		break;
-
-	case 2:
-
-		roll = rand() % 100;
-
-		if (roll == 99)
-		{
-			cout << "It turns out that Cthulu is really a nice guy after all.\n";
-			cout << "He's actually a small business owner and is looking to promote academics and learning\n";
-			cout << "He decides to give you a small scholarship to help you through school\n";
-			stats.intelligence = 10;
-			stats.money = 50;
-		}
-		else
-		{
-			cout << "Great. Reason with pure insanity. That was clearly a good idea\n";
-			stats.intelligence = -1000000;
-		}
-
-		break;
-
-	case 3:
-
-		cout << "Ummm... what?\n";
-		stats.money = -5;
-
-	}
-
-
-
-	return CharacterData(stats, position);
-}
-
-//UNDERGRADUATE ENCOUNTER
-
+/************************************************/
+//			UNDERGRADUATE ENCOUNTER
+/************************************************/
 UndergraduateEncounter::UndergraduateEncounter()
 {
 	opts = Options(3);
@@ -228,9 +144,14 @@ CharacterData UndergraduateEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, 0);
 }
+/************************************************/
+//			END OF UNDERGRADUATE ENCOUNTER
+/************************************************/
 
-//WEEKEND ENCOUNTER
 
+/************************************************/
+//			WEEKEND ENCOUNTER
+/************************************************/
 WeekendEncounter::WeekendEncounter()
 {
 	opts = Options(3);
@@ -316,162 +237,13 @@ CharacterData WeekendEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, 0);
 }
+/************************************************/
+//			END OF WEEKEND ENCOUNTER
+/************************************************/
 
-//THE DOCTOR ENCOUNTER
-
-TheDoctorEncounter::TheDoctorEncounter()
-{
-}
-
-void TheDoctorEncounter::displayEncounter()
-{
-}
-
-CharacterData TheDoctorEncounter::getOptionResult(int i)
-{
-	CharacterStats stats = CharacterStats();
-	int position = 0;
-
-
-	switch (i)
-	{
-	case 0:
-		break;
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	}
-
-
-	return CharacterData(stats, position);
-}
-
-
-//ANOMALY ENCOUNTER
-
-AnomalyEncounter::AnomalyEncounter()
-{
-
-	opts = Options(3);
-
-	opts.ref(0) = "Walk away. In fact run! Just get away from that thing.";
-	opts.ref(1) = "Study this strange new phenomenon. For science!";
-	opts.ref(2) = "Walk into the rift";
-
-}
-
-void AnomalyEncounter::displayEncounter()
-{
-
-	cout << "A glowy pulsing light! Time and space seem to shift around it!\n";
-	cout << "This could be dangerous!\n";
-
-}
-
-CharacterData AnomalyEncounter::getOptionResult(int i)
-{
-	CharacterStats stats = CharacterStats();
-	int position = 0;
-	int roll = 0;
-
-
-	switch (i)
-	{
-	case 0:
-
-		cout << "They say discretion is the better part of valor.\n";
-		break;
-
-	case 1:
-
-		roll = rand() % 2;
-
-		if (roll == 0)
-		{
-			cout << "You try to study the event, but it pulls you in!\n";
-			cout << "You try to scream but you're caught in a vortex of light\n";
-			cout << "and sound!\n\n";
-		}
-		else
-		{
-
-			roll = rand() % 4;
-
-			if (roll == 0)
-			{
-				cout << "The notes you collect prove valuable to the scientific community,\n";
-				cout << "and you eventually become one of the leading experts on the topic.\n";
-				stats.intelligence = 50;
-			}
-			else
-			{
-				cout << "You are unable to make sense of the strange event before it vanishes in\n";
-				cout << "in front of you.\n";
-			}
-
-			break;
-		}
-
-		//The break is left out on purpose
-
-	case 2:
-
-		roll = rand() % 3;
-
-		cout << "It seems like you fall forever through the vortex\n";
-
-		if (roll == 0)
-		{
-			cout << "until in an instant it all stops and you find youself\n";
-			cout << "on moist earth. You look around you and see nothing but a\n";
-			cout << "calm tropical forest.\n";
-			cout << "...then you feel warm air brushing over your shoulder and neck.\n";
-			cout << "You hear a soft, low snort, and slowly you turn to see the scaled\n";
-			cout << "monster eyeing you from above.\n";
-			cout << "Perhaps your bones will confuse some future archaeologist, but right\n";
-			cout << "now you need to run!\n";
-
-			stats.time = -1000000;
-		}
-
-
-		
-
-		if (roll == 1)
-		{
-			cout << "until you find yourself lying on the ground in the hallway.\n";
-			cout << "It seems you're further down the hall than when you started,\n";
-			cout << "but all the clocks show an later time than when you left.\n";
-			position = (rand() % 6) + 1;
-
-			stats.time = -position;
-			
-		}
-
-		if (roll == 2)
-		{
-			cout << "until you find yourself lying on the ground in the hallway.\n";
-			cout << "It seems you're further back from where you started,\n";
-			cout << "but all the clocks show an earlier time\n";
-
-			position = -(rand() % 6) + 1;
-
-			stats.time = -position;
-		}
-
-		break;
-
-	}
-
-
-	return CharacterData(stats, position);
-}
-
-//PROFESSOR ENCOUNTER
-
+/************************************************/
+//			PROFESSOR ENCOUNTER
+/************************************************/
 ProfessorEncounter::ProfessorEncounter()
 {
 
@@ -558,9 +330,53 @@ CharacterData ProfessorEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, 0);
 }
+/************************************************/
+//			END OF PROFESSOR ENCOUNTER
+/************************************************/
 
-//BUG ENCOUNTER
+/************************************************/
+//			VIDEO GAME ENCOUNTER
+/************************************************/
+VideoGameEncounter::VideoGameEncounter()
+{
+}
 
+void VideoGameEncounter::displayEncounter()
+{
+}
+
+CharacterData VideoGameEncounter::getOptionResult(int i)
+{
+	CharacterStats stats = CharacterStats();
+	int position = 0;
+
+
+	switch (i)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	}
+
+
+	return CharacterData(stats, position);
+}
+/************************************************/
+//			END OF VIDEO GAME ENCOUNTER
+/************************************************/
+
+
+//===========================================================================================//
+//										 UNCOMMON ENCOUNTERS
+//===========================================================================================//
+/************************************************/
+//			BUG ENCOUNTER
+/************************************************/
 BugEncounter::BugEncounter()
 {
 
@@ -628,7 +444,7 @@ CharacterData BugEncounter::getOptionResult(int i)
 			stats.time = (rand() % 80) - 40;
 		}
 
-		
+
 
 		break;
 
@@ -642,18 +458,25 @@ CharacterData BugEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, position);
 }
+/************************************************/
+//			END OF BUG ENCOUNTER
+/************************************************/
 
-//VIDEO GAME ENCOUNTER
-
-VideoGameEncounter::VideoGameEncounter()
+//===========================================================================================//
+//										 RARE ENCOUNTERS
+//===========================================================================================//
+/************************************************/
+//			THE DOCTOR ENCOUNTER
+/************************************************/
+TheDoctorEncounter::TheDoctorEncounter()
 {
 }
 
-void VideoGameEncounter::displayEncounter()
+void TheDoctorEncounter::displayEncounter()
 {
 }
 
-CharacterData VideoGameEncounter::getOptionResult(int i)
+CharacterData TheDoctorEncounter::getOptionResult(int i)
 {
 	CharacterStats stats = CharacterStats();
 	int position = 0;
@@ -674,3 +497,231 @@ CharacterData VideoGameEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, position);
 }
+/************************************************/
+//			END OF THE DOCTOR ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			ANOMALY ENCOUNTER
+/************************************************/
+AnomalyEncounter::AnomalyEncounter()
+{
+
+	opts = Options(3);
+
+	opts.ref(0) = "Walk away. In fact run! Just get away from that thing.";
+	opts.ref(1) = "Study this strange new phenomenon. For science!";
+	opts.ref(2) = "Walk into the rift";
+
+}
+
+void AnomalyEncounter::displayEncounter()
+{
+
+	cout << "A glowy pulsing light! Time and space seem to shift around it!\n";
+	cout << "This could be dangerous!\n";
+
+}
+
+CharacterData AnomalyEncounter::getOptionResult(int i)
+{
+	CharacterStats stats = CharacterStats();
+	int position = 0;
+	int roll = 0;
+
+
+	switch (i)
+	{
+	case 0:
+
+		cout << "They say discretion is the better part of valor.\n";
+		break;
+
+	case 1:
+
+		roll = rand() % 2;
+
+		if (roll == 0)
+		{
+			cout << "You try to study the event, but it pulls you in!\n";
+			cout << "You try to scream but you're caught in a vortex of light\n";
+			cout << "and sound!\n\n";
+		}
+		else
+		{
+
+			roll = rand() % 4;
+
+			if (roll == 0)
+			{
+				cout << "The notes you collect prove valuable to the scientific community,\n";
+				cout << "and you eventually become one of the leading experts on the topic.\n";
+				stats.intelligence = 50;
+			}
+			else
+			{
+				cout << "You are unable to make sense of the strange event before it vanishes in\n";
+				cout << "in front of you.\n";
+			}
+
+			break;
+		}
+
+		//The break is left out on purpose
+
+	case 2:
+
+		roll = rand() % 3;
+
+		cout << "It seems like you fall forever through the vortex\n";
+
+		if (roll == 0)
+		{
+			cout << "until in an instant it all stops and you find youself\n";
+			cout << "on moist earth. You look around you and see nothing but a\n";
+			cout << "calm tropical forest.\n";
+			cout << "...then you feel warm air brushing over your shoulder and neck.\n";
+			cout << "You hear a soft, low snort, and slowly you turn to see the scaled\n";
+			cout << "monster eyeing you from above.\n";
+			cout << "Perhaps your bones will confuse some future archaeologist, but right\n";
+			cout << "now you need to run!\n";
+
+			stats.time = -1000000;
+		}
+
+
+
+
+		if (roll == 1)
+		{
+			cout << "until you find yourself lying on the ground in the hallway.\n";
+			cout << "It seems you're further down the hall than when you started,\n";
+			cout << "but all the clocks show an later time than when you left.\n";
+			position = (rand() % 6) + 1;
+
+			stats.time = -position;
+
+		}
+
+		if (roll == 2)
+		{
+			cout << "until you find yourself lying on the ground in the hallway.\n";
+			cout << "It seems you're further back from where you started,\n";
+			cout << "but all the clocks show an earlier time\n";
+
+			position = -(rand() % 6) + 1;
+
+			stats.time = -position;
+		}
+
+		break;
+
+	}
+
+
+	return CharacterData(stats, position);
+}
+/************************************************/
+//			END OF ANOMALY ENCOUNTER
+/************************************************/
+
+//===========================================================================================//
+//										GAME BREAKERS
+//===========================================================================================//
+
+/************************************************/
+//                CTHULHU ENCOUNTER            
+/************************************************/
+CthulhuEncounter::CthulhuEncounter()
+{
+
+	opts = Options(4);
+
+	opts.ref(0) = "Look at his face for a while";
+	opts.ref(1) = "Nope... Just nope. I'm out";
+	opts.ref(2) = "I will try to reason with it";
+	opts.ref(3) = "Throw money at it";
+
+
+}
+
+void CthulhuEncounter::displayEncounter()
+{
+
+	cout << "A dark fiend has arisen! This evil creature will sap all your sanity\n";
+	cout << "FEAR MORTAL FOR CTHULHU HAS COME TO CLAIM YOUR SOUL!\n\n";
+	cout << "...Or maybe he's just here for tea. You never know about these things.\n";
+
+
+}
+
+
+
+CharacterData CthulhuEncounter::getOptionResult(int i)
+{
+	CharacterStats stats = CharacterStats();
+	int position = 0;
+	int roll = 0;
+
+	switch (i)
+	{
+	case 0:
+		cout << "You really thought that was a good idea?\n";
+		stats.intelligence = -10000000;
+		break;
+
+	case 1:
+
+		roll = rand() % 2;
+
+		if (roll == 1)
+		{
+			cout << "You retreat back to your previous position\n";
+			cout << "Let someone else deal with the fiend\n";
+			position = -1;
+			stats.time = -2;
+		}
+		else
+		{
+			cout << "You flee in terror. You don't think you'll ever be the same.\n";
+			stats.time = -3;
+			stats.intelligence = -5;
+			position = -1;
+		}
+		break;
+
+	case 2:
+
+		roll = rand() % 100;
+
+		if (roll == 99)
+		{
+			cout << "It turns out that Cthulu is really a nice guy after all.\n";
+			cout << "He's actually a small business owner and is looking to promote academics and learning\n";
+			cout << "He decides to give you a small scholarship to help you through school\n";
+			stats.intelligence = 10;
+			stats.money = 50;
+		}
+		else
+		{
+			cout << "Great. Reason with pure insanity. That was clearly a good idea\n";
+			stats.intelligence = -1000000;
+		}
+
+		break;
+
+	case 3:
+
+		cout << "Ummm... what?\n";
+		stats.money = -5;
+
+	}
+
+
+
+	return CharacterData(stats, position);
+}
+/************************************************/
+//			END OF CTHULHU ENCOUNTER
+/************************************************/
+

@@ -51,6 +51,8 @@ files for comments about the purpose of each of these classes.
 
 */
 
+#define VersionNumber 0.80
+
 #ifdef _WIN32
 #include "stdafx.h"
 #endif
@@ -73,11 +75,13 @@ int main()
 	GameInstanceClass * gameInstance = 0;
 	ScoreManagerClass * scoreInterface = new ScoreManagerClass();
 
-	string name;
 
-	cout << "Welcome player!\n";
-	cout << "Please enter your name: ";
-	cin >> name;
+/*
+cout << "Welcome player!\n";
+cout << "Please enter your name: ";
+cin >> name;
+
+*/
 
 
 
@@ -86,16 +90,16 @@ int main()
 
 	while (i != UserExitCode)
 	{
-		cout << "=====================================\n";
-		cout << "            " << name << endl;
-		cout << "=====================================\n";
+		cout << "================================================\n";
+		cout << "        Shelby Center and Dragons v" << VersionNumber << endl;
+		cout << "================================================\n";
 
 		i = menuInterface->DisplayMainMenu();
 
 		if (i == 0)
 		{
 
-			gameInstance = new GameInstanceClass(name, menuInterface, scoreInterface);
+			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
 			gameInstance->run();
 			gameInstance->clean();
 			delete gameInstance;

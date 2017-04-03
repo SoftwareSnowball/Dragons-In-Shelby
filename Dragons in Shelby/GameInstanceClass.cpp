@@ -14,21 +14,28 @@ See header file for description
 
 
 
-GameInstanceClass::GameInstanceClass(string name, MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
+GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
 {
 	menuInterface = inputMenuInterface;
 	scoreInterface = inputScoreInterface;
+	defaultOptions = Options(5);
 
 	defaultOptions.ref(0) = "Move Forward.";
 	defaultOptions.ref(1) = "Read technical papers";
 	defaultOptions.ref(2) = "Search for loose change";
-	defaultOptions.ref(3) = "View character";
+	defaultOptions.ref(3) = "Pull all nighter";
+	defaultOptions.ref(4) = "View character";
 
 	characterInterface = new PlayerCharacterClass();
 	encounterInterface = new EncounterManagerClass(menuInterface);
 	gameFlags = 0;
 
-	playerName = name;
+	cout << "Welcome to the game!\n";
+	cout << "Please enter your name: ";
+	cin >> playerName;
+	cout << endl;
+
+
 
 }
 
@@ -79,6 +86,12 @@ flag GameInstanceClass::run()
 			break;
 
 		case 3:
+
+			cout << endl;
+			pullAllNighter();
+			break;
+
+		case 4:
 
 			characterInterface->displayStats();
 			break;
@@ -224,6 +237,57 @@ void GameInstanceClass::searchForChange()
 	}
 
 	gameFlags = characterInterface->affectStats(effects);
+}
+
+void GameInstanceClass::pullAllNighter()
+{
+
+	CharacterStats effects = CharacterStats();
+
+	cout << "It's always rough, but sometimes you just have too much work to finish during the day.\n";
+	cout << "Hopefully you can get enough caffeine to get you through the night\n";
+
+	int roll = 1 + (rand() % 5);
+
+	effects.time = roll;
+
+	if (roll < 3)
+	{
+		cout << "You got bogged down in your work, but you did get a little bit done.\n";
+	}
+	else
+	{
+		cout << "You work all through the night.\n";
+	}
+
+	roll = rand() % 6;
+
+	effects.intelligence = -roll;
+
+	cout << endl;
+
+	if (roll == 0)
+	{
+		cout << "Sleep is totally for the weak! You feel fine! ...You perfect jerk.\n";
+		cout << "It's okay, I'm not jealous.\n";
+	}
+	else if (roll == 2)
+	{
+		cout << "You feel a little tired.\n";
+	}
+	else if (roll == 3)
+	{
+		cout << "You feel quite tired and it's having a clear effect.\n";
+	}
+	else
+	{
+		cout << "UGH! That was a mistake! Get coffee... now.\n";
+		cout << "Must...have...coff...zzzzzzzzzzzzzzzzz\n";
+	}
+
+	cout << endl;
+	characterInterface->affectStats(effects);
+
 }
 
 

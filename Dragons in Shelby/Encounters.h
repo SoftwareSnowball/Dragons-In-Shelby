@@ -23,10 +23,9 @@ functions in the Encounter class.
 #define _ENCOUNTERS_H
 
 #include "resources.h"
-
-
-
-
+//===================================================
+//                 DEBUG ENCOUNTERS
+//===================================================
 class DebugEncounter : public Encounter //debug
 {
 public:
@@ -37,18 +36,9 @@ public:
 	const string encounterName = "DebugEncounter";
 };
 
-
-class CthulhuEncounter : public Encounter //Gamebreaker
-{
-public:
-	CthulhuEncounter();
-	void displayEncounter();
-	CharacterData getOptionResult(int i);
-
-	const string encounterName = "CthulhuEncounter";
-
-
-};
+//===================================================
+//                 COMMON ENCOUNTERS
+//===================================================
 
 class UndergraduateEncounter : public Encounter //Common
 {
@@ -72,36 +62,10 @@ public:
 
 };
 
-class TheDoctorEncounter : public Encounter //Rare NOT IMPLEMENTED
-{
-public:
-	TheDoctorEncounter();
-	void displayEncounter();
-	CharacterData getOptionResult(int i);
-};
-
-class AnomalyEncounter : public Encounter //rare Breaker
-{
-public:
-	AnomalyEncounter();
-	void displayEncounter();
-	CharacterData getOptionResult(int i);
-};
-
-
 class ProfessorEncounter : public Encounter //Common
 {
 public:
 	ProfessorEncounter();
-	void displayEncounter();
-	CharacterData getOptionResult(int i);
-};
-
-
-class BugEncounter : public Encounter //rare
-{
-public:
-	BugEncounter();
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
@@ -113,5 +77,78 @@ public:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
+
+
+
+//===================================================
+//               UNCOMMON ENCOUNTERS
+//===================================================
+
+
+class BugEncounter : public Encounter //rare
+{
+public:
+	BugEncounter();
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+
+
+//===================================================
+//                 RARE ENCOUNTERS
+//===================================================
+
+class TheDoctorEncounter : public Encounter //Rare NOT IMPLEMENTED
+{
+public:
+	TheDoctorEncounter();
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class AnomalyEncounter : public Encounter //rare
+{
+public:
+	AnomalyEncounter();
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+
+//===================================================
+//                 GAME BREAKERS
+//===================================================
+
+class CthulhuEncounter : public Encounter //Gamebreaker
+{
+public:
+	CthulhuEncounter();
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+
+	const string encounterName = "CthulhuEncounter";
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif
