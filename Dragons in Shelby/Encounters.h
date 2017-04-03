@@ -20,7 +20,7 @@ functions in the Encounter class.
 */
 
 #ifndef _ENCOUNTERS_H
-#define _ENCOUNTERS_H
+#define _ENCOUNTERS_H //Test
 
 #include "resources.h"
 #include "MenuManagerClass.h"
