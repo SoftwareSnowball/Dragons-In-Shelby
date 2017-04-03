@@ -62,7 +62,7 @@ void EncounterManagerClass::generateEncounter()
 	{
 		current = 0;
 	}
-	else if (roll < 66) //A common event occurs
+	else if (roll < 75) //A common event occurs
 	{
 
 		i = rand() % 3;
@@ -81,7 +81,7 @@ void EncounterManagerClass::generateEncounter()
 
 
 	}
-	else if (roll < 87) //A rare event occurs
+	else if (roll < 98) //A rare event occurs
 	{
 
 		i = rand() % 2;

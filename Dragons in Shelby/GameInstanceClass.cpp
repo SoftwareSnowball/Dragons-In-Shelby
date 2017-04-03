@@ -38,7 +38,7 @@ flag GameInstanceClass::run()
 	while (gameFlags == 0)
 	{
 
-		cout << "You are at position " << characterInterface->getPosition() << endl << endl;
+		cout << "You are " << HallLength - characterInterface->getPosition() << " Spaces from the end\n";
 
 
 		input = menuInterface->DisplayMenu(defaultOptions);
