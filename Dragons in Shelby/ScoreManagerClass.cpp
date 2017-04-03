@@ -1,5 +1,16 @@
 #include "ScoreManagerClass.h"
+/*
 
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: ScoreManagerClass.cpp
+
+
+See header file for description
+
+*/
 
 ScoreManagerClass::ScoreManagerClass()
 {

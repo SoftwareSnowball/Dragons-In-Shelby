@@ -11,6 +11,11 @@ This file contains the encounter manager class which is
 used to create encounters and relay the encounter results
 back to the game instance.
 
+The encounter is created on the freestore and the manager
+holds a pointer to specific encounter generated. The 
+encounter is deleted and the pointer set to NULL in
+between encounters.
+
 */
 
 

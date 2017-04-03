@@ -1,5 +1,19 @@
 #include "GameInstanceClass.h"
 
+/*
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: GameInstanceClass.cpp
+
+
+See header file for description
+
+*/
+
+
+
 GameInstanceClass::GameInstanceClass(string name, MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
 {
 	menuInterface = inputMenuInterface;

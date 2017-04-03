@@ -41,6 +41,14 @@ http://www.cplusplus.com/reference/ios/left/
 
 Description:
 This file contains the main function for the game Shelby Center and Dragons.
+
+This is a game where you are supposed to reach the end of a hall in Shelby.
+You have a limited amount of intelligence, money, time. If any of these
+reach 0, you lose the game. 
+
+The structure of the game uses an object oriented structure. See the header
+files for comments about the purpose of each of these classes.
+
 */
 
 #ifdef _WIN32

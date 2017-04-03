@@ -1,6 +1,16 @@
 #include "PlayerCharacterClass.h"
 
+/*
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
 
+FileName: PlayerCharacterClass.cpp
+
+
+See header file for description
+
+*/
 
 PlayerCharacterClass::PlayerCharacterClass()
 {

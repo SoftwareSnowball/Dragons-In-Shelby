@@ -1,4 +1,17 @@
 #include "EncounterManagerClass.h"
+/*
+
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: EncounterManagerClass.cpp
+
+
+See header file for description
+
+*/
+
 
 EncounterManagerClass::EncounterManagerClass(MenuManagerClass * inputMenuInterface)
 {

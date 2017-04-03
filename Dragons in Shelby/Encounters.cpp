@@ -1,4 +1,17 @@
 #include "Encounters.h"
+/*
+
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: Encounters.cpp
+
+
+See header file for description
+
+
+*/
 
 // DEBUG ENCOUNTER
 

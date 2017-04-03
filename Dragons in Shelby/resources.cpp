@@ -1,5 +1,16 @@
 #include "resources.h"
 
+/*
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: resources.cpp
+
+
+See header file for description
+
+*/
 
 CharacterStats::CharacterStats()
 {

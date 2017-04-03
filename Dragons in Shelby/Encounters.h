@@ -3,9 +3,20 @@ Author : James Malloy
 email : jem0044@tigermail.auburn.edu
 id : 903518039
 
+fileName: Encounters.h
+
 
 This files should contain all the specific encounter type which inherit from the Encounter class.
 This is where all the fun gets defined.
+
+I defined the menu options in the constructor.
+I defined the text for the encounter in the showEncounter function
+and I gave each one a function to determine what happens for each
+user input.
+
+All of the above except the constructor are overrides of virtual
+functions in the Encounter class.
+
 */
 
 #ifndef _ENCOUNTERS_H
