@@ -1,3 +1,15 @@
+/*
+Author : James Malloy
+email : jem0044@tigermail.auburn.edu
+id : 903518039
+
+fileName: PlayerCharacterClass.h
+
+
+This is a small container for all of the player information.
+*/
+
+
 #ifndef _PLAYER_CHARACTER_CLASS_H
 #define _PLAYER_CHARACTER_CLASS_H
 

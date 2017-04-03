@@ -17,7 +17,18 @@ flag EncounterManagerClass::manageEncounter()
 {
 
 	generateEncounter();
-	processEncounterOptions();
+
+	if (current)
+	{
+		processEncounterOptions();
+	}
+	else
+	{
+		encounterEffects = CharacterData(CharacterStats(), 0);
+		cout << "Nothing happens\n\n";
+	}
+
+
 
 	return statusFlag;
 }
@@ -43,7 +54,54 @@ void EncounterManagerClass::cleanEncounter()
 
 void EncounterManagerClass::generateEncounter()
 {
-	current = new DebugEncounter();
+
+	int roll = rand() % 100;
+	int i;
+
+	if (roll < 25) //Nothing happens
+	{
+		current = 0;
+	}
+	else if (roll < 66) //A common event occurs
+	{
+
+		i = rand() % 3;
+
+		switch (i)
+		{
+		case 0:
+			current = new ProfessorEncounter();
+			break;
+		case 1:
+			current = new UndergraduateEncounter();
+			break;
+		case 2:
+			current = new WeekendEncounter();
+		}
+
+
+	}
+	else if (roll < 87) //A rare event occurs
+	{
+
+		i = rand() % 2;
+
+		switch (i)
+		{
+		case 0:
+			current = new BugEncounter();
+			break;
+		case 1:
+			current = new AnomalyEncounter();
+			break;
+		}
+
+	}
+	else //A game breaker occurs
+	{
+		current = new CthulhuEncounter();
+	}
+
 }
 
 void EncounterManagerClass::processEncounterOptions()
@@ -62,7 +120,6 @@ void EncounterManagerClass::processEncounterOptions()
 	}
 
 	cout << endl;
-	cout << i;
 	encounterEffects = current->getOptionResult(i);
 
 	cout << endl;

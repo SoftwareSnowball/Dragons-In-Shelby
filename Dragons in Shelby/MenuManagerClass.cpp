@@ -41,13 +41,15 @@ void MenuManagerClass::WriteOptionSet(Options set)
 
 }
 
+//This function is used to start listing options from a number
+//other than 1. Used for displaying two option sets together.
 void MenuManagerClass::WriteOptionSet(Options set, int j)
 {
 
 	for (int i = 0; i < set.giveNumOfOptions(); i++)
 	{
 
-		cout << "Option " << j++ << ": " << set.ref(i) << endl;
+		cout << j++ << ": " << set.ref(i) << endl;
 
 	}
 
@@ -57,11 +59,26 @@ void MenuManagerClass::WriteOptionSet(Options set, int j)
 int MenuManagerClass::ProcessInput(int OptNum)
 {
 	int input;
-	do
+
+	bool correctInput = false;
+
+	while (!correctInput)
 	{
-		cout << "Please input one of the numbers on the menu\n";
+
 		cin >> input;
-	} while (input < 1 || input > OptNum);
+
+		if (input < 1 || input > OptNum)
+		{
+			cout << "That input could not be processed.\n";
+			cout << "Please enter a number from the list above\n";
+		}
+		else
+		{
+			correctInput = true;
+		}
+
+
+	}
 
 
 	if (input == OptNum)

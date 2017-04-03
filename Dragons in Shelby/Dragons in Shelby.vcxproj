@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Text Include="TestResults.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EncounterManagerClass.h" />
@@ -159,7 +159,7 @@
     <ClCompile Include="EncounterManagerClass.cpp" />
     <ClCompile Include="Encounters.cpp" />
     <ClCompile Include="GameInstanceClass.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Project1.cpp" />
     <ClCompile Include="MenuManagerClass.cpp" />
     <ClCompile Include="PlayerCharacterClass.cpp" />
     <ClCompile Include="resources.cpp" />

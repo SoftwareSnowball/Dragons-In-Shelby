@@ -1,0 +1,299 @@
+========================================================================
+    CONSOLE APPLICATION : Dragons in Shelby Project Overview
+========================================================================
+
+Test Cases:
+CASE 1: negative or otherwise invalid input in menu
+result:
+
+CHECKING MAIN MENU
+
+Welcome player!
+Please enter your name: James
+=====================================
+            James
+=====================================
+1: Start a new game of Shelby and Dragons!
+2: View top 10 high scores
+3: Exit Program
+-3
+That input could not be processed.
+Please enter a number from the list above
+0
+That input could not be processed.
+Please enter a number from the list above
+4
+That input could not be processed.
+Please enter a number from the list above
+
+MAIN MENU PASSED
+
+CHECKING IN GAME INSTANCE
+
+1: Move Forward.
+2: Read technical papers
+3: Search for loose change
+4: View character
+5: Quit game?
+0
+That input could not be processed.
+Please enter a number from the list above
+-1
+That input could not be processed.
+Please enter a number from the list above
+6
+That input could not be processed.
+Please enter a number from the list above
+
+GAME INSTANCE PASSED
+
+CHECKING DURING ENCOUNTER:
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+0
+That input could not be processed.
+Please enter a number from the list above
+-1
+That input could not be processed.
+Please enter a number from the list above
+9
+That input could not be processed.
+Please enter a number from the list above
+
+ENCOUNTER PASSED
+
+CASE 1 PASSED
+
+=======================================================
+CASE 2: Game loop terminates on victory condition
+
+... in game loop
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+7
+
+
+You're stats are unaffected
+You move forward 20 spaces
+
+Congratulations! You won the game!
+Yay!
+Parties!
+Okay, stop gloating and get back to work.
+
+Congratulations! You made one of the top 10 high scores!
+Your score is 6270
+
+CASE PASSED
+
+===========================================================
+CASE 3: Test that game ends properly on lose condition
+
+TESTING FAILURE BY INTELLIGENCE
+... in game loop
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+4
+
+
+You lose 100 intelligence points
+
+You become a blabbering idiot
+
+PASSED
+
+TESTING FAILURE BY MONEY
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+5
+
+
+You lose $100
+
+Oh, look who's broke.
+
+PASSED
+
+TESTING FAILURE BY TIME
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+6
+
+
+You lose 100 units of time
+
+You die of old age before graduation. So sad.
+
+PASSED
+
+CASE PASSED
+
+===========================================================
+CASE 4: Test that game terminates properly with quit command
+
+EXIT PROGRAM FROM MAIN MENU
+
+
+Option 1: Start a new game of Shelby and Dragons!
+Option 2: View top 10 high scores
+Option 3: Exit Program
+Please input one of the numbers on the menu
+3
+
+THE PROGRAM EXITED
+PASSED
+
+EXIT GAME LOOP FROM NORMAL STATUS
+
+Starting Game...
+
+
+You have...
+intelligence: 18
+time: 10
+money: 18
+
+You are at position 0
+
+1: Move Forward.
+2: Read technical papers
+3: Search for loose change
+4: View character
+5: Quit game?
+5
+
+Fine then. Quit, you loser.
+
+
+
+=====================================
+            James
+=====================================
+1: Start a new game of Shelby and Dragons!
+2: View top 10 high scores
+3: Exit Program
+
+
+PASSED
+
+EXIT GAME LOOP FROM ENCOUNTER MENU
+
+
+Here we have a debug encounter thing.
+It does stuff.
+
+
+1: Do nothing
+2: Teleport backwards
+3: Kill all stats
+4: Kill by int
+5: kill by money
+6: kill by time
+7: jump to end
+8: Quit game?
+8
+
+Fine then. Quit, you loser.
+
+
+
+=====================================
+            James
+=====================================
+1: Start a new game of Shelby and Dragons!
+2: View top 10 high scores
+3: Exit Program
+
+PASSED
+
+CASE 4 PASSED
+
+===========================================================
+CASE 5: Test that player character stats are affected properly
+
+You have...
+intelligence: 15
+time: 15
+money: 15
+
+1: Move Forward.
+2: Read technical papers
+3: Search for loose change
+4: View character
+5: Quit game?
+2
+
+After several hours of reading you feel you understand the universe a little better
+You gain 1 intelligence points
+You lose 2 units of time
+
+You are at position 0
+
+1: Move Forward.
+2: Read technical papers
+3: Search for loose change
+4: View character
+5: Quit game?
+4
+You have...
+intelligence: 16
+time: 13
+money: 15
+
+CASE PASSED
+

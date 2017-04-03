@@ -16,6 +16,20 @@ ScoreManagerClass::ScoreManagerClass()
 
 }
 
+ScoreManagerClass::ScoreManagerClass(string fileNameOverride)
+{
+
+
+	scores = new ScoreContainer[10]();
+
+	for (int i = 0; i < 10; i++)
+	{
+		scores[i] = ScoreContainer();
+	}
+
+	fileName = fileNameOverride;
+}
+
 
 ScoreManagerClass::~ScoreManagerClass()
 {
@@ -62,11 +76,18 @@ void ScoreManagerClass::outputScores()
 
 	readScores();
 
-
-	cout << "The top ten high scores are...\n";
+	cout << endl;
+	cout << "The top ten high scores are...\n\n";
 
 	for (int i = 0; i < 10; i++)
 	{
+
+		if (scores[i].score == 0)
+		{
+			cout << "There are no more scores to show.\n";
+			break;
+		}
+
 		cout.width(2);
 		cout << std::left << i + 1 << ") ";
 		cout.width(20);
@@ -75,6 +96,7 @@ void ScoreManagerClass::outputScores()
 
 	}
 
+	cout << endl;
 
 }
 

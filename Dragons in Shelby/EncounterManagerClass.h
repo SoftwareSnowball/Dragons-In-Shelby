@@ -1,5 +1,19 @@
 #ifndef _ENCOUNTER_MANAGER_CLASS_H
 #define _ENCOUNTER_MANAGER_CLASS_H
+/*
+Author : James Malloy
+email : jem0044@tigermail.auburn.edu
+id : 903518039
+
+fileName: EncounterManagerClass.h
+
+This file contains the encounter manager class which is
+used to create encounters and relay the encounter results
+back to the game instance.
+
+*/
+
+
 
 #include "resources.h"
 #include "MenuManagerClass.h"

@@ -1,6 +1,6 @@
 #include "GameInstanceClass.h"
 
-GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
+GameInstanceClass::GameInstanceClass(string name, MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
 {
 	menuInterface = inputMenuInterface;
 	scoreInterface = inputScoreInterface;
@@ -14,6 +14,8 @@ GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, Scor
 	encounterInterface = new EncounterManagerClass(menuInterface);
 	gameFlags = 0;
 
+	playerName = name;
+
 }
 
 GameInstanceClass::~GameInstanceClass()
@@ -25,9 +27,6 @@ flag GameInstanceClass::run()
 {
 
 	cout << "\nStarting Game...\n\n";
-	cout << "Input player name: ";
-	string name;
-	cin >> name;
 
 	cout << endl;
 
@@ -84,7 +83,9 @@ flag GameInstanceClass::run()
 		cout << "Okay, stop gloating and get back to work.\n";
 		cout << endl;
 
-		scoreInterface->addScore(name, characterInterface->getScore());
+		scoreInterface->addScore(playerName, characterInterface->getScore());
+		cout << "Your score is " << characterInterface->getScore();
+		cout << endl << endl;
 	}
 	else if ((gameFlags & DefeatByIntFlag) != 0)
 	{
@@ -137,7 +138,7 @@ bool GameInstanceClass::clean()
 void GameInstanceClass::moveForward()
 {
 	gameFlags = gameFlags | characterInterface->affectPosition(1);
-
+	gameFlags = gameFlags | characterInterface->affectStats(CharacterStats(0, 0, -MovementTimeCost));
 
 	if (gameFlags != 0)
 	{
@@ -150,7 +151,7 @@ void GameInstanceClass::moveForward()
 
 	if (gameFlags != 0)
 	{
-		cout << "There was a problem in encounterInterface.\n";
+		//cout << "There was a problem in encounterInterface.\n";
 		return;
 	}
 

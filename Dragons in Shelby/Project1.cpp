@@ -1,4 +1,10 @@
 /*
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: Project1.cpp
+
 
 Compilation:
 g++ -Wall -std=c++11 -c -o resources.o resources.cpp
@@ -8,14 +14,13 @@ g++ -Wall -std=c++11 -c -o EN.o Encounters.cpp
 g++ -Wall -std=c++11 -c -o EMC.o EncounterManagerClass.cpp
 g++ -Wall -std=c++11 -c -o PCC.o PlayerCharacterClass.cpp
 g++ -Wall -std=c++11 -c -o GIC.o GameInstanceClass.cpp
-g++ -Wall -std=c++11 -c -o Main.o Main.cpp
+g++ -Wall -std=c++11 -c -o Project1.o Project1.cpp
 
-g++ -Wall -std=c++11 -o EX02 resources.o MMC.o SMC.o EN.o EMC.o PCC.o GIC.o Main.o
+g++ -Wall -std=c++11 -o EX02 resources.o MMC.o SMC.o EN.o EMC.o PCC.o GIC.o Project1.o
 
 Yes I'm sorry about all this. Visual studio makes it a lot
 easier to use a bunch of files, so I wasn't thinking about the
 pain of command line compilation for my program.
-
 
 
 Sources:
@@ -33,6 +38,9 @@ http://stackoverflow.com/questions/4847100/c-inheritance-inaccessible-base
 http://www.studytonight.com/cpp/virtual-functions.php
 http://www.cplusplus.com/reference/ios/left/
 
+
+Description:
+This file contains the main function for the game Shelby Center and Dragons.
 */
 
 #ifdef _WIN32
@@ -57,15 +65,29 @@ int main()
 	GameInstanceClass * gameInstance = 0;
 	ScoreManagerClass * scoreInterface = new ScoreManagerClass();
 
+	string name;
+
+	cout << "Welcome player!\n";
+	cout << "Please enter your name: ";
+	cin >> name;
+
+
+
+
+
 
 	while (i != UserExitCode)
 	{
+		cout << "=====================================\n";
+		cout << "            " << name << endl;
+		cout << "=====================================\n";
+
 		i = menuInterface->DisplayMainMenu();
 
 		if (i == 0)
 		{
 
-			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
+			gameInstance = new GameInstanceClass(name, menuInterface, scoreInterface);
 			gameInstance->run();
 			gameInstance->clean();
 			delete gameInstance;

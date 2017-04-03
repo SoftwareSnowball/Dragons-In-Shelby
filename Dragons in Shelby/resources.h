@@ -1,14 +1,18 @@
 #ifndef RESOURCES_H
 #define RESOURCES_H
-
 /*
-resources.h
+Author: James Malloy
+email:	jem0044@tigermail.auburn.edu
+id:		903518039
+
+FileName: resources.h
 This file contains most of the library includes that are used in the
 rest of the program. Additionally it contains several definitions
 for flag values used by the program logic. After that are definitions
 used to determine game rules and then a few classes and structs to
 help the other classes to run smoothly.
 
+In short this is something of a catch all file.
 */
 
 
@@ -67,6 +71,9 @@ and balance of certain game mechanics.
 #define StartTimeRange 20
 #define MinStartTime 10
 
+
+#define MovementTimeCost 2
+
 //defines read tech paper behavior
 #define TechPaperTimeCost 2
 #define TechPaperMaxGain 6
@@ -77,10 +84,12 @@ and balance of certain game mechanics.
 
 
 //Controls number of spaces character has to move to win.
-#define HallLength 3
+#define HallLength 20
 
 //Control the maximum number of options that the Options class can hold.
 #define MaxOptions 8
+
+
 
 
 //These are a few classes and structs to make life easier.

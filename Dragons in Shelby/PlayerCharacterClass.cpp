@@ -65,7 +65,7 @@ flag PlayerCharacterClass::affectStats(CharacterStats offset)
 
 	if (offset.time == 0 && offset.money == 0 && offset.intelligence == 0)
 	{
-		cout << "You're stats are unaffected\n";
+		//cout << "You're stats are unaffected\n";
 	}
 
 
