@@ -19,7 +19,11 @@ Encounter::Encounter()
 
 	menuInterface = 0;
 
-	generateOptions();
+	opts = Options(1);
+
+	encounterInfo = "This is a default encounter\n";
+	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
+	opts.ref(0) = "There are no choices here";
 
 
 }
@@ -42,7 +46,6 @@ EncounterResultPackage Encounter::run()
 {
 
 	displayEncounter();
-	generateOptions();
 
 
 	if (menuInterface)
@@ -67,14 +70,6 @@ void Encounter::displayEncounter()
 	cout << encounterInfo;
 }
 
-void Encounter::generateOptions()
-{
-	opts = Options(1);
-
-	encounterInfo = "This is a default encounter\n";
-	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
-	opts.ref(0) = "There are no choices here";
-}
 
 EncounterResultPackage Encounter::encounterMechanics()
 {
@@ -112,13 +107,13 @@ CharacterData Encounter::getOptionResult(int i) //legacy encounter system suppor
 //                 DEBUG ENCOUNTERS
 //===================================================
 
-//DebugEncounter::DebugEncounter()
-//{
-//
-//
-//
-//
-//}
+DebugEncounter::DebugEncounter()
+{
+
+	generateOptions();
+
+
+}
 
 void DebugEncounter::displayEncounter()
 {
@@ -206,6 +201,16 @@ CharacterData DebugEncounter::getOptionResult(int i)
 /************************************************/
 //			UNDERGRADUATE ENCOUNTER
 /************************************************/
+
+
+UndergraduateEncounter::UndergraduateEncounter()
+{
+
+	generateOptions();
+
+}
+
+
 
 void UndergraduateEncounter::displayEncounter()
 {

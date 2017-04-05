@@ -53,7 +53,6 @@ protected:
 
 
 	virtual void displayEncounter();
-	virtual void generateOptions();
 	virtual EncounterResultPackage encounterMechanics(); //overridden except for legacy support
 	virtual CharacterData getOptionResult(int i); //legacy encounter system support
 
@@ -71,8 +70,10 @@ protected:
 //===================================================
 class DebugEncounter : public Encounter //debug
 {
+public:
+	DebugEncounter();
+
 private:
-	//DebugEncounter();
 
 	void displayEncounter();
 	void generateOptions();
@@ -88,6 +89,9 @@ private:
 
 class UndergraduateEncounter : public Encounter //Common
 {
+public:
+	UndergraduateEncounter();
+
 private:
 	void displayEncounter();
 
@@ -102,6 +106,8 @@ class WeekendEncounter : public Encounter //Common
 {
 public:
 	WeekendEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 
@@ -113,17 +119,22 @@ class ProfessorEncounter : public Encounter //Common
 {
 public:
 	ProfessorEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
 
-class VideoGameEncounter : public Encounter //common NOT IMPLEMENTED
+class VideoGameEncounter : public Encounter 
 {
 public:
 	VideoGameEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
+
 
 
 
@@ -132,10 +143,24 @@ public:
 //===================================================
 
 
-class BugEncounter : public Encounter //rare
+class RefrigeratorEncounter : public Encounter
+{
+public:
+	RefrigeratorEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+
+};
+
+
+class BugEncounter : public Encounter
 {
 public:
 	BugEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
@@ -150,6 +175,8 @@ class TheDoctorEncounter : public Encounter //Rare NOT IMPLEMENTED
 {
 public:
 	TheDoctorEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
@@ -158,6 +185,8 @@ class AnomalyEncounter : public Encounter //rare
 {
 public:
 	AnomalyEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
@@ -171,6 +200,8 @@ class CthulhuEncounter : public Encounter //Gamebreaker
 {
 public:
 	CthulhuEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 
@@ -183,6 +214,8 @@ class DragonEncounter : public Encounter
 {
 public:
 	DragonEncounter();
+
+private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 

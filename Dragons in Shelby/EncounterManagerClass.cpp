@@ -77,49 +77,39 @@ void EncounterManagerClass::generateEncounter()
 	int roll = rand() % 100;
 	int i;
 
-	if (roll < 25) //Nothing happens
+	if (roll < 10)
 	{
-		current = 0;
+		current = NULL;
+		cout << "Nothing happens.\n";
 	}
-	else if (roll < 75) //A common event occurs
+	else if (roll < 70) //common encounter
 	{
 
-		i = rand() % 3;
 
-		switch (i)
-		{
-		case 0:
-			current = new ProfessorEncounter();
-			break;
-		case 1:
-			current = new UndergraduateEncounter();
-			break;
-		case 2:
-			current = new WeekendEncounter();
-		}
+
 
 
 	}
-	else if (roll < 98) //A rare event occurs
+	else if (roll < 90) //uncommon encounter
 	{
 
-		i = rand() % 2;
-
-		switch (i)
-		{
-		case 0:
-			current = new BugEncounter();
-			break;
-		case 1:
-			current = new AnomalyEncounter();
-			break;
-		}
-
 	}
-	else //A game breaker occurs
+	else if (roll < 98) //rare encounter
 	{
-		current = new CthulhuEncounter();
+
+
 	}
+	else //game breaker
+	{
+
+	}
+
+
+
+
+
+
+
 
 
 #endif //ENCOUNTER_DEBUG
