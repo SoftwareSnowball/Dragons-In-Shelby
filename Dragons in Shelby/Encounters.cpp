@@ -13,11 +13,120 @@ See header file for description
 
 */
 
+
+Encounter::Encounter()
+{
+
+	menuInterface = 0;
+
+	generateOptions();
+
+
+}
+
+Encounter::~Encounter()
+{
+}
+
+void Encounter::linkMenuInterface(MenuManagerClass * inputMenuInterface)
+{
+
+
+	menuInterface = inputMenuInterface;
+
+
+}
+
+
+EncounterResultPackage Encounter::run()
+{
+
+	displayEncounter();
+	generateOptions();
+
+
+	if (menuInterface)
+	{
+		return encounterMechanics();
+	}
+
+
+	EncounterResultPackage temp;
+
+	temp.gameFlags = FunctionErrorFlag;
+
+	return temp;
+
+
+}
+
+
+
+void Encounter::displayEncounter()
+{
+	cout << encounterInfo;
+}
+
+void Encounter::generateOptions()
+{
+	opts = Options(1);
+
+	encounterInfo = "This is a default encounter\n";
+	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
+	opts.ref(0) = "There are no choices here";
+}
+
+EncounterResultPackage Encounter::encounterMechanics()
+{
+
+
+	int i = menuInterface->DisplayMenu(opts);
+
+	EncounterResultPackage result = EncounterResultPackage();
+
+	if (i == UserExitCode)
+	{
+		result.gameFlags = UserExitFlag;
+
+	}
+	else
+	{
+		result.gameFlags = 0;
+		result.characterEffects = getOptionResult(i);
+	}
+
+	return result;
+
+
+
+}
+
+
+CharacterData Encounter::getOptionResult(int i) //legacy encounter system support
+{
+	return CharacterData(); 
+}
+
+
 //===================================================
 //                 DEBUG ENCOUNTERS
 //===================================================
 
-DebugEncounter::DebugEncounter()
+//DebugEncounter::DebugEncounter()
+//{
+//
+//
+//
+//
+//}
+
+void DebugEncounter::displayEncounter()
+{
+	cout << "Here we have a debug encounter thing.\n";
+	cout << "It does stuff.\n\n";
+}
+
+void DebugEncounter::generateOptions()
 {
 
 	opts = Options(7);
@@ -33,11 +142,30 @@ DebugEncounter::DebugEncounter()
 
 }
 
-void DebugEncounter::displayEncounter()
-{
-	cout << "Here we have a debug encounter thing.\n";
-	cout << "It does stuff.\n\n";
-}
+
+//EncounterResultPackage DebugEncounter::encounterMechanics()
+//{
+//
+//	int i = menuInterface->DisplayMenu(opts);
+//
+//	EncounterResultPackage result = EncounterResultPackage();
+//
+//	if (i == UserExitCode)
+//	{
+//		result.gameFlags = UserExitFlag;
+//
+//	}
+//	else
+//	{
+//		result.gameFlags = 0;
+//		result.characterEffects = getOptionResult(i);
+//	}
+//
+//	return result;
+//
+//}
+
+
 
 CharacterData DebugEncounter::getOptionResult(int i)
 {
@@ -78,15 +206,6 @@ CharacterData DebugEncounter::getOptionResult(int i)
 /************************************************/
 //			UNDERGRADUATE ENCOUNTER
 /************************************************/
-UndergraduateEncounter::UndergraduateEncounter()
-{
-	opts = Options(3);
-
-	opts.ref(0) = "Agree to regrade their papers";
-	opts.ref(1) = "No. I don't have time for that right now.\nHere have some pity points";
-	opts.ref(2) = "Umm... I'm not the TA for that class.";
-
-}
 
 void UndergraduateEncounter::displayEncounter()
 {
@@ -94,6 +213,15 @@ void UndergraduateEncounter::displayEncounter()
 	cout << "You encounter a group of undergraduates who want you to\n";
 	cout << "regrade their papers.\n";
 
+}
+
+void UndergraduateEncounter::generateOptions()
+{
+	opts = Options(3);
+
+	opts.ref(0) = "Agree to regrade their papers";
+	opts.ref(1) = "No. I don't have time for that right now.\nHere have some pity points";
+	opts.ref(2) = "Umm... I'm not the TA for that class.";
 }
 
 CharacterData UndergraduateEncounter::getOptionResult(int i)

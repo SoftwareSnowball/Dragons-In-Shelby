@@ -33,7 +33,8 @@ EncounterResultPackage EncounterManagerClass::manageEncounter()
 
 	if (current)
 	{
-		runEncounter();
+		current->linkMenuInterface(menuInterface);
+		encounterEffects = current->run();
 	}
 	else
 	{
@@ -60,18 +61,18 @@ void EncounterManagerClass::cleanEncounter()
 void EncounterManagerClass::generateEncounter()
 {
 
-#define ENCOUNTER_DEBUG 1
-
-#ifdef ENCOUNTER_DEBUG
 
 
-	current = new VideoGameEncounter();
+#ifdef DEBUG_MODE
+
+
+	current = new DebugEncounter();
 
 #endif
 
 
 
-#ifndef ENCOUNTER_DEBUG
+#ifndef DEBUG_MODE
 
 	int roll = rand() % 100;
 	int i;
@@ -124,7 +125,6 @@ void EncounterManagerClass::generateEncounter()
 #endif //ENCOUNTER_DEBUG
 
 }
-
 
 
 

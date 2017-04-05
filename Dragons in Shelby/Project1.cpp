@@ -51,7 +51,7 @@ files for comments about the purpose of each of these classes.
 
 */
 
-#define VersionNumber 0.80
+#define VersionNumber 0.81
 
 #ifdef _WIN32
 #include "stdafx.h"
@@ -79,7 +79,13 @@ int main()
 	while (i != UserExitCode)
 	{
 		cout << "================================================\n";
-		cout << "        Shelby Center and Dragons v" << VersionNumber << endl;
+		cout << "        Shelby Center and Dragons v" << VersionNumber;
+
+#ifdef DEBUG_MODE
+		cout << " DEBUG MODE";
+#endif
+		cout << endl;
+
 		cout << "================================================\n";
 
 		i = menuInterface->DisplayMainMenu();

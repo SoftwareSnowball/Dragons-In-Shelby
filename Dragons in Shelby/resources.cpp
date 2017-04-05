@@ -28,10 +28,7 @@ CharacterStats::CharacterStats(int inputInt, int inputMoney, int inputTime)
 	time = inputTime;
 }
 
-CharacterData Encounter::getOptionResult(int i)
-{
-	return CharacterData();
-}
+
 
 CharacterData::CharacterData()
 {
@@ -76,29 +73,6 @@ int Options::giveNumOfOptions()
 }
 
 
-
-Encounter::Encounter()
-{
-	opts = Options(1);
-
-	encounterInfo = "This is a default encounter\n";
-	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
-	opts.ref(0) = "There are no choices here";
-}
-
-Encounter::~Encounter()
-{
-}
-
-void Encounter::displayEncounter()
-{
-	cout << encounterInfo;
-}
-
-Options Encounter::giveOptions()
-{
-	return opts;
-}
 
 ScoreContainer::ScoreContainer()
 {

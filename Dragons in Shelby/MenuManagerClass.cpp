@@ -44,7 +44,7 @@ int MenuManagerClass::DisplayMenu(Options set)
 
 }
 
-void MenuManagerClass::WriteOptionSet(Options set)
+void MenuManagerClass::WriteOptionSet(Options& set)
 {
 
 	WriteOptionSet(set, 1);
@@ -53,7 +53,7 @@ void MenuManagerClass::WriteOptionSet(Options set)
 
 //This function is used to start listing options from a number
 //other than 1. Used for displaying two option sets together.
-void MenuManagerClass::WriteOptionSet(Options set, int j)
+void MenuManagerClass::WriteOptionSet(Options& set, int j)
 {
 
 	for (int i = 0; i < set.giveNumOfOptions(); i++)

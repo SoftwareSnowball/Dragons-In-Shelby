@@ -24,14 +24,59 @@ functions in the Encounter class.
 
 #include "resources.h"
 #include "MenuManagerClass.h"
+
+
+
+
+
+
+/*
+This class is special in that it is not meant to be instantiated directly, but
+it is meant to be the parent of all the specific Encounter types in the
+game.
+*/
+class Encounter
+{
+public:
+
+	Encounter();
+	virtual ~Encounter();
+
+	const string encounterName = "Default Encounter";
+
+	void linkMenuInterface(MenuManagerClass * inputMenuInterface);
+
+	EncounterResultPackage run();
+
+
+protected:
+
+
+	virtual void displayEncounter();
+	virtual void generateOptions();
+	virtual EncounterResultPackage encounterMechanics(); //overridden except for legacy support
+	virtual CharacterData getOptionResult(int i); //legacy encounter system support
+
+	MenuManagerClass * menuInterface;
+
+	Options opts;
+	string encounterInfo;
+
+};
+
+
+
 //===================================================
 //                 DEBUG ENCOUNTERS
 //===================================================
 class DebugEncounter : public Encounter //debug
 {
-public:
-	DebugEncounter();
+private:
+	//DebugEncounter();
+
 	void displayEncounter();
+	void generateOptions();
+	//EncounterResultPackage encounterMechanics();
 	CharacterData getOptionResult(int i);
 
 	const string encounterName = "DebugEncounter";
@@ -43,9 +88,10 @@ public:
 
 class UndergraduateEncounter : public Encounter //Common
 {
-public:
-	UndergraduateEncounter();
+private:
 	void displayEncounter();
+
+	void generateOptions();
 	CharacterData getOptionResult(int i);
 
 	const string encounterName = "Undergraduate Encounter";
