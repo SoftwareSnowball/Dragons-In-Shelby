@@ -39,7 +39,10 @@ Bit codes to be used with flag variables. These help
 Control program flow
 
 The codes below are only ever assigned to a variable of type flag
-and type flag is only ever used with these codes.
+and type flag is only ever used with these codes or with a
+persistent state code. (Persistent state flags can be used as arguents
+to affect the function of an encounter and such. They are defined in the
+context of the encounter they affect.)
 */
 #define DefeatByIntFlag 01
 #define DefeatByMoneyFlag 02
@@ -113,10 +116,30 @@ struct CharacterData
 	CharacterData(CharacterStats inputStats, int inputPosition);
 
 	CharacterStats stats;
+
 	int position;
+
+
+	//added in the encounter rework update. Will be used 
+	//when I update the player character and add in different difficulties.
+	int intelligenceGainRate;
+	int timeGainRate;
+	int moneyGainRate;
+
+	int intelligenceLossRate;
+	int timeLossRate;
+	int moneyLossRate;
 };
 
+//Added in the encounter rework update
+struct EncounterResultPackage
+{
 
+	CharacterData characterEffects;
+	flag gameFlags;
+
+
+};
 
 
 class Options 

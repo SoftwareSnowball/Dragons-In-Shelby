@@ -778,9 +778,6 @@ DragonEncounter::DragonEncounter()
 
 }
 
-DragonEncounter::~DragonEncounter()
-{
-}
 
 void DragonEncounter::displayEncounter()
 {

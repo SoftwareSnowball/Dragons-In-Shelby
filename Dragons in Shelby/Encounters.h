@@ -19,8 +19,8 @@ functions in the Encounter class.
 
 */
 
-#ifndef _ENCOUNTERS_H
-#define _ENCOUNTERS_H //Test
+#ifndef _ENCOUNTERS_H 
+#define _ENCOUNTERS_H 
 
 #include "resources.h"
 #include "MenuManagerClass.h"

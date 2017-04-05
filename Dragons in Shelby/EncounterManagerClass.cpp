@@ -26,28 +26,23 @@ EncounterManagerClass::~EncounterManagerClass()
 	cleanEncounter();
 }
 
-flag EncounterManagerClass::manageEncounter()
+EncounterResultPackage EncounterManagerClass::manageEncounter()
 {
 
 	generateEncounter();
 
 	if (current)
 	{
-		processEncounterOptions();
+		runEncounter();
 	}
 	else
 	{
-		encounterEffects = CharacterData(CharacterStats(), 0);
+		encounterEffects = EncounterResultPackage();
 		cout << "Nothing happens\n\n";
 	}
 
 
 
-	return statusFlag;
-}
-
-CharacterData EncounterManagerClass::giveResults()
-{
 	return encounterEffects;
 }
 
@@ -59,9 +54,6 @@ void EncounterManagerClass::cleanEncounter()
 		delete current;
 		current = 0;
 	}
-
-
-	encounterEffects = CharacterData();
 
 }
 
@@ -133,26 +125,6 @@ void EncounterManagerClass::generateEncounter()
 
 }
 
-void EncounterManagerClass::processEncounterOptions()
-{
-
-	current->displayEncounter();
-
-	cout << endl;
-
-	int i = menuInterface->DisplayMenu(current->giveOptions());
-
-	if (i == UserExitCode)
-	{
-		statusFlag = statusFlag | UserExitFlag;
-		return;
-	}
-
-	cout << endl;
-	encounterEffects = current->getOptionResult(i);
-
-	cout << endl;
-}
 
 
 

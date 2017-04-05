@@ -16,6 +16,13 @@ holds a pointer to specific encounter generated. The
 encounter is deleted and the pointer set to NULL in
 between encounters.
 
+As of the encounter rework update, EncounterManager no longer handles
+user input pertaining to encounters. It instead gives the menuInterface pointer
+to the encounter on generation which allows for a more streamlined encounter
+handling process. This also allows more flexibilty with the scope of an encounter.
+ex. An encounter can now have multiple layers of user decisions.
+
+
 */
 
 
@@ -31,20 +38,20 @@ public:
 	EncounterManagerClass(MenuManagerClass * inputMenuInterface);
 	~EncounterManagerClass();
 
-	flag manageEncounter();
-	CharacterData giveResults();
-	void cleanEncounter(); //Deletes current and sets it to 0. Also reseults flags and encounter results.
+	EncounterResultPackage manageEncounter();
+	
 
 private:
 
 	void generateEncounter(); //Fills the Encounter current with an encounter type or void if no encounter is generated
-	void processEncounterOptions(); //Should handle encounter text output and user input using menuClass
+	void runEncounter();
+	void cleanEncounter(); //Deletes current and sets it to 0. Also reseults flags and encounter results.
 
 
 	MenuManagerClass * menuInterface = 0;
 	Encounter * current = 0;
 	flag statusFlag = 0;
-	CharacterData encounterEffects;
+	EncounterResultPackage encounterEffects;
 
 };
 

@@ -167,13 +167,19 @@ void GameInstanceClass::moveForward()
 	gameFlags = gameFlags | characterInterface->affectPosition(1);
 	gameFlags = gameFlags | characterInterface->affectStats(CharacterStats(0, 0, -MovementTimeCost));
 
+	EncounterResultPackage result;
+
 	if (gameFlags != 0)
 	{
 		return;
 	}
 
 	cout << endl;
-	gameFlags = encounterInterface->manageEncounter();
+	result = encounterInterface->manageEncounter();
+
+	gameFlags = gameFlags | result.gameFlags;
+
+	CharacterData tempData = result.characterEffects;
 
 
 	if (gameFlags != 0)
@@ -182,7 +188,7 @@ void GameInstanceClass::moveForward()
 		return;
 	}
 
-	CharacterData tempData = encounterInterface->giveResults();
+	
 
 	gameFlags = characterInterface->affectCharacterData(tempData);
 
