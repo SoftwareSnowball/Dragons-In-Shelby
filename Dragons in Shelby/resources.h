@@ -78,11 +78,11 @@ and balance of certain game mechanics.
 #define StartMoneyRange 10
 #define MinStartMoney 10
 
-#define StartTimeRange 20
-#define MinStartTime 15
+#define StartTimeRange 10
+#define MinStartTime 10
 
 
-#define MovementTimeCost 2
+#define MovementTimeCost 1
 
 //defines read tech paper behavior
 #define TechPaperTimeCost 2

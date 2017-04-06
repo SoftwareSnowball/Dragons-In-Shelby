@@ -71,34 +71,34 @@ flag GameInstanceClass::run()
 			break;
 
 		case 0:
-			cout << endl;
 			moveForward();
+			cout << endl;
 			break;
 
 		case 1:
-			cout << endl;
 			readTechnicalPaper();
+			cout << endl;
 			break;
 
 		case 2:
-			cout << endl;
 			searchForChange();
+			cout << endl;
 			break;
 
 		case 3:
 
-			cout << endl;
 			pullAllNighter();
+			cout << endl;
 			break;
 
 		case 4:
 
 			characterInterface->displayStats();
+			cout << endl;
 			break;
 
 		}
 
-		cout << endl;
 
 	}
 

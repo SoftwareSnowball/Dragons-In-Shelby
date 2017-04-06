@@ -92,7 +92,7 @@ int MenuManagerClass::ProcessInput(int OptNum)
 			correctInput = true;
 		}
 
-
+		cout << endl;
 	}
 
 

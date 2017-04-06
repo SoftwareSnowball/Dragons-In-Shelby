@@ -39,7 +39,6 @@ EncounterResultPackage EncounterManagerClass::manageEncounter()
 	else
 	{
 		encounterEffects = EncounterResultPackage();
-		cout << "Nothing happens\n\n";
 	}
 
 	encounterEffects.gameFlags = encounterEffects.gameFlags | statusFlag;
@@ -82,7 +81,7 @@ void EncounterManagerClass::generateEncounter()
 		current = NULL;
 		cout << "Nothing happens.\n";
 	}
-	else if (roll < 70) //common encounter
+	else if (roll < 60) //common encounter
 	{
 
 		current = generateCommon();
@@ -102,7 +101,7 @@ void EncounterManagerClass::generateEncounter()
 			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
-	else if (roll < 98) //rare encounter
+	else if (roll < 95) //rare encounter
 	{
 
 		current = generateRare();
