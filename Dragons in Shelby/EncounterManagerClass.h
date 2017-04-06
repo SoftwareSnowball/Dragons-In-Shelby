@@ -47,6 +47,11 @@ private:
 	void generateDebugEncounter(); //Called when program is in debug mode. Give user option to select encounter.
 	void cleanEncounter(); //Deletes current and sets it to 0. Also reseults flags and encounter results.
 
+	Encounter * generateCommon();
+	Encounter * generateUncommon();
+	Encounter * generateRare();
+	Encounter * generateGameBreaker();
+
 
 	MenuManagerClass * menuInterface = 0;
 	Encounter * current = 0;

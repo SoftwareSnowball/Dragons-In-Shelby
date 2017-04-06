@@ -75,6 +75,8 @@ int main()
 	GameInstanceClass * gameInstance = 0;
 	ScoreManagerClass * scoreInterface = new ScoreManagerClass();
 
+	flag gameStatus;
+
 
 	while (i != UserExitCode)
 	{
@@ -94,10 +96,18 @@ int main()
 		{
 
 			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
-			gameInstance->run();
+			gameStatus = gameInstance->run();
 			gameInstance->clean();
 			delete gameInstance;
 			gameInstance = 0;
+
+
+			if ((gameStatus & FunctionErrorFlag) != 0)
+			{
+				system("pause");
+				return 1;
+			}
+
 
 		}
 		else if (i == 1)

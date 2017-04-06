@@ -42,7 +42,7 @@ EncounterResultPackage EncounterManagerClass::manageEncounter()
 		cout << "Nothing happens\n\n";
 	}
 
-
+	encounterEffects.gameFlags = encounterEffects.gameFlags | statusFlag;
 
 	return encounterEffects;
 }
@@ -57,6 +57,7 @@ void EncounterManagerClass::cleanEncounter()
 	}
 
 }
+
 
 void EncounterManagerClass::generateEncounter()
 {
@@ -75,7 +76,6 @@ void EncounterManagerClass::generateEncounter()
 #ifndef DEBUG_MODE
 
 	int roll = rand() % 100;
-	int i;
 
 	if (roll < 10)
 	{
@@ -85,30 +85,41 @@ void EncounterManagerClass::generateEncounter()
 	else if (roll < 70) //common encounter
 	{
 
+		current = generateCommon();
 
 
-
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
 	else if (roll < 90) //uncommon encounter
 	{
 
+
+		current = generateUncommon();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
+
 	}
 	else if (roll < 98) //rare encounter
 	{
 
+		current = generateRare();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
 	else //game breaker
 	{
 
+		current = generateGameBreaker();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
+
 	}
-
-
-
-
-
-
 
 
 
@@ -118,3 +129,80 @@ void EncounterManagerClass::generateEncounter()
 
 
 
+Encounter * EncounterManagerClass::generateCommon()
+{
+
+	int i = rand() % 4;
+
+	switch (i)
+	{
+	case 0:
+		return new UndergraduateEncounter();
+
+	case 1:
+		return new WeekendEncounter();
+
+	case 2:
+		return new ProfessorEncounter();
+
+	case 3:
+		return new VideoGameEncounter();
+	}
+
+	cout << "The generator was unable to create a common encounter type.\n";
+
+	return nullptr;
+}
+
+Encounter * EncounterManagerClass::generateUncommon()
+{
+
+	int i = rand() % 1;
+
+	switch (i)
+	{
+
+	case 0:
+		return new BugEncounter();
+	}
+
+
+
+	cout << "The generator was unable to create an uncommon encounter type.\n";
+
+	return nullptr;
+}
+
+Encounter * EncounterManagerClass::generateRare()
+{
+
+	int i = rand() % 1;
+
+	switch (i)
+	{
+	case 0:
+		return new AnomalyEncounter();
+	}
+
+
+
+	cout << "The generator was unable to create a common encounter type\n";
+
+	return nullptr;
+}
+
+Encounter * EncounterManagerClass::generateGameBreaker()
+{
+
+	int i = rand() % 1;
+
+	switch (i)
+	{
+	case 0:
+		return new CthulhuEncounter();
+	}
+
+
+	cout << "The generator was unable to create a \"FUN\" encounter type.\n";
+	return nullptr;
+}

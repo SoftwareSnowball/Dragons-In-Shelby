@@ -27,9 +27,6 @@ functions in the Encounter class.
 
 
 
-
-
-
 /*
 This class is special in that it is not meant to be instantiated directly, but
 it is meant to be the parent of all the specific Encounter types in the
@@ -53,7 +50,7 @@ protected:
 
 
 	virtual void displayEncounter();
-	virtual EncounterResultPackage encounterMechanics(); //overridden except for legacy support
+	virtual EncounterResultPackage encounterMechanics(); //overridden when needed to create more flexibility
 	virtual CharacterData getOptionResult(int i); //legacy encounter system support
 
 	MenuManagerClass * menuInterface;
@@ -135,12 +132,40 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
+class CancelledClassEncounter : public Encounter
+{
+public:
+	CancelledClassEncounter();
 
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
 
+};
+
+class NoisyNeighborsEncounter : public Encounter
+{
+public:
+	NoisyNeighborsEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
 
 //===================================================
 //               UNCOMMON ENCOUNTERS
 //===================================================
+
+class BugEncounter : public Encounter
+{
+public:
+	BugEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
 
 
 class RefrigeratorEncounter : public Encounter
@@ -154,17 +179,37 @@ private:
 
 };
 
+class PoliticalRallyEncounter : public Encounter
+{
 
-class BugEncounter : public Encounter
+public:
+	PoliticalRallyEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+
+};
+
+class SicknessEncounter : public Encounter
 {
 public:
-	BugEncounter();
+	SicknessEncounter();
 
 private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
 
+class NinjaEncounter : public Encounter
+{
+public:
+	NinjaEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
 
 
 //===================================================
@@ -191,6 +236,15 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
+class AlienEncounter : public Encounter
+{
+public:
+	AlienEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
 
 //===================================================
 //                 GAME BREAKERS
@@ -217,11 +271,13 @@ public:
 
 private:
 	void displayEncounter();
+
+	//EncounterResultPackage encounterMechanics(); //Overrides base class encounter mechanics.
+
 	CharacterData getOptionResult(int i);
 
 	const string encounterName = "DragonEncounter\n";
 
-private:
 	MenuManagerClass dragonMenu;
 
 	int gameOfRiddles();
@@ -229,23 +285,6 @@ private:
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

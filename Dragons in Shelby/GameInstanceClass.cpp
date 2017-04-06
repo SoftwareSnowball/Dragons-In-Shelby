@@ -102,7 +102,13 @@ flag GameInstanceClass::run()
 
 	}
 
-	if ((gameFlags & VictoryFlag) != 0)
+	if (gameFlags & FunctionErrorFlag)
+	{
+		cout << "Error:\n";
+		cout << "The program has encountered a problem and needs to close.\n";
+
+	}
+	else if ((gameFlags & VictoryFlag) != 0)
 	{
 		cout << "Congratulations! You won the game!\n";
 		cout << "Yay!\n";
