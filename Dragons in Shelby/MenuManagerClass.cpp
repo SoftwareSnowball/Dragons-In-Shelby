@@ -79,11 +79,16 @@ int MenuManagerClass::ProcessInput(int OptNum)
 		cin >> input;
 		string flush;
 
-		if (cin.fail() || input < 1 || input > OptNum)
+		if (cin.fail())
 		{
-			i = 1;
 			cin.clear();
 			cin >> flush;
+			cout << "That input could not be processed.\n";
+			cout << "Please enter a number from the list above\n";
+		}
+		else if (input < 1 || input > OptNum)
+		{
+			i = 1;
 			cout << "That input could not be processed.\n";
 			cout << "Please enter a number from the list above\n";
 		}

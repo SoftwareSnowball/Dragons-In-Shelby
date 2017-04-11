@@ -14,7 +14,7 @@ See header file for description
 
 
 
-GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
+GameInstanceClass::GameInstanceClass(string name, MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface)
 {
 	menuInterface = inputMenuInterface;
 	scoreInterface = inputScoreInterface;
@@ -30,10 +30,6 @@ GameInstanceClass::GameInstanceClass(MenuManagerClass * inputMenuInterface, Scor
 	encounterInterface = new EncounterManagerClass(menuInterface);
 	gameFlags = 0;
 
-	cout << "Welcome to the game!\n";
-	cout << "Please enter your name: ";
-	cin >> playerName;
-	cout << endl;
 
 
 
@@ -285,7 +281,7 @@ void GameInstanceClass::pullAllNighter()
 		cout << "Sleep is totally for the weak! You feel fine!\n";
 		cout << "...You perfect freak.\n";
 	}
-	else if (roll == 2)
+	else if (roll <= 2)
 	{
 		cout << "You feel a little tired.\n";
 	}
@@ -300,7 +296,7 @@ void GameInstanceClass::pullAllNighter()
 	}
 
 	cout << endl;
-	characterInterface->affectStats(effects);
+	gameFlags = gameFlags | characterInterface->affectStats(effects);
 
 }
 

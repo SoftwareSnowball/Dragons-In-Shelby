@@ -25,7 +25,7 @@ to record player high scores.
 class GameInstanceClass
 {
 public:
-	GameInstanceClass(MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface);
+	GameInstanceClass(string name, MenuManagerClass * inputMenuInterface, ScoreManagerClass * inputScoreInterface);
 	~GameInstanceClass(); 
 
 	flag run();

@@ -140,6 +140,7 @@ public:
 private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
+	int typeRoll;
 
 };
 
@@ -179,11 +180,11 @@ private:
 
 };
 
-class PoliticalRallyEncounter : public Encounter
-{
 
+class CharityEncounter : public Encounter
+{
 public:
-	PoliticalRallyEncounter();
+	CharityEncounter();
 
 private:
 	void displayEncounter();

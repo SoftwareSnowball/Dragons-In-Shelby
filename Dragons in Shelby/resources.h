@@ -35,7 +35,7 @@ using std::cin;
 using std::endl;
 
 
-//#define DEBUG_MODE 1
+#define DEBUG_MODE 1
 
 
 /*
@@ -79,10 +79,10 @@ and balance of certain game mechanics.
 #define MinStartMoney 10
 
 #define StartTimeRange 10
-#define MinStartTime 10
+#define MinStartTime 15
 
 
-#define MovementTimeCost 1
+#define MovementTimeCost 2
 
 //defines read tech paper behavior
 #define TechPaperTimeCost 2

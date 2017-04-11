@@ -67,6 +67,15 @@ files for comments about the purpose of each of these classes.
 int main()
 {
 
+	string name;
+
+	cout << "Welcome to the game!\n";
+	cout << "Please enter your name: ";
+	cin >> name;
+	cout << endl;
+
+
+
 	srand(time(0));
 
 	int i = 0;
@@ -89,13 +98,14 @@ int main()
 		cout << endl;
 
 		cout << "================================================\n";
+		cout << "		Player: " << name << endl << endl;
 
 		i = menuInterface->DisplayMainMenu();
 
 		if (i == 0)
 		{
 
-			gameInstance = new GameInstanceClass(menuInterface, scoreInterface);
+			gameInstance = new GameInstanceClass(name, menuInterface, scoreInterface);
 			gameStatus = gameInstance->run();
 			gameInstance->clean();
 			delete gameInstance;

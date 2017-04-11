@@ -99,7 +99,7 @@ EncounterResultPackage Encounter::encounterMechanics()
 
 CharacterData Encounter::getOptionResult(int i) //legacy encounter system support
 {
-	return CharacterData(); 
+	return CharacterData();
 }
 
 
@@ -540,6 +540,236 @@ CharacterData VideoGameEncounter::getOptionResult(int i)
 /************************************************/
 
 
+/************************************************/
+//			CANCELLED CLASS ENCOUNTER
+/************************************************/
+
+CancelledClassEncounter::CancelledClassEncounter()
+{
+
+	typeRoll = rand() % 2;
+
+
+
+	if (typeRoll == 0)
+	{
+
+		opts = Options(4);
+
+		opts.ref(0) = "Well... rats.";
+		opts.ref(1) = "Yay. I guess I'll go back home then...";
+		opts.ref(2) = "Awww. I was actually looking forward to class.";
+		opts.ref(3) = "Well that stinks. I'm getting some food.";
+
+	}
+	else
+	{
+		opts = Options(3);
+
+		opts.ref(0) = "Cool. I can catch up on my work.";
+		opts.ref(1) = "I am so taking a nap.";
+		opts.ref(2) = "Hmmm. I can't actually think of an option to put here.";
+	}
+
+
+
+}
+
+void CancelledClassEncounter::displayEncounter()
+{
+
+
+
+	if (typeRoll == 0)
+	{
+
+		cout << "You show up for your class for the day...\n";
+		cout << "Wait where is everyone... Oh.\n";
+		cout << "Apparently you forgot to check your email and class was cancelled.\n";
+		cout << "You were the only one who missed the memo... the ... only ... one.\n\n";
+		cout << "So tell me, how does that make you feel?\n";
+
+	}
+	else
+	{
+		cout << "You get a message saying that class is cancelled today.\n";
+		cout << "It's a good thing you checked your email.\n";
+	}
+
+
+
+}
+
+CharacterData CancelledClassEncounter::getOptionResult(int i)
+{
+
+	CharacterStats stats;
+
+	if (typeRoll == 0)
+	{
+
+
+		switch (i)
+		{
+
+		case 0:
+
+			cout << "You know, the rats might be offended by that.\n";
+			break;
+
+		case 1:
+
+			cout << "And now you get to slink home in shame.\n";
+			break;
+
+		case 2:
+
+			cout << "You nerd.\n";
+			stats.intelligence = 1;
+			break;
+
+		case 3:
+
+			cout << "Three words: on campus dining.\n";
+			stats.money = -1;
+			break;
+
+		}
+
+	}
+	else
+	{
+		switch (i)
+		{
+		case 0:
+
+			cout << "Someone's feeling industrious today.\n";
+			stats.time = 2;
+			break;
+
+		case 1:
+
+			cout << "You feel a little refreshed from the nap.\n";
+			cout << "Lazy bum.\n";
+			stats.intelligence = 2;
+			break;
+
+		case 2:
+
+
+			cout << "Oh sure. Break the game. Why not.\n";
+			cout << "Ummmm... what am I supposed to say here.\n";
+			cout << "Stop looking at me... no really I mean it.\n";
+			cout << "...please...\n";
+			cout << "Fine! have a dollar! Now go away!\n";
+
+			stats.money = 1;
+			break;
+		}
+	}
+
+
+	return CharacterData(stats, 0);
+
+}
+/************************************************/
+//			END OF CANCELLED CLASS ENCOUNTER
+/************************************************/
+
+
+/************************************************/
+//			NOISY NEIGHBORS ENCOUNTER
+/************************************************/
+NoisyNeighborsEncounter::NoisyNeighborsEncounter()
+{
+
+	opts = Options(3);
+
+	opts.ref(0) = "Just try to ignore it. They'll stop eventually.";
+	opts.ref(1) = "Call the police. It is too late for this nonsense";
+	opts.ref(2) = "Nope. That's it. I'm getting up and doing work.";
+
+
+}
+
+void NoisyNeighborsEncounter::displayEncounter()
+{
+
+	cout << "Ahhh. Finally after a long day of school you get to go\n";
+	cout << "to sleep. You start to close your eyes and relax feeling\n";
+	cout << "the cares of the day start to melt awa..... BAM BAM BAM BAM\n";
+	cout << "YEAAAHHHHHH!!! PARTY!!!!!! WAHOOOOOOOOOO!!!!!!! WEEEEEED!!!!!\n";
+	cout << "I'M SOOOO **** STONED!!!!!!!\n"; //Yes I have woken up to someone yelling that.
+	cout << "The silence of the night is rent apart like a pure tapestry savagely\n";
+	cout << "shreaded by feral beasts!\n";
+	cout << "Welcome to college. Where your neighbors like to party all night.\n";
+}
+
+
+CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
+{
+
+	CharacterStats stats;
+	int roll = rand() % 2;
+
+	switch (i)
+	{
+	case 0:
+
+		if (roll == 0)
+		{
+			cout << "It feels like forever, but eventually they stop.\n";
+			cout << "You climb into bed grumbling, hoping to salvage what little sleep you can.\n";
+			stats.intelligence = -2;
+		}
+		else
+		{
+			cout << "Fortunately, they don't party for too long tonight. They're probably too drugged up\n";
+			cout << "to stay awake\n";
+			cout << "Still... losing sleep really doesn't help much.\n";
+			stats.intelligence = -1;
+		}
+
+
+		break;
+
+	case 1:
+
+		cout << "Naturally, they decide to stop before the police arrive.\n";
+
+		cout << "Unfortunately now you're mad. This is going to be a long night.\n";
+		stats.intelligence = -2;
+		break;
+
+	case 2:
+
+		if (roll == 0)
+		{
+
+			cout << "At least you got something done.\n";
+			stats.time = 1;
+			stats.intelligence = -2;
+		}
+		else
+		{
+			cout << "Nope. That didn't work.\n";
+			stats.intelligence = -2;
+		}
+
+
+		break;
+	}
+
+
+
+
+	return CharacterData(stats, 0);
+}
+
+/************************************************/
+//			END OF NOISY NEIGHBORS ENCOUNTER
+/************************************************/
+
 //===========================================================================================//
 //										 UNCOMMON ENCOUNTERS
 //===========================================================================================//
@@ -608,9 +838,9 @@ CharacterData BugEncounter::getOptionResult(int i)
 		else
 		{
 			cout << "Stuff starts getting weird\n";
-			stats.intelligence = (rand() % 80) - 40;
-			stats.money = (rand() % 80) - 40;
-			stats.time = (rand() % 80) - 40;
+			stats.intelligence = (rand() % 81) - 40;
+			stats.money = (rand() % 81) - 40;
+			stats.time = (rand() % 81) - 40;
 		}
 
 
@@ -627,9 +857,11 @@ CharacterData BugEncounter::getOptionResult(int i)
 
 	return CharacterData(stats, position);
 }
+
 /************************************************/
 //			END OF BUG ENCOUNTER
 /************************************************/
+
 
 //===========================================================================================//
 //										 RARE ENCOUNTERS
@@ -863,7 +1095,7 @@ CharacterData CthulhuEncounter::getOptionResult(int i)
 
 		roll = rand() % 100;
 
-		if (roll == 99)
+		if (roll < 5)
 		{
 			cout << "It turns out that Cthulu is really a nice guy after all.\n";
 			cout << "He's actually a small business owner and is looking to promote academics and learning\n";

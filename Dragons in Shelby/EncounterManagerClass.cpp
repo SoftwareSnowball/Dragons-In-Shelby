@@ -66,7 +66,7 @@ void EncounterManagerClass::generateEncounter()
 #ifdef DEBUG_MODE
 
 
-	current = new DebugEncounter();
+	current = new NoisyNeighborsEncounter();
 
 #endif
 

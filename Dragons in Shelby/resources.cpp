@@ -28,8 +28,6 @@ CharacterStats::CharacterStats(int inputInt, int inputMoney, int inputTime)
 	time = inputTime;
 }
 
-
-
 CharacterData::CharacterData()
 {
 
