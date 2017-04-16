@@ -98,11 +98,17 @@ flag GameInstanceClass::run()
 
 	}
 
+
+
 	if (gameFlags & FunctionErrorFlag)
 	{
 		cout << "Error:\n";
 		cout << "The program has encountered a problem and needs to close.\n";
 
+	}
+	else if (gameFlags & SpecialDefeatFlag)
+	{
+		//Text supplied by defeat context
 	}
 	else if ((gameFlags & VictoryFlag) != 0)
 	{

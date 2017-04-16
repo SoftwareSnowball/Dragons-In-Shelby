@@ -32,11 +32,12 @@ Encounter::~Encounter()
 {
 }
 
-void Encounter::linkMenuInterface(MenuManagerClass * inputMenuInterface)
+void Encounter::linkInterfaces(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
 {
 
-
+	states = instates;
 	menuInterface = inputMenuInterface;
+	EncounterResultPackage result = EncounterResultPackage();
 
 
 }
@@ -50,7 +51,8 @@ EncounterResultPackage Encounter::run()
 
 	if (menuInterface)
 	{
-		return encounterMechanics();
+		encounterMechanics();
+		return result;
 	}
 
 
@@ -71,13 +73,11 @@ void Encounter::displayEncounter()
 }
 
 
-EncounterResultPackage Encounter::encounterMechanics()
+void Encounter::encounterMechanics()
 {
 
 
 	int i = menuInterface->DisplayMenu(opts);
-
-	EncounterResultPackage result = EncounterResultPackage();
 
 	if (i == UserExitCode)
 	{
@@ -90,7 +90,6 @@ EncounterResultPackage Encounter::encounterMechanics()
 		result.characterEffects = getOptionResult(i);
 	}
 
-	return result;
 
 
 
@@ -862,6 +861,291 @@ CharacterData BugEncounter::getOptionResult(int i)
 //			END OF BUG ENCOUNTER
 /************************************************/
 
+/************************************************/
+//			REFRIGERATOR ENCOUNTER
+/************************************************/
+
+RefrigeratorEncounter::RefrigeratorEncounter()
+{
+
+	opts = Options(4);
+
+	opts.ref(0) = "I guess I'll try to fix it.";
+	opts.ref(1) = "Call a repairman.";
+	opts.ref(2) = "I don't have the money for this. I'll get a repairman but not pay him.";
+	opts.ref(3) = "I don't have time for this. I'll just eat out for a while.";
+
+
+}
+
+void RefrigeratorEncounter::displayEncounter()
+{
+
+	cout << "You come home from school, and instantly smell something wrong. You follow the foul odor...\n";
+	cout << "to your refrigerator. It's broken. Like really broken. There's a puddle on the ground in front of it\n";
+	cout << "and the inside is quite warm. At the very least you'll have to replace your food.\n";
+
+}
+
+CharacterData RefrigeratorEncounter::getOptionResult(int i)
+{
+
+	CharacterStats stats;
+	int roll;
+
+	switch (i)
+	{
+
+	case 0:
+		roll = rand() % 4;
+
+		if (roll == 0)
+		{
+
+			cout << "It takes a fair amount of work, but you manage to fix it.\n";
+
+			stats.money = -1;
+			stats.time = -1 - (rand() % 4);
+
+		}
+		else
+		{
+
+			cout << "You broke everything... At least everything that wasn't already broken\n";
+			cout << "This is gonna be expensive to fix.\n";
+
+			stats.time = -2;
+			stats.money = -7;
+
+
+
+			if (states->cheatedMechanic)
+			{
+				cout << "Unfortunately, it looks like the repairman isn't coming to help you.\n";
+				cout << "I guess you're eating out.\n";
+				stats.time = -5;
+				stats.money = -6;
+			}
+
+		}
+		break;
+
+	case 1:
+
+		roll = 2 + (rand() % 3);
+
+		if (states->cheatedMechanic)
+		{
+			cout << "Yeah. No. They don't want to help you.\n";
+			cout << "Looks like you're all out of luck.\n";
+			stats.time = -5;
+			stats.money = -6;
+
+		}
+		else if (roll <= 2)
+		{
+			cout << "At least the repair cost wasn't too bad.\n";
+			stats.money = -roll;
+		}
+		else
+		{
+			cout << "Ouch.\n";
+			stats.money = -roll;
+		}
+		break;
+
+	case 2:
+
+		if (states->cheatedMechanic)
+		{
+			cout << "They're not falling for that again. You're on your own.\n";
+			stats.time = -5;
+			stats.money = -6;
+		}
+		else
+		{
+
+			states->cheatedMechanic = true;
+
+			cout << "You manage trick the mechanic into fixing the fridge and then send him off without pay.\n";
+			cout << "He's furious, but without a writen contract there's nothing he can do.\n";
+
+		}
+
+			break;
+	case 3:
+
+		cout << "Turns out restraunts aren't cheap.\n";
+		stats.time = -2;
+		stats.money = -4;
+
+		break;
+
+	}
+
+
+
+	return CharacterData(stats, 0);
+}
+
+
+
+/************************************************/
+//			END OF REFRIGERATOR ENCOUNTER
+/************************************************/
+
+
+/************************************************/
+//			CHARITY ENCOUNTER
+/************************************************/
+
+CharityEncounter::CharityEncounter()
+{
+
+	opts = Options(4);
+
+	opts.ref(0) = "Look I'm broke. What do you want from me?";
+	opts.ref(1) = "Fine. Have a dollar.";
+	opts.ref(2) = "Here, have a small donation.";
+	opts.ref(3) = "GIVE THEM NO QUARTERS!!!";
+
+
+
+}
+
+void CharityEncounter::displayEncounter()
+{
+
+	cout << "A wild charity institution appears. They seek donations...\n";
+
+
+}
+
+CharacterData CharityEncounter::getOptionResult(int i)
+{
+	CharacterStats stats;
+	int roll;
+
+	switch (i)
+	{
+	case 0:
+
+		roll = rand() % 2;
+
+		if (roll == 0)
+		{
+
+			cout << "You walk away.";
+
+		}
+		else
+		{
+			cout << "But think about the children...\n";
+			cout << "They guilt trip you into donating.\n";
+
+			roll = 1 + (rand() % 4);
+
+			stats.money = -roll;
+			
+		}
+		break;
+
+	case 1:
+
+		cout << "The token gesture allows you to make your escape.\n";
+
+		stats.money = -1;
+
+		break;
+
+	case 2:
+
+		cout << "Wow. You're generous. I hope you have enough to make it through the semester.\n";
+
+		stats.money = -2;
+
+		break;
+	case 3:
+
+		cout << "CHARGE!!! DOWN WITH CHARITY!!!\n";
+		cout << "... you monster.\n";
+
+
+		roll = rand() % 2;
+
+		if (roll == 0)
+		{
+			cout << "Your somewhat bellicose response attracts the attention of the local police.\n";
+			cout << "It takes a while to explain away your... interesting behavior.\n";
+
+			stats.time = -3;
+		}
+		break;
+	}
+
+	return CharacterData(stats, 0);
+}
+
+/************************************************/
+//			END OF CHARITY ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			SICKNESS ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			END OF SICKNESS ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			NINJA ENCOUNTER
+/************************************************/
+
+NinjaEncounter::NinjaEncounter()
+{
+
+	opts = Options(2);
+
+	opts.ref(0) = "So it turns out the dev hasn't actually gotten around to making options for this.";
+	opts.ref(1) = "y u no finish encounter?";
+
+}
+
+
+void NinjaEncounter::displayEncounter()
+{
+
+	cout << "Through the corner of your eye you see a man dressed in black.\n";
+	cout << "Apparently he's hunting a six fingered man or something and it's getting\n";
+	cout << "kind of late. Why am I still working on this.\n";
+
+
+
+}
+
+
+CharacterData NinjaEncounter::getOptionResult(int i)
+{
+	CharacterStats stats;
+	int roll;
+
+
+	cout << "Here. Let's just pretend this was finished.\n";
+
+	stats.money = 4;
+
+
+
+
+	return CharacterData(stats, 0);
+}
+
+
+/************************************************/
+//			END OF NINJA ENCOUNTER
+/************************************************/
+
 
 //===========================================================================================//
 //										 RARE ENCOUNTERS
@@ -1137,7 +1421,8 @@ DragonEncounter::DragonEncounter()
 
 	opts.ref(0) = "RUN!!!!";
 	opts.ref(1) = "Eat me! Why!?";
-	opts.ref(2) = "Why don't we play a game of riddles instead.\n";
+	opts.ref(2) = "Why don't we play a game of riddles instead?\n";
+	opts.ref(3) = "BRING IT! FIGHT ME!";
 
 
 
@@ -1152,13 +1437,138 @@ void DragonEncounter::displayEncounter()
 	cout << "lands in front of you! Its claws and teeth are pure white and its scales shimmer\n";
 	cout << "in a rippling pattern of red flames.\n";
 
-	cout << "It grins and says, \"A mortal. Perhaps I shall eat it\"\n";
+	cout << "It grins and says, \"Ahhh. A mortal. Perhaps I shall eat it.\"\n";
 
 
 }
 
 CharacterData DragonEncounter::getOptionResult(int i)
 {
+	CharacterData effect;
+	int roll;
+	bool win;
+
+
+	switch (i)
+	{
+
+	case 0:
+
+		roll = rand() % 3;
+
+		if (roll == 0)
+		{
+			cout << "You don't know how fast you ran, but you somehow got away from the beast.\n";
+			cout << "The encounter has badly shaken you.\n";
+
+			effect.stats.intelligence = inflictTerror();
+		}
+		else
+		{
+			cout << "The winged creature easily catches up to you. Opening its mouth, it unleashes\n";
+			cout << "a roar and a firey torrent. The air shimmers around you as the flames descend.\n";
+			cout << "After what feels like hours of indescribable pain, your concousness finally fades\n";
+			cout << "to black.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+
+		break;
+
+	case 1:
+
+		roll = rand() % 4;
+
+		if (roll == 0)
+		{
+			cout << "The dragon roars and heaves on the ground. It takes you several seconds to realize its laughing.\n";
+			cout << "\"The mortals always fall for that. Why would I bother to eat something so small.\"\n";
+			cout << "With that statement, the dragon flies away.\n";
+
+			cout << "You are somewhat shaken by the encounter\n";
+			effect.stats.intelligence = inflictTerror();
+
+		}
+		else
+		{
+			cout << "\"It has been so long since I tasted the flesh of a mortal. I'm looking forward to this.\"\n";
+			cout << "With that, the dragon snaps forward and catches you in its claws. It then proceeds to slowly\n";
+			cout << "devour your body bit by bit.\n";
+			cout << "Even though you suffer immensely, the dragon prolongs your death eating you like a fine delicacy.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+		break;
+
+	case 2:
+
+		cout << "The dragon snorts loudly. \"Yes indeed mortal. You dare challenge a dragon?\"\n";
+		cout << "\"I will ask you questions then. Answer them if you can.\"\n";
+
+		win = gameOfRiddles();
+
+		if (win)
+		{
+			cout << "The dragon regards you for a while. \"Never has a mortal been able to answer\n";
+			cout << "my questions. I shall give you a gift. Choose wisely, mortal. What is your desire\"\n";
+			effect = reward();
+		}
+		else
+		{
+
+			//WIP
+
+		}
+
+		break;
+
+	case 3:
+		break;
+
+	}
+
+
+
+
+
+
+	return effect;
+}
+
+int DragonEncounter::inflictTerror()
+{
+
+	int roll = 1 + rand() % 10;
+
+
+	if (roll <= 2)
+	{
+		cout << "You are somewhat shaken\n";
+	}
+	else if (roll <= 6)
+	{
+		cout << "You are badly shaken.\n";
+	}
+	else
+	{
+		cout << "You will never be the same again.\n";
+		cout << "This terror will haunt you for the rest of your life.\n";
+	}
+
+	return -roll;
+}
+
+
+bool DragonEncounter::gameOfRiddles()
+{
+
+
+
+
+	return false;
+}
+
+CharacterData DragonEncounter::reward()
+{
+
 	return CharacterData();
 }
 

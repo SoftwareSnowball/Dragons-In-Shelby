@@ -17,12 +17,14 @@ EncounterManagerClass::EncounterManagerClass(MenuManagerClass * inputMenuInterfa
 {
 
 	menuInterface = inputMenuInterface;
+	pstates = new PersistentStateFlags();
 
 }
 
 EncounterManagerClass::~EncounterManagerClass()
 {
 	menuInterface = 0;
+	delete pstates;
 	cleanEncounter();
 }
 
@@ -33,7 +35,7 @@ EncounterResultPackage EncounterManagerClass::manageEncounter()
 
 	if (current)
 	{
-		current->linkMenuInterface(menuInterface);
+		current->linkInterfaces(menuInterface, pstates);
 		encounterEffects = current->run();
 	}
 	else
@@ -66,7 +68,7 @@ void EncounterManagerClass::generateEncounter()
 #ifdef DEBUG_MODE
 
 
-	current = new NoisyNeighborsEncounter();
+	current = new CharityEncounter();
 
 #endif
 
@@ -101,7 +103,7 @@ void EncounterManagerClass::generateEncounter()
 			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
-	else if (roll < 95) //rare encounter
+	else if (roll < 98) //rare encounter
 	{
 
 		current = generateRare();
@@ -131,7 +133,7 @@ void EncounterManagerClass::generateEncounter()
 Encounter * EncounterManagerClass::generateCommon()
 {
 
-	int i = rand() % 4;
+	int i = rand() % 6;
 
 	switch (i)
 	{
@@ -146,6 +148,12 @@ Encounter * EncounterManagerClass::generateCommon()
 
 	case 3:
 		return new VideoGameEncounter();
+	
+	case 4:
+		return new CancelledClassEncounter();
+
+	case 5:
+		return new NoisyNeighborsEncounter();
 	}
 
 	cout << "The generator was unable to create a common encounter type.\n";
@@ -156,13 +164,22 @@ Encounter * EncounterManagerClass::generateCommon()
 Encounter * EncounterManagerClass::generateUncommon()
 {
 
-	int i = rand() % 1;
+	int i = rand() % 4;
 
 	switch (i)
 	{
 
 	case 0:
 		return new BugEncounter();
+
+	case 1:
+		return new RefrigeratorEncounter();
+
+	case 2:
+		return new CharityEncounter();
+
+	case 3:
+		return new NinjaEncounter();
 	}
 
 

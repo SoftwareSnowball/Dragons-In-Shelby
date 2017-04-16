@@ -41,7 +41,7 @@ public:
 
 	const string encounterName = "Default Encounter";
 
-	void linkMenuInterface(MenuManagerClass * inputMenuInterface);
+	void linkInterfaces(MenuManagerClass * inputMenuInterface, PersistentStateFlags * inStates);
 
 	EncounterResultPackage run();
 
@@ -50,11 +50,13 @@ protected:
 
 
 	virtual void displayEncounter();
-	virtual EncounterResultPackage encounterMechanics(); //overridden when needed to create more flexibility
+	virtual void encounterMechanics(); //overridden when needed to create more flexibility
 	virtual CharacterData getOptionResult(int i); //legacy encounter system support
 
-	MenuManagerClass * menuInterface;
 
+	EncounterResultPackage result;
+	MenuManagerClass * menuInterface;
+	PersistentStateFlags * states;
 	Options opts;
 	string encounterInfo;
 
@@ -280,8 +282,9 @@ private:
 	const string encounterName = "DragonEncounter\n";
 
 	MenuManagerClass dragonMenu;
-
-	int gameOfRiddles();
+	int inflictTerror();
+	bool gameOfRiddles();
+	CharacterData reward();
 
 
 

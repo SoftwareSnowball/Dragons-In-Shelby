@@ -57,6 +57,7 @@ private:
 	Encounter * current = 0;
 	flag statusFlag = 0;
 	EncounterResultPackage encounterEffects;
+	PersistentStateFlags * pstates;
 
 };
 

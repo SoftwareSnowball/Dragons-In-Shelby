@@ -35,7 +35,7 @@ using std::cin;
 using std::endl;
 
 
-#define DEBUG_MODE 1
+//#define DEBUG_MODE 1
 
 
 /*
@@ -55,6 +55,7 @@ context of the encounter they affect.)
 #define UserExitFlag 16 //do not confuse with UserExitCode. This is used in variables of type flag.
 #define VictoryFlag 32
 #define FunctionNotImplemented 64
+#define SpecialDefeatFlag 128
 typedef unsigned short int flag;
 
 
@@ -170,6 +171,19 @@ struct ScoreContainer
 	string name;
 	int score;
 };
+
+struct PersistentStateFlags
+{
+
+
+	bool cheatedMechanic = false;
+	int dishonestyPoints = 0;
+	int charityPoints = 0;
+
+
+
+};
+
 
 
 #endif

@@ -51,7 +51,7 @@ files for comments about the purpose of each of these classes.
 
 */
 
-#define VersionNumber 0.81
+#define VersionNumber 0.85
 
 #ifdef _WIN32
 #include "stdafx.h"
