@@ -44,7 +44,7 @@ int MenuManagerClass::DisplayMenu(Options set)
 
 }
 
-void MenuManagerClass::WriteOptionSet(Options set)
+void MenuManagerClass::WriteOptionSet(Options& set)
 {
 
 	WriteOptionSet(set, 1);
@@ -53,7 +53,7 @@ void MenuManagerClass::WriteOptionSet(Options set)
 
 //This function is used to start listing options from a number
 //other than 1. Used for displaying two option sets together.
-void MenuManagerClass::WriteOptionSet(Options set, int j)
+void MenuManagerClass::WriteOptionSet(Options& set, int j)
 {
 
 	for (int i = 0; i < set.giveNumOfOptions(); i++)
@@ -69,16 +69,26 @@ void MenuManagerClass::WriteOptionSet(Options set, int j)
 int MenuManagerClass::ProcessInput(int OptNum)
 {
 	int input;
+	int i = 0;
 
 	bool correctInput = false;
 
 	while (!correctInput)
 	{
-
+		cout << "Player input: ";
 		cin >> input;
+		string flush;
 
-		if (input < 1 || input > OptNum)
+		if (cin.fail())
 		{
+			cin.clear();
+			cin >> flush;
+			cout << "That input could not be processed.\n";
+			cout << "Please enter a number from the list above\n";
+		}
+		else if (input < 1 || input > OptNum)
+		{
+			i = 1;
 			cout << "That input could not be processed.\n";
 			cout << "Please enter a number from the list above\n";
 		}
@@ -87,7 +97,7 @@ int MenuManagerClass::ProcessInput(int OptNum)
 			correctInput = true;
 		}
 
-
+		cout << endl;
 	}
 
 

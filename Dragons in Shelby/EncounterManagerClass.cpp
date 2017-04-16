@@ -17,37 +17,34 @@ EncounterManagerClass::EncounterManagerClass(MenuManagerClass * inputMenuInterfa
 {
 
 	menuInterface = inputMenuInterface;
+	pstates = new PersistentStateFlags();
 
 }
 
 EncounterManagerClass::~EncounterManagerClass()
 {
 	menuInterface = 0;
+	delete pstates;
 	cleanEncounter();
 }
 
-flag EncounterManagerClass::manageEncounter()
+EncounterResultPackage EncounterManagerClass::manageEncounter()
 {
 
 	generateEncounter();
 
 	if (current)
 	{
-		processEncounterOptions();
+		current->linkInterfaces(menuInterface, pstates);
+		encounterEffects = current->run();
 	}
 	else
 	{
-		encounterEffects = CharacterData(CharacterStats(), 0);
-		cout << "Nothing happens\n\n";
+		encounterEffects = EncounterResultPackage();
 	}
 
+	encounterEffects.gameFlags = encounterEffects.gameFlags | statusFlag;
 
-
-	return statusFlag;
-}
-
-CharacterData EncounterManagerClass::giveResults()
-{
 	return encounterEffects;
 }
 
@@ -60,83 +57,168 @@ void EncounterManagerClass::cleanEncounter()
 		current = 0;
 	}
 
-
-	encounterEffects = CharacterData();
-
 }
+
 
 void EncounterManagerClass::generateEncounter()
 {
 
+
+
+#ifdef DEBUG_MODE
+
+
+	current = new CharityEncounter();
+
+#endif
+
+
+
+#ifndef DEBUG_MODE
+
 	int roll = rand() % 100;
-	int i;
 
-	if (roll < 25) //Nothing happens
+	if (roll < 10)
 	{
-		current = 0;
+		current = NULL;
+		cout << "Nothing happens.\n";
 	}
-	else if (roll < 75) //A common event occurs
-	{
-
-		i = rand() % 3;
-
-		switch (i)
-		{
-		case 0:
-			current = new ProfessorEncounter();
-			break;
-		case 1:
-			current = new UndergraduateEncounter();
-			break;
-		case 2:
-			current = new WeekendEncounter();
-		}
-
-
-	}
-	else if (roll < 98) //A rare event occurs
+	else if (roll < 60) //common encounter
 	{
 
-		i = rand() % 2;
+		current = generateCommon();
 
-		switch (i)
-		{
-		case 0:
-			current = new BugEncounter();
-			break;
-		case 1:
-			current = new AnomalyEncounter();
-			break;
-		}
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
-	else //A game breaker occurs
+	else if (roll < 90) //uncommon encounter
 	{
-		current = new CthulhuEncounter();
+
+
+		current = generateUncommon();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
+
 	}
+	else if (roll < 98) //rare encounter
+	{
+
+		current = generateRare();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
+
+	}
+	else //game breaker
+	{
+
+		current = generateGameBreaker();
+
+		if (!current)
+			statusFlag = statusFlag | (FunctionErrorFlag);
+
+	}
+
+
+
+#endif //ENCOUNTER_DEBUG
 
 }
 
-void EncounterManagerClass::processEncounterOptions()
+
+
+Encounter * EncounterManagerClass::generateCommon()
 {
 
-	current->displayEncounter();
+	int i = rand() % 6;
 
-	cout << endl;
-
-	int i = menuInterface->DisplayMenu(current->giveOptions());
-
-	if (i == UserExitCode)
+	switch (i)
 	{
-		statusFlag = statusFlag | UserExitFlag;
-		return;
+	case 0:
+		return new UndergraduateEncounter();
+
+	case 1:
+		return new WeekendEncounter();
+
+	case 2:
+		return new ProfessorEncounter();
+
+	case 3:
+		return new VideoGameEncounter();
+	
+	case 4:
+		return new CancelledClassEncounter();
+
+	case 5:
+		return new NoisyNeighborsEncounter();
 	}
 
-	cout << endl;
-	encounterEffects = current->getOptionResult(i);
+	cout << "The generator was unable to create a common encounter type.\n";
 
-	cout << endl;
+	return nullptr;
 }
 
+Encounter * EncounterManagerClass::generateUncommon()
+{
+
+	int i = rand() % 4;
+
+	switch (i)
+	{
+
+	case 0:
+		return new BugEncounter();
+
+	case 1:
+		return new RefrigeratorEncounter();
+
+	case 2:
+		return new CharityEncounter();
+
+	case 3:
+		return new NinjaEncounter();
+	}
 
 
+
+	cout << "The generator was unable to create an uncommon encounter type.\n";
+
+	return nullptr;
+}
+
+Encounter * EncounterManagerClass::generateRare()
+{
+
+	int i = rand() % 1;
+
+	switch (i)
+	{
+	case 0:
+		return new AnomalyEncounter();
+	}
+
+
+
+	cout << "The generator was unable to create a common encounter type\n";
+
+	return nullptr;
+}
+
+Encounter * EncounterManagerClass::generateGameBreaker()
+{
+
+	int i = rand() % 1;
+
+	switch (i)
+	{
+	case 0:
+		return new CthulhuEncounter();
+	}
+
+
+	cout << "The generator was unable to create a \"FUN\" encounter type.\n";
+	return nullptr;
+}
