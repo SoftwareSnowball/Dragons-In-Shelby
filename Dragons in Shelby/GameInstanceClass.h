@@ -38,6 +38,7 @@ private:
 	void moveForward();
 	void readTechnicalPaper();
 	void searchForChange();
+	void pullAllNighter();
 
 
 	MenuManagerClass * menuInterface;
@@ -49,7 +50,7 @@ private:
 
 	int score;
 
-	Options defaultOptions = Options(4);
+	Options defaultOptions;
 	
 	string playerName;
 

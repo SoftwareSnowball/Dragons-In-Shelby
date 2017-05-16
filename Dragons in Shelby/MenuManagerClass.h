@@ -25,8 +25,8 @@ public:
 	int DisplayMenu(Options set);
 private:
 
-	void WriteOptionSet(Options set);
-	void WriteOptionSet(Options set, int j);
+	void WriteOptionSet(Options& set);
+	void WriteOptionSet(Options& set, int j);
 	int ProcessInput(int OptNum);
 
 	Options mainMenu = Options(3);

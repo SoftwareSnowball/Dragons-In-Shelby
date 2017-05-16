@@ -15,6 +15,8 @@ help the other classes to run smoothly.
 In short this is something of a catch all file.
 */
 
+//Toggles for debug behavior
+
 
 //Initial includes and housekeeping shenanigans
 #include <iostream>
@@ -32,19 +34,28 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+
+//#define DEBUG_MODE 1
+
+
 /*
 Bit codes to be used with flag variables. These help
 Control program flow
 
 The codes below are only ever assigned to a variable of type flag
-and type flag is only ever used with these codes.
+and type flag is only ever used with these codes or with a
+persistent state code. (Persistent state flags can be used as arguents
+to affect the function of an encounter and such. They are defined in the
+context of the encounter they affect.)
 */
-#define DefeatByIntFlag 01
-#define DefeatByMoneyFlag 02
-#define DefeatByTimeFlag 04
-#define FunctionErrorFlag 08
+#define DefeatByIntFlag 1
+#define DefeatByMoneyFlag 2
+#define DefeatByTimeFlag 4
+#define FunctionErrorFlag 8
 #define UserExitFlag 16 //do not confuse with UserExitCode. This is used in variables of type flag.
 #define VictoryFlag 32
+#define FunctionNotImplemented 64
+#define SpecialDefeatFlag 128
 typedef unsigned short int flag;
 
 
@@ -68,8 +79,8 @@ and balance of certain game mechanics.
 #define StartMoneyRange 10
 #define MinStartMoney 10
 
-#define StartTimeRange 20
-#define MinStartTime 10
+#define StartTimeRange 10
+#define MinStartTime 15
 
 
 #define MovementTimeCost 2
@@ -111,10 +122,30 @@ struct CharacterData
 	CharacterData(CharacterStats inputStats, int inputPosition);
 
 	CharacterStats stats;
+
 	int position;
+
+
+	//added in the encounter rework update. Will be used 
+	//when I update the player character and add in different difficulties.
+	int intelligenceGainRate;
+	int timeGainRate;
+	int moneyGainRate;
+
+	int intelligenceLossRate;
+	int timeLossRate;
+	int moneyLossRate;
 };
 
+//Added in the encounter rework update
+struct EncounterResultPackage
+{
 
+	CharacterData characterEffects;
+	flag gameFlags;
+
+
+};
 
 
 class Options 
@@ -131,32 +162,6 @@ private:
 	int NumOfOptions;
 };
 
-/*
-This class is special in that it is not meant to be instantiated directly, but
-it is meant to be the parent of all the specific Encounter types in the
-game.
-*/
-class Encounter
-{
-public:
-
-	Encounter();
-	virtual ~Encounter();
-
-	const string encounterName = "Default Encounter";
-
-	virtual void displayEncounter();
-	virtual Options giveOptions();
-	virtual CharacterData getOptionResult(int i);
-
-
-protected:
-
-	Options opts;
-	string encounterInfo;
-
-};
-
 
 struct ScoreContainer
 {
@@ -166,6 +171,19 @@ struct ScoreContainer
 	string name;
 	int score;
 };
+
+struct PersistentStateFlags
+{
+
+
+	bool cheatedMechanic = false;
+	int dishonestyPoints = 0;
+	int charityPoints = 0;
+
+
+
+};
+
 
 
 #endif

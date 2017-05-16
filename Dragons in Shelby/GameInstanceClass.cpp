@@ -18,17 +18,20 @@ GameInstanceClass::GameInstanceClass(string name, MenuManagerClass * inputMenuIn
 {
 	menuInterface = inputMenuInterface;
 	scoreInterface = inputScoreInterface;
+	defaultOptions = Options(5);
 
 	defaultOptions.ref(0) = "Move Forward.";
 	defaultOptions.ref(1) = "Read technical papers";
 	defaultOptions.ref(2) = "Search for loose change";
-	defaultOptions.ref(3) = "View character";
+	defaultOptions.ref(3) = "Pull all nighter";
+	defaultOptions.ref(4) = "View character";
 
 	characterInterface = new PlayerCharacterClass();
 	encounterInterface = new EncounterManagerClass(menuInterface);
 	gameFlags = 0;
 
-	playerName = name;
+
+
 
 }
 
@@ -64,32 +67,50 @@ flag GameInstanceClass::run()
 			break;
 
 		case 0:
-			cout << endl;
 			moveForward();
+			cout << endl;
 			break;
 
 		case 1:
-			cout << endl;
 			readTechnicalPaper();
+			cout << endl;
 			break;
 
 		case 2:
-			cout << endl;
 			searchForChange();
+			cout << endl;
 			break;
 
 		case 3:
 
+			pullAllNighter();
+			cout << endl;
+			break;
+
+		case 4:
+
 			characterInterface->displayStats();
+			cout << endl;
 			break;
 
 		}
 
-		cout << endl;
 
 	}
 
-	if ((gameFlags & VictoryFlag) != 0)
+
+
+	if (gameFlags & FunctionErrorFlag)
+	{
+		cout << "Error:\n";
+		cout << "The program has encountered a problem and needs to close.\n";
+
+	}
+	else if (gameFlags & SpecialDefeatFlag)
+	{
+		//Text supplied by defeat context
+	}
+	else if ((gameFlags & VictoryFlag) != 0)
 	{
 		cout << "Congratulations! You won the game!\n";
 		cout << "Yay!\n";
@@ -154,13 +175,19 @@ void GameInstanceClass::moveForward()
 	gameFlags = gameFlags | characterInterface->affectPosition(1);
 	gameFlags = gameFlags | characterInterface->affectStats(CharacterStats(0, 0, -MovementTimeCost));
 
+	EncounterResultPackage result;
+
 	if (gameFlags != 0)
 	{
 		return;
 	}
 
 	cout << endl;
-	gameFlags = encounterInterface->manageEncounter();
+	result = encounterInterface->manageEncounter();
+
+	gameFlags = gameFlags | result.gameFlags;
+
+	CharacterData tempData = result.characterEffects;
 
 
 	if (gameFlags != 0)
@@ -169,7 +196,7 @@ void GameInstanceClass::moveForward()
 		return;
 	}
 
-	CharacterData tempData = encounterInterface->giveResults();
+	
 
 	gameFlags = characterInterface->affectCharacterData(tempData);
 
@@ -224,6 +251,59 @@ void GameInstanceClass::searchForChange()
 	}
 
 	gameFlags = characterInterface->affectStats(effects);
+}
+
+void GameInstanceClass::pullAllNighter()
+{
+
+	CharacterStats effects = CharacterStats();
+
+	cout << "It's always rough, but sometimes you just have too much work to finish during the day.\n";
+	cout << "Hopefully you can get enough caffeine to get you through the night\n";
+
+	int roll = 1 + (rand() % 5);
+
+	effects.time = roll;
+
+	if (roll < 3)
+	{
+		cout << "You got bogged down in your work, but you did get a little bit done.\n";
+	}
+	else
+	{
+		cout << "You were able to make a fair bit of progress over the night.\n";
+	}
+
+	roll = rand() % 6;
+
+	effects.intelligence = -roll;
+
+	cout << endl;
+	cout << "Additionally...\n";
+
+
+	if (roll == 0)
+	{
+		cout << "Sleep is totally for the weak! You feel fine!\n";
+		cout << "...You perfect freak.\n";
+	}
+	else if (roll <= 2)
+	{
+		cout << "You feel a little tired.\n";
+	}
+	else if (roll == 3)
+	{
+		cout << "You feel quite tired and it's having a clear effect.\n";
+	}
+	else
+	{
+		cout << "UGH! That was a mistake! Get coffee... now.\n";
+		cout << "Must...have...coff...zzzzzzzzzzzzzzzzz\n";
+	}
+
+	cout << endl;
+	gameFlags = gameFlags | characterInterface->affectStats(effects);
+
 }
 
 
