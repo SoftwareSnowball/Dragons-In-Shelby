@@ -92,8 +92,8 @@ int main()
 		cout << "================================================\n";
 		cout << "        Shelby Center and Dragons v" << VersionNumber;
 
-#ifdef DEBUG_MODE
-		cout << " DEBUG MODE";
+#if DEBUG_MODE
+		cout << "\n		DEBUG MODE";
 #endif
 		cout << endl;
 

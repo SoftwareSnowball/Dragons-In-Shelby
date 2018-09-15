@@ -783,7 +783,7 @@ BugEncounter::BugEncounter()
 	opts.ref(0) = "Just walk away. Pretend it isn't there.";
 	opts.ref(1) = "WHAT IS THE DEV DOING!? FIX THIS NONSENSE RIGHT NOW!";
 	opts.ref(2) = "I wonder if I can exploit this?";
-	opts.ref(3) = "Try pesticide.";
+	opts.ref(3) = "Try pesticide?";
 
 }
 
@@ -824,11 +824,11 @@ CharacterData BugEncounter::getOptionResult(int i)
 
 			int * badPointer = new int;
 
-			cout << "Read access violation at " << badPointer << "\n";
+			cout << "Read access violation at " << badPointer << "\n"; //should display memory address
 			stats.intelligence = -45654743;
 
 			delete badPointer;
-			badPointer = 0;
+			badPointer = nullptr;
 		}
 		else if (roll < 80)
 		{
@@ -1334,7 +1334,7 @@ void CthulhuEncounter::displayEncounter()
 {
 
 	cout << "A dark fiend has arisen! This evil creature will sap all your sanity\n";
-	cout << "FEAR MORTAL FOR CTHULHU HAS COME TO CLAIM YOUR SOUL!\n\n";
+	cout << "FEAR, MORTAL FOR CTHULHU HAS COME TO CLAIM YOUR SOUL!\n\n";
 	cout << "...Or maybe he's just here for tea. You never know about these things.\n";
 
 
@@ -1536,10 +1536,13 @@ CharacterData DragonEncounter::getOptionResult(int i)
 int DragonEncounter::inflictTerror()
 {
 
-	int roll = 1 + rand() % 10;
+	int roll = rand() % 11;
 
-
-	if (roll <= 2)
+	if (roll == 0)
+	{
+		cout << "You manage to shrug off the encounter and move on with the day\n";
+	}
+	else if (roll <= 2)
 	{
 		cout << "You are somewhat shaken\n";
 	}

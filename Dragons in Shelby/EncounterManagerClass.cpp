@@ -65,16 +65,13 @@ void EncounterManagerClass::generateEncounter()
 
 
 
-#ifdef DEBUG_MODE
+#if DEBUG_MODE
 
 
-	current = new CharityEncounter();
+	current = new RefrigeratorEncounter();
 
-#endif
+#else
 
-
-
-#ifndef DEBUG_MODE
 
 	int roll = rand() % 100;
 
