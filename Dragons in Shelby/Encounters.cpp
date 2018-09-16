@@ -17,7 +17,7 @@ See header file for description
 Encounter::Encounter()
 {
 
-	menuInterface = 0;
+	menuInterface = nullptr;
 
 	opts = Options(1);
 
@@ -61,11 +61,7 @@ EncounterResultPackage Encounter::run()
 	temp.gameFlags = FunctionErrorFlag;
 
 	return temp;
-
-
 }
-
-
 
 void Encounter::displayEncounter()
 {
@@ -75,24 +71,17 @@ void Encounter::displayEncounter()
 
 void Encounter::encounterMechanics()
 {
-
-
 	int i = menuInterface->DisplayMenu(opts);
 
 	if (i == UserExitCode)
 	{
 		result.gameFlags = UserExitFlag;
-
 	}
 	else
 	{
 		result.gameFlags = 0;
 		result.characterEffects = getOptionResult(i);
 	}
-
-
-
-
 }
 
 
@@ -108,10 +97,7 @@ CharacterData Encounter::getOptionResult(int i) //legacy encounter system suppor
 
 DebugEncounter::DebugEncounter()
 {
-
 	generateOptions();
-
-
 }
 
 void DebugEncounter::displayEncounter()
@@ -122,7 +108,6 @@ void DebugEncounter::displayEncounter()
 
 void DebugEncounter::generateOptions()
 {
-
 	opts = Options(7);
 
 	opts.ref(0) = "Do nothing";
@@ -132,8 +117,6 @@ void DebugEncounter::generateOptions()
 	opts.ref(4) = "kill by money";
 	opts.ref(5) = "kill by time";
 	opts.ref(6) = "jump to end";
-
-
 }
 
 
@@ -204,19 +187,15 @@ CharacterData DebugEncounter::getOptionResult(int i)
 
 UndergraduateEncounter::UndergraduateEncounter()
 {
-
 	generateOptions();
-
 }
 
 
 
 void UndergraduateEncounter::displayEncounter()
 {
-
 	cout << "You encounter a group of undergraduates who want you to\n";
 	cout << "regrade their papers.\n";
-
 }
 
 void UndergraduateEncounter::generateOptions()
@@ -272,8 +251,6 @@ CharacterData UndergraduateEncounter::getOptionResult(int i)
 		break;
 
 	}
-
-
 	return CharacterData(stats, 0);
 }
 /************************************************/
@@ -291,15 +268,11 @@ WeekendEncounter::WeekendEncounter()
 	opts.ref(0) = "Yay! Weekend! Time for a much needed break.";
 	opts.ref(1) = "I could use this time to get some work done.";
 	opts.ref(2) = "DUDE! PARTY!!!";
-
-
 }
 
 void WeekendEncounter::displayEncounter()
 {
-
 	cout << "After a long week of work you finally reach the weekend.\n";
-
 }
 
 CharacterData WeekendEncounter::getOptionResult(int i)
@@ -378,26 +351,20 @@ CharacterData WeekendEncounter::getOptionResult(int i)
 /************************************************/
 ProfessorEncounter::ProfessorEncounter()
 {
-
 	opts = Options(3);
 
 	opts.ref(0) = "Just keep walking.";
 	opts.ref(1) = "Stop and talk about latest technical news";
 	opts.ref(2) = "Try to get more funding.";
-
-
 }
 
 void ProfessorEncounter::displayEncounter()
 {
-
 	cout << "You encounter a professor in the hall\n";
-
 }
 
 CharacterData ProfessorEncounter::getOptionResult(int i)
 {
-
 	CharacterStats stats = CharacterStats();
 	int roll;
 
@@ -456,9 +423,7 @@ CharacterData ProfessorEncounter::getOptionResult(int i)
 
 		break;
 
-
 	}
-
 
 	return CharacterData(stats, 0);
 }
@@ -471,14 +436,12 @@ CharacterData ProfessorEncounter::getOptionResult(int i)
 /************************************************/
 VideoGameEncounter::VideoGameEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "I'll play for a few minutes.";
 	opts.ref(1) = "Who cares? COMPUTER GAMES!";
 	opts.ref(2) = "Uh... no. I don't have time for this! Or money for that matter.";
 	opts.ref(3) = "What's a video game?";
-
 }
 
 void VideoGameEncounter::displayEncounter()
@@ -545,10 +508,7 @@ CharacterData VideoGameEncounter::getOptionResult(int i)
 
 CancelledClassEncounter::CancelledClassEncounter()
 {
-
 	typeRoll = rand() % 2;
-
-
 
 	if (typeRoll == 0)
 	{
@@ -570,15 +530,10 @@ CancelledClassEncounter::CancelledClassEncounter()
 		opts.ref(2) = "Hmmm. I can't actually think of an option to put here.";
 	}
 
-
-
 }
 
 void CancelledClassEncounter::displayEncounter()
 {
-
-
-
 	if (typeRoll == 0)
 	{
 
@@ -594,9 +549,6 @@ void CancelledClassEncounter::displayEncounter()
 		cout << "You get a message saying that class is cancelled today.\n";
 		cout << "It's a good thing you checked your email.\n";
 	}
-
-
-
 }
 
 CharacterData CancelledClassEncounter::getOptionResult(int i)
@@ -681,19 +633,15 @@ CharacterData CancelledClassEncounter::getOptionResult(int i)
 /************************************************/
 NoisyNeighborsEncounter::NoisyNeighborsEncounter()
 {
-
 	opts = Options(3);
 
 	opts.ref(0) = "Just try to ignore it. They'll stop eventually.";
 	opts.ref(1) = "Call the police. It is too late for this nonsense";
 	opts.ref(2) = "Nope. That's it. I'm getting up and doing work.";
-
-
 }
 
 void NoisyNeighborsEncounter::displayEncounter()
 {
-
 	cout << "Ahhh. Finally after a long day of school you get to go\n";
 	cout << "to sleep. You start to close your eyes and relax feeling\n";
 	cout << "the cares of the day start to melt awa..... BAM BAM BAM BAM\n";
@@ -707,7 +655,6 @@ void NoisyNeighborsEncounter::displayEncounter()
 
 CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 {
-
 	CharacterStats stats;
 	int roll = rand() % 2;
 
@@ -759,9 +706,6 @@ CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 		break;
 	}
 
-
-
-
 	return CharacterData(stats, 0);
 }
 
@@ -777,22 +721,18 @@ CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 /************************************************/
 BugEncounter::BugEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "Just walk away. Pretend it isn't there.";
 	opts.ref(1) = "WHAT IS THE DEV DOING!? FIX THIS NONSENSE RIGHT NOW!";
 	opts.ref(2) = "I wonder if I can exploit this?";
 	opts.ref(3) = "Try pesticide?";
-
 }
 
 void BugEncounter::displayEncounter()
 {
-
 	cout << "Uh oh. You seem to have encountered a bug.\n";
 	cout << "Hey no one's perfect.\n";
-
 }
 
 CharacterData BugEncounter::getOptionResult(int i)
@@ -867,29 +807,23 @@ CharacterData BugEncounter::getOptionResult(int i)
 
 RefrigeratorEncounter::RefrigeratorEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "I guess I'll try to fix it.";
 	opts.ref(1) = "Call a repairman.";
 	opts.ref(2) = "I don't have the money for this. I'll get a repairman but not pay him.";
 	opts.ref(3) = "I don't have time for this. I'll just eat out for a while.";
-
-
 }
 
 void RefrigeratorEncounter::displayEncounter()
 {
-
 	cout << "You come home from school, and instantly smell something wrong. You follow the foul odor...\n";
 	cout << "to your refrigerator. It's broken. Like really broken. There's a puddle on the ground in front of it\n";
 	cout << "and the inside is quite warm. At the very least you'll have to replace your food.\n";
-
 }
 
 CharacterData RefrigeratorEncounter::getOptionResult(int i)
 {
-
 	CharacterStats stats;
 	int roll;
 
@@ -983,13 +917,8 @@ CharacterData RefrigeratorEncounter::getOptionResult(int i)
 
 	}
 
-
-
 	return CharacterData(stats, 0);
 }
-
-
-
 /************************************************/
 //			END OF REFRIGERATOR ENCOUNTER
 /************************************************/
@@ -998,27 +927,19 @@ CharacterData RefrigeratorEncounter::getOptionResult(int i)
 /************************************************/
 //			CHARITY ENCOUNTER
 /************************************************/
-
 CharityEncounter::CharityEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "Look I'm broke. What do you want from me?";
 	opts.ref(1) = "Fine. Have a dollar.";
 	opts.ref(2) = "Here, have a small donation.";
 	opts.ref(3) = "GIVE THEM NO QUARTERS!!!";
-
-
-
 }
 
 void CharityEncounter::displayEncounter()
 {
-
 	cout << "A wild charity institution appears. They seek donations...\n";
-
-
 }
 
 CharacterData CharityEncounter::getOptionResult(int i)
@@ -1094,58 +1015,79 @@ CharacterData CharityEncounter::getOptionResult(int i)
 //			SICKNESS ENCOUNTER
 /************************************************/
 
+SicknessEncounter::SicknessEncounter()
+{
+}
+
+void SicknessEncounter::displayEncounter()
+{
+}
+
+CharacterData SicknessEncounter::getOptionResult(int i)
+{
+	return CharacterData();
+}
+
+
 /************************************************/
 //			END OF SICKNESS ENCOUNTER
 /************************************************/
 
 /************************************************/
-//			NINJA ENCOUNTER
+//			BROKEN NINJA ENCOUNTER
 /************************************************/
 
-NinjaEncounter::NinjaEncounter()
+BrokenNinjaEncounter::BrokenNinjaEncounter()
 {
-
 	opts = Options(2);
 
 	opts.ref(0) = "So it turns out the dev hasn't actually gotten around to making options for this.";
 	opts.ref(1) = "y u no finish encounter?";
-
 }
 
 
-void NinjaEncounter::displayEncounter()
+void BrokenNinjaEncounter::displayEncounter()
 {
-
 	cout << "Through the corner of your eye you see a man dressed in black.\n";
 	cout << "Apparently he's hunting a six fingered man or something and it's getting\n";
-	cout << "kind of late. Why am I still working on this.\n";
-
-
+	cout << "kind of late. Why am I still working on this!?\n";
 
 }
 
 
-CharacterData NinjaEncounter::getOptionResult(int i)
+CharacterData BrokenNinjaEncounter::getOptionResult(int i)
 {
 	CharacterStats stats;
 	int roll;
 
-
 	cout << "Here. Let's just pretend this was finished.\n";
-
 	stats.money = 4;
-
-
-
 
 	return CharacterData(stats, 0);
 }
+/************************************************/
+//			END OF BROKEN NINJA ENCOUNTER
+/************************************************/
 
 
 /************************************************/
-//			END OF NINJA ENCOUNTER
+//			MEDICAL STUDENT ENCOUNTER
 /************************************************/
+MedicalStudentEncounter::MedicalStudentEncounter()
+{
+}
 
+void MedicalStudentEncounter::displayEncounter()
+{
+}
+
+CharacterData MedicalStudentEncounter::getOptionResult(int i)
+{
+	return CharacterData();
+}
+/************************************************/
+//			END OF MEDICAL STUDENT ENCOUNTER
+/************************************************/
 
 //===========================================================================================//
 //										 RARE ENCOUNTERS
@@ -1155,27 +1097,52 @@ CharacterData NinjaEncounter::getOptionResult(int i)
 /************************************************/
 TheDoctorEncounter::TheDoctorEncounter()
 {
+	opts = Options(3);
+
+	opts.ref(0) = "Just walk away.";
+	opts.ref(1) = "Open the door and peek inside.";
+	opts.ref(2) = "CALL THE POLICE!!!";
+
 }
 
 void TheDoctorEncounter::displayEncounter()
 {
+	cout << "As you walk down the hall, you see a flash of light\n";
+	cout << "and a blue police box appears. A tall figure gets out\n";
+	cout << "and moves hastily down a side passage.\n";
 }
 
 CharacterData TheDoctorEncounter::getOptionResult(int i)
 {
 	CharacterStats stats = CharacterStats();
 	int position = 0;
+	int roll = 0;
 
 
 	switch (i)
 	{
 	case 0:
+		cout << "You walk away. Some things are better left alone.\n";
 		break;
 	case 1:
+		cout << "The figure comes back and befriends you taking you on an epic journey\n";
+		cout << "through time which I'm too lazy to describe in any great detail.\n";
+		cout << "At the end of the journey you die tragically, but then timey-wimey\n";
+		cout << "things happen and it turns out that you never saw the strange blue box.\n\n";
+		cout << "You feel a slight feeling of deju vu for a moment as if you can almost recall\n";
+		cout << "something that happened in a dream, then you move on with your day.\n";
 		break;
 	case 2:
-		break;
-	case 3:
+		cout << "What exactly did you think they were going to do with this?\n";
+
+		roll = rand() % 4;
+
+		if (roll != 0)
+		{
+			cout << "You waste a bunch of time trying to explain to the police.\n";
+			stats.time = -roll;
+		}
+
 		break;
 	}
 
@@ -1191,21 +1158,17 @@ CharacterData TheDoctorEncounter::getOptionResult(int i)
 /************************************************/
 AnomalyEncounter::AnomalyEncounter()
 {
-
 	opts = Options(3);
 
 	opts.ref(0) = "Walk away. In fact run! Just get away from that thing.";
 	opts.ref(1) = "Study this strange new phenomenon. For science!";
 	opts.ref(2) = "Walk into the rift";
-
 }
 
 void AnomalyEncounter::displayEncounter()
 {
-
 	cout << "A glowy pulsing light! Time and space seem to shift around it!\n";
 	cout << "This could be dangerous!\n";
-
 }
 
 CharacterData AnomalyEncounter::getOptionResult(int i)
@@ -1310,6 +1273,29 @@ CharacterData AnomalyEncounter::getOptionResult(int i)
 //			END OF ANOMALY ENCOUNTER
 /************************************************/
 
+/************************************************/
+//				ALIEN ENCOUNTER
+/************************************************/
+AlienEncounter::AlienEncounter()
+{
+	opts = Options(3);
+
+	opts.ref(0) = "";
+}
+
+void AlienEncounter::displayEncounter()
+{
+}
+
+CharacterData AlienEncounter::getOptionResult(int i)
+{
+	return CharacterData();
+}
+
+/************************************************/
+//			END OF ALIEN ENCOUNTER
+/************************************************/
+
 //===========================================================================================//
 //										GAME BREAKERS
 //===========================================================================================//
@@ -1319,25 +1305,19 @@ CharacterData AnomalyEncounter::getOptionResult(int i)
 /************************************************/
 CthulhuEncounter::CthulhuEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "Look at his face for a while";
 	opts.ref(1) = "Nope... Just nope. I'm out";
 	opts.ref(2) = "I will try to reason with it";
 	opts.ref(3) = "Throw money at it";
-
-
 }
 
 void CthulhuEncounter::displayEncounter()
 {
-
 	cout << "A dark fiend has arisen! This evil creature will sap all your sanity\n";
 	cout << "FEAR, MORTAL FOR CTHULHU HAS COME TO CLAIM YOUR SOUL!\n\n";
 	cout << "...Or maybe he's just here for tea. You never know about these things.\n";
-
-
 }
 
 
@@ -1402,8 +1382,6 @@ CharacterData CthulhuEncounter::getOptionResult(int i)
 
 	}
 
-
-
 	return CharacterData(stats, position);
 }
 /************************************************/
@@ -1416,30 +1394,23 @@ CharacterData CthulhuEncounter::getOptionResult(int i)
 
 DragonEncounter::DragonEncounter()
 {
-
 	opts = Options(4);
 
 	opts.ref(0) = "RUN!!!!";
 	opts.ref(1) = "Eat me! Why!?";
-	opts.ref(2) = "Why don't we play a game of riddles instead?\n";
+	opts.ref(2) = "Why don't we play a game of riddles instead?";
 	opts.ref(3) = "BRING IT! FIGHT ME!";
-
-
-
 }
 
 
 void DragonEncounter::displayEncounter()
 {
-
 	cout << "A fierce roar echos through campus and the ground begins to shake!\n";
 	cout << "You see a flash of red out of the corner of your eye. Then a great dragon\n";
 	cout << "lands in front of you! Its claws and teeth are pure white and its scales shimmer\n";
 	cout << "in a rippling pattern of red flames.\n";
 
 	cout << "It grins and says, \"Ahhh. A mortal. Perhaps I shall eat it.\"\n";
-
-
 }
 
 CharacterData DragonEncounter::getOptionResult(int i)
@@ -1456,7 +1427,7 @@ CharacterData DragonEncounter::getOptionResult(int i)
 
 		roll = rand() % 3;
 
-		if (roll == 0)
+		if (roll == 1)
 		{
 			cout << "You don't know how fast you ran, but you somehow got away from the beast.\n";
 			cout << "The encounter has badly shaken you.\n";
@@ -1478,7 +1449,7 @@ CharacterData DragonEncounter::getOptionResult(int i)
 
 		roll = rand() % 4;
 
-		if (roll == 0)
+		if (roll < 2)
 		{
 			cout << "The dragon roars and heaves on the ground. It takes you several seconds to realize its laughing.\n";
 			cout << "\"The mortals always fall for that. Why would I bother to eat something so small.\"\n";
@@ -1514,19 +1485,25 @@ CharacterData DragonEncounter::getOptionResult(int i)
 		else
 		{
 
-			//WIP
+			cout << "\"That is the wrong answer.\" The dragon chuckles deep in its throat.\n";
+			cout << "\"I'm going to enjoy this part,\" the dragon says, then licks its lips and launches\n";
+			cout << "itself forward. You feel the dragons teeth closing around your torso and\n";
+			cout << "piercing your body. You scream, but the sounds is quickly reduced to a wet\n";
+			cout << "gurgling noise as your body dies. The light fades from your eyes,\n";
+			cout << "and your vision goes black as you lose conciousness.\n\n";
+			result.gameFlags = SpecialDefeatFlag;
 
 		}
 
 		break;
 
 	case 3:
+		cout << "Yeah... that went well.\n";
+		cout << "The dragon turns you into a light snack.\n";
+		result.gameFlags = SpecialDefeatFlag;
 		break;
 
 	}
-
-
-
 
 
 
@@ -1535,25 +1512,24 @@ CharacterData DragonEncounter::getOptionResult(int i)
 
 int DragonEncounter::inflictTerror()
 {
-
 	int roll = rand() % 11;
 
-	if (roll == 0)
-	{
-		cout << "You manage to shrug off the encounter and move on with the day\n";
-	}
-	else if (roll <= 2)
-	{
-		cout << "You are somewhat shaken\n";
-	}
-	else if (roll <= 6)
-	{
-		cout << "You are badly shaken.\n";
-	}
-	else
+	if (roll > 7)
 	{
 		cout << "You will never be the same again.\n";
 		cout << "This terror will haunt you for the rest of your life.\n";
+	}
+	else if (roll >= 4)
+	{
+		cout << "You are badly shaken\n";
+	}
+	else if (roll >= 1)
+	{
+		cout << "You are somewhat shaken.\n";
+	}
+	else
+	{
+		cout << "You manage to shrug off the encounter and move on with the day\n";
 	}
 
 	return -roll;
@@ -1562,16 +1538,15 @@ int DragonEncounter::inflictTerror()
 
 bool DragonEncounter::gameOfRiddles()
 {
-
-
-
+	cout << "\n";
+	cout << "You stumble for words as the dragon presents a complicated riddle.\n";
+	cout << "Try as you might, you are unable to think clearly and you try to guess.\n";
 
 	return false;
 }
 
 CharacterData DragonEncounter::reward()
 {
-
 	return CharacterData();
 }
 

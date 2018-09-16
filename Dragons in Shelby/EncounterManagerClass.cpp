@@ -68,7 +68,7 @@ void EncounterManagerClass::generateEncounter()
 #if DEBUG_MODE
 
 
-	current = new RefrigeratorEncounter();
+	current = new TheDoctorEncounter();
 
 #else
 
@@ -176,7 +176,7 @@ Encounter * EncounterManagerClass::generateUncommon()
 		return new CharityEncounter();
 
 	case 3:
-		return new NinjaEncounter();
+		return new BrokenNinjaEncounter();
 	}
 
 

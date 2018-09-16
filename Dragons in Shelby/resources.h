@@ -110,9 +110,9 @@ struct CharacterStats
 	CharacterStats(int inputInt, int inputMoney, int inputTime);
 
 
-	int intelligence;
-	int money;
-	int time;
+	int intelligence = 0;
+	int money = 0;
+	int time = 0;
 
 };
 
@@ -123,18 +123,18 @@ struct CharacterData
 
 	CharacterStats stats;
 
-	int position;
+	int position = 0;
 
 
 	//added in the encounter rework update. Will be used 
 	//when I update the player character and add in different difficulties.
-	int intelligenceGainRate;
-	int timeGainRate;
-	int moneyGainRate;
+	int intelligenceGainRate = 1;
+	int timeGainRate = 1;
+	int moneyGainRate = 1;
 
-	int intelligenceLossRate;
-	int timeLossRate;
-	int moneyLossRate;
+	int intelligenceLossRate = 1;
+	int timeLossRate = 1;
+	int moneyLossRate = 1;
 };
 
 //Added in the encounter rework update
@@ -142,7 +142,7 @@ struct EncounterResultPackage
 {
 
 	CharacterData characterEffects;
-	flag gameFlags;
+	flag gameFlags = 0;
 
 
 };

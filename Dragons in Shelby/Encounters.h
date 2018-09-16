@@ -194,7 +194,7 @@ private:
 
 };
 
-class SicknessEncounter : public Encounter
+class SicknessEncounter : public Encounter //incomplete
 {
 public:
 	SicknessEncounter();
@@ -204,10 +204,20 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
-class NinjaEncounter : public Encounter
+class BrokenNinjaEncounter : public Encounter
 {
 public:
-	NinjaEncounter();
+	BrokenNinjaEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class MedicalStudentEncounter : public Encounter //incomplete
+{
+public:
+	MedicalStudentEncounter();
 
 private:
 	void displayEncounter();
@@ -219,7 +229,7 @@ private:
 //                 RARE ENCOUNTERS
 //===================================================
 
-class TheDoctorEncounter : public Encounter //Rare NOT IMPLEMENTED
+class TheDoctorEncounter : public Encounter //in testing
 {
 public:
 	TheDoctorEncounter();
@@ -239,7 +249,7 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
-class AlienEncounter : public Encounter
+class AlienEncounter : public Encounter //incomplete
 {
 public:
 	AlienEncounter();
@@ -267,7 +277,7 @@ private:
 
 };
 
-class DragonEncounter : public Encounter
+class DragonEncounter : public Encounter //incomplete
 {
 public:
 	DragonEncounter();
