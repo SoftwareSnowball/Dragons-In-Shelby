@@ -713,6 +713,24 @@ CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 //			END OF NOISY NEIGHBORS ENCOUNTER
 /************************************************/
 
+/************************************************/
+//			EMAIL ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			END OF EMAIL ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			ASSIGNMENT SETBACK ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			END OF ASSIGNMENT SETBACK ENCOUNTER
+/************************************************/
+
+
+
 //===========================================================================================//
 //										 UNCOMMON ENCOUNTERS
 //===========================================================================================//
@@ -1089,6 +1107,15 @@ CharacterData MedicalStudentEncounter::getOptionResult(int i)
 //			END OF MEDICAL STUDENT ENCOUNTER
 /************************************************/
 
+
+/************************************************/
+//			 TEST ENCOUNTER
+/************************************************/
+
+
+/************************************************/
+//			END OF TEST ENCOUNTER
+/************************************************/
 //===========================================================================================//
 //										 RARE ENCOUNTERS
 //===========================================================================================//
@@ -1131,15 +1158,26 @@ CharacterData TheDoctorEncounter::getOptionResult(int i)
 		cout << "things happen and it turns out that you never saw the strange blue box.\n\n";
 		cout << "You feel a slight feeling of deju vu for a moment as if you can almost recall\n";
 		cout << "something that happened in a dream, then you move on with your day.\n";
+
+		roll = rand() % 7;
+
+		if (roll != 0)
+		{
+			cout << "This alternate reality does make you smarter though for reasons I don't understand.\n";
+			stats.intelligence = roll;
+		}
+
 		break;
 	case 2:
 		cout << "What exactly did you think they were going to do with this?\n";
 
-		roll = rand() % 4;
+		roll = rand() % 5;
 
 		if (roll != 0)
 		{
 			cout << "You waste a bunch of time trying to explain to the police.\n";
+			cout << "They think you're a complete nut.\n";
+			cout << "One of them is judging you silently.\n";
 			stats.time = -roll;
 		}
 

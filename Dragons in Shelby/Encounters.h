@@ -25,7 +25,12 @@ functions in the Encounter class.
 #include "resources.h"
 #include "MenuManagerClass.h"
 
-
+/*
+In hind sight it probably would have been better to just have one encounter class
+and have it's function vary based on data rather than having a subclass for every
+encounter type. Oh well. I didn't do it this way two years ago and there's no
+point in changing it now.
+*/
 
 /*
 This class is special in that it is not meant to be instantiated directly, but
@@ -156,6 +161,26 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
+class EmailEncounter : public Encounter //incomplete
+{
+public:
+	EmailEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class AssignmentSetbackEncounter : public Encounter //incomplete
+{
+public:
+	AssignmentSetbackEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
 //===================================================
 //               UNCOMMON ENCOUNTERS
 //===================================================
@@ -218,6 +243,16 @@ class MedicalStudentEncounter : public Encounter //incomplete
 {
 public:
 	MedicalStudentEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class TestEncounter : public Encounter //incomplete
+{
+public:
+	TestEncounter();
 
 private:
 	void displayEncounter();
