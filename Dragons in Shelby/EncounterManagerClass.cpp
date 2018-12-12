@@ -68,7 +68,7 @@ void EncounterManagerClass::generateEncounter()
 #if DEBUG_MODE
 
 
-	current = new TheDoctorEncounter();
+	current = new DragonEncounter();
 
 #else
 

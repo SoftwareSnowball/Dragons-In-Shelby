@@ -71,7 +71,7 @@ void Encounter::displayEncounter()
 
 void Encounter::encounterMechanics()
 {
-	int i = menuInterface->DisplayMenu(opts);
+	int i = menuInterface->Menu(opts);
 
 	if (i == UserExitCode)
 	{
@@ -123,7 +123,7 @@ void DebugEncounter::generateOptions()
 //EncounterResultPackage DebugEncounter::encounterMechanics()
 //{
 //
-//	int i = menuInterface->DisplayMenu(opts);
+//	int i = menuInterface->Menu(opts);
 //
 //	EncounterResultPackage result = EncounterResultPackage();
 //
@@ -1477,7 +1477,7 @@ CharacterData DragonEncounter::getOptionResult(int i)
 			cout << "The winged creature easily catches up to you. Opening its mouth, it unleashes\n";
 			cout << "a roar and a firey torrent. The air shimmers around you as the flames descend.\n";
 			cout << "After what feels like hours of indescribable pain, your concousness finally fades\n";
-			cout << "to black.\n";
+			cout << "into blissful oblivion.\n";
 			result.gameFlags = SpecialDefeatFlag;
 		}
 
@@ -1493,7 +1493,6 @@ CharacterData DragonEncounter::getOptionResult(int i)
 			cout << "\"The mortals always fall for that. Why would I bother to eat something so small.\"\n";
 			cout << "With that statement, the dragon flies away.\n";
 
-			cout << "You are somewhat shaken by the encounter\n";
 			effect.stats.intelligence = inflictTerror();
 
 		}
@@ -1528,7 +1527,7 @@ CharacterData DragonEncounter::getOptionResult(int i)
 			cout << "itself forward. You feel the dragons teeth closing around your torso and\n";
 			cout << "piercing your body. You scream, but the sounds is quickly reduced to a wet\n";
 			cout << "gurgling noise as your body dies. The light fades from your eyes,\n";
-			cout << "and your vision goes black as you lose conciousness.\n\n";
+			cout << "and your vision goes black as you lose conciousness forever.\n\n";
 			result.gameFlags = SpecialDefeatFlag;
 
 		}
@@ -1536,14 +1535,22 @@ CharacterData DragonEncounter::getOptionResult(int i)
 		break;
 
 	case 3:
-		cout << "Yeah... that went well.\n";
-		cout << "The dragon turns you into a light snack.\n";
-		result.gameFlags = SpecialDefeatFlag;
+
+		roll = rand() % 20;
+
+		if (roll != 19) {
+			cout << "Yeah... that went well.\n";
+			cout << "The dragon turns you into a light snack.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+		else {
+			cout << "Okay... this really really should not work, but the RNG loves you today.\n";
+			cout << "You walk up and One Punch Man the dragon like a boss.\n";
+			cout << "The hero league doesn't recogize you though, so you don't get anything for this.\n";	
+		}
 		break;
 
 	}
-
-
 
 	return effect;
 }
@@ -1576,9 +1583,21 @@ int DragonEncounter::inflictTerror()
 
 bool DragonEncounter::gameOfRiddles()
 {
-	cout << "\n";
-	cout << "You stumble for words as the dragon presents a complicated riddle.\n";
-	cout << "Try as you might, you are unable to think clearly and you try to guess.\n";
+
+	auto failResult = []() {
+		cout << "\n";
+		cout << "You stumble for words as the dragon presents a complicated riddle.\n";
+		cout << "Try as you might, you are unable to think clearly and you try to guess.\n";
+	};
+
+
+	Options riddle1(3);
+	riddle1.ref(0) = "Cabbage";
+	riddle1.ref(1) = "potatoes?";
+	riddle1.ref(2) = "nothing";
+
+	int choice = menuInterface->Menu(riddle1);
+
 
 	return false;
 }

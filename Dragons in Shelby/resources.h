@@ -174,14 +174,10 @@ struct ScoreContainer
 
 struct PersistentStateFlags
 {
-
-
+	bool hasSweetCoat = false;
 	bool cheatedMechanic = false;
-	int dishonestyPoints = 0;
-	int charityPoints = 0;
-
-
-
+	//int dishonestyPoints = 0;
+	//int charityPoints = 0;
 };
 
 

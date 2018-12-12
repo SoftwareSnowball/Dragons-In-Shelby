@@ -33,7 +33,7 @@ int MenuManagerClass::DisplayMainMenu()
 
 }
 
-int MenuManagerClass::DisplayMenu(Options set)
+int MenuManagerClass::Menu(Options set)
 {
 
 	WriteOptionSet(set);
@@ -103,6 +103,9 @@ int MenuManagerClass::ProcessInput(int OptNum)
 
 	if (input == OptNum)
 	{
+
+
+
 		input = UserExitCode;
 	}
 	else

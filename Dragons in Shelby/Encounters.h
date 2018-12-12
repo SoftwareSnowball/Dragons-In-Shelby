@@ -264,7 +264,7 @@ private:
 //                 RARE ENCOUNTERS
 //===================================================
 
-class TheDoctorEncounter : public Encounter //in testing
+class TheDoctorEncounter : public Encounter //done
 {
 public:
 	TheDoctorEncounter();

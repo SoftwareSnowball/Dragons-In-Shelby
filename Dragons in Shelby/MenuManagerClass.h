@@ -22,7 +22,7 @@ public:
 	~MenuManagerClass();
 
 	int DisplayMainMenu();
-	int DisplayMenu(Options set);
+	int Menu(Options set);
 private:
 
 	void WriteOptionSet(Options& set);

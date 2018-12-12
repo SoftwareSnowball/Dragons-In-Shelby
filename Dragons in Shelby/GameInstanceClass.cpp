@@ -58,7 +58,7 @@ flag GameInstanceClass::run()
 		cout << "You are " << HallLength - characterInterface->getPosition() << " Spaces from the end\n";
 
 
-		input = menuInterface->DisplayMenu(defaultOptions);
+		input = menuInterface->Menu(defaultOptions);
 
 		switch (input)
 		{
