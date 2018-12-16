@@ -35,7 +35,7 @@ using std::cin;
 using std::endl;
 
 
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 
 /*

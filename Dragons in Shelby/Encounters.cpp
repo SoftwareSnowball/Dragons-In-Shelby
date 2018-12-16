@@ -1584,20 +1584,37 @@ int DragonEncounter::inflictTerror()
 bool DragonEncounter::gameOfRiddles()
 {
 
-	auto failResult = []() {
-		cout << "\n";
-		cout << "You stumble for words as the dragon presents a complicated riddle.\n";
-		cout << "Try as you might, you are unable to think clearly and you try to guess.\n";
-	};
+	cout << "Riddles? Very well, mortal.\n";
+	cout << "What is my favorite food?\n";
 
 
 	Options riddle1(3);
 	riddle1.ref(0) = "Cabbage";
 	riddle1.ref(1) = "potatoes?";
 	riddle1.ref(2) = "nothing";
+	riddle1.ref(3) = "People?";
+	riddle1.ref(4) = "What kind of riddle is this?";
 
 	int choice = menuInterface->Menu(riddle1);
 
+
+	switch (choice) {
+	case 0:
+		cout << "Why on Earth would I eat cabbage?\n";
+		return false;
+	case 1:
+		cout << "I love potatoes! How did you know?\n";
+		return true;
+	case 2:
+		cout << "Really?\n";
+		return false;
+	case 3:
+		cout << "I love eating people. They're a fine delicacy but they're not my favorite.\n";
+		return false;
+	case 4:
+		cout << "Okay fine. I was too lazy to think of one. Go away.\n";
+		return true;
+	}
 
 	return false;
 }
