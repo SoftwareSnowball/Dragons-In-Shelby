@@ -14,18 +14,9 @@ See header file for description
 */
 
 
-Encounter::Encounter()
+Encounter::Encounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
 {
-
-	menuInterface = nullptr;
-
-	opts = Options(1);
-
-	encounterInfo = "This is a default encounter\n";
-	encounterInfo += "Like seriously you shouldn't even be able to see this\n";
-	opts.ref(0) = "There are no choices here";
-
-
+	linkInterfaces(inputMenuInterface, instates);
 }
 
 Encounter::~Encounter()
@@ -95,7 +86,8 @@ CharacterData Encounter::getOptionResult(int i) //legacy encounter system suppor
 //                 DEBUG ENCOUNTERS
 //===================================================
 
-DebugEncounter::DebugEncounter()
+DebugEncounter::DebugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	generateOptions();
 }
@@ -185,7 +177,8 @@ CharacterData DebugEncounter::getOptionResult(int i)
 /************************************************/
 
 
-UndergraduateEncounter::UndergraduateEncounter()
+UndergraduateEncounter::UndergraduateEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	generateOptions();
 }
@@ -205,6 +198,10 @@ void UndergraduateEncounter::generateOptions()
 	opts.ref(0) = "Agree to regrade their papers";
 	opts.ref(1) = "No. I don't have time for that right now.\nHere have some pity points";
 	opts.ref(2) = "Umm... I'm not the TA for that class.";
+
+	if (states->pentagramMarked)
+		opts.append("Assistant, can you regrade these papers?");
+
 }
 
 CharacterData UndergraduateEncounter::getOptionResult(int i)
@@ -241,16 +238,15 @@ CharacterData UndergraduateEncounter::getOptionResult(int i)
 		break;
 
 	case 2:
-
 		cout << "Well that's going to be interesting to explain to the professor.\n";
-
 		roll = rand() % 3;
-
 		stats.intelligence = -roll;
-
 		break;
 
+	case 3:
+		cout << "\"Of course master.\"\n";
 	}
+
 	return CharacterData(stats, 0);
 }
 /************************************************/
@@ -261,7 +257,8 @@ CharacterData UndergraduateEncounter::getOptionResult(int i)
 /************************************************/
 //			WEEKEND ENCOUNTER
 /************************************************/
-WeekendEncounter::WeekendEncounter()
+WeekendEncounter::WeekendEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(3);
 
@@ -349,7 +346,8 @@ CharacterData WeekendEncounter::getOptionResult(int i)
 /************************************************/
 //			PROFESSOR ENCOUNTER
 /************************************************/
-ProfessorEncounter::ProfessorEncounter()
+ProfessorEncounter::ProfessorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(3);
 
@@ -434,7 +432,8 @@ CharacterData ProfessorEncounter::getOptionResult(int i)
 /************************************************/
 //			VIDEO GAME ENCOUNTER
 /************************************************/
-VideoGameEncounter::VideoGameEncounter()
+VideoGameEncounter::VideoGameEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -506,7 +505,8 @@ CharacterData VideoGameEncounter::getOptionResult(int i)
 //			CANCELLED CLASS ENCOUNTER
 /************************************************/
 
-CancelledClassEncounter::CancelledClassEncounter()
+CancelledClassEncounter::CancelledClassEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	typeRoll = rand() % 2;
 
@@ -631,13 +631,16 @@ CharacterData CancelledClassEncounter::getOptionResult(int i)
 /************************************************/
 //			NOISY NEIGHBORS ENCOUNTER
 /************************************************/
-NoisyNeighborsEncounter::NoisyNeighborsEncounter()
+NoisyNeighborsEncounter::NoisyNeighborsEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(3);
 
 	opts.ref(0) = "Just try to ignore it. They'll stop eventually.";
 	opts.ref(1) = "Call the police. It is too late for this nonsense";
 	opts.ref(2) = "Nope. That's it. I'm getting up and doing work.";
+
+	
 }
 
 void NoisyNeighborsEncounter::displayEncounter()
@@ -716,15 +719,17 @@ CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 /************************************************/
 //			EMAIL ENCOUNTER
 /************************************************/
-EmailEncounter::EmailEncounter() {
+EmailEncounter::EmailEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates) 
+	:Encounter(inputMenuInterface, instates)
+{
 	opts = Options(3);
 
-	opts.ref(0) = "Ugh. I don't really wanna do the work today.\n";
-	opts.ref(1) = "Okay. I really need to catch up on all of these.\n";
+	opts.ref(0) = "Ugh. I don't really wanna do the work today.";
+	opts.ref(1) = "Okay. I really need to catch up on all of these.";
 	opts.ref(2) = "I'll hire a shady character to deal with them for me.";
 
 	if (states->pentagramMarked) {
-		opts.append("Assistant, can you do this?");
+		opts.append("Assistant of Darkness, can you do this?");
 	}
 }
 
@@ -762,10 +767,11 @@ CharacterData EmailEncounter::getOptionResult(int i) {
 			cout << "You hire an inept buffoon. None of the work gets done.\n";
 		}
 		else {
+			cout << "Your hired assistant gets to work on the emails.\n";
 			auto minus_zero = [](int a) {return (0 > a) ? 0 : a; };
 			states->emailBacklog = minus_zero(states->emailBacklog - roll);
 		}
-
+		break;
 	case 3:
 		cout << "Of course, Master. If I couldn't do that for you, what kind of\n"
 			<< "assistant would I be?";
@@ -773,6 +779,7 @@ CharacterData EmailEncounter::getOptionResult(int i) {
 			cout << "My you have quite the messy inbox. Let's clean this up a bit.\n";
 		}
 		states->emailBacklog = 0;
+		break;
 	}
 
 	return CharacterData(stats,0);
@@ -797,7 +804,8 @@ CharacterData EmailEncounter::getOptionResult(int i) {
 /************************************************/
 //			BUG ENCOUNTER
 /************************************************/
-BugEncounter::BugEncounter()
+BugEncounter::BugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -883,7 +891,8 @@ CharacterData BugEncounter::getOptionResult(int i)
 //			REFRIGERATOR ENCOUNTER
 /************************************************/
 
-RefrigeratorEncounter::RefrigeratorEncounter()
+RefrigeratorEncounter::RefrigeratorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -1005,7 +1014,8 @@ CharacterData RefrigeratorEncounter::getOptionResult(int i)
 /************************************************/
 //			CHARITY ENCOUNTER
 /************************************************/
-CharityEncounter::CharityEncounter()
+CharityEncounter::CharityEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -1093,7 +1103,8 @@ CharacterData CharityEncounter::getOptionResult(int i)
 //			SICKNESS ENCOUNTER
 /************************************************/
 
-SicknessEncounter::SicknessEncounter()
+SicknessEncounter::SicknessEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 }
 
@@ -1115,7 +1126,8 @@ CharacterData SicknessEncounter::getOptionResult(int i)
 //			BROKEN NINJA ENCOUNTER
 /************************************************/
 
-BrokenNinjaEncounter::BrokenNinjaEncounter()
+BrokenNinjaEncounter::BrokenNinjaEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(2);
 
@@ -1151,7 +1163,8 @@ CharacterData BrokenNinjaEncounter::getOptionResult(int i)
 /************************************************/
 //			MEDICAL STUDENT ENCOUNTER
 /************************************************/
-MedicalStudentEncounter::MedicalStudentEncounter()
+MedicalStudentEncounter::MedicalStudentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(2);
 
@@ -1214,7 +1227,8 @@ CharacterData MedicalStudentEncounter::getOptionResult(int i)
 /************************************************/
 //			THE DOCTOR ENCOUNTER
 /************************************************/
-TheDoctorEncounter::TheDoctorEncounter()
+TheDoctorEncounter::TheDoctorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(3);
 
@@ -1286,7 +1300,8 @@ CharacterData TheDoctorEncounter::getOptionResult(int i)
 /************************************************/
 //			ANOMALY ENCOUNTER
 /************************************************/
-AnomalyEncounter::AnomalyEncounter()
+AnomalyEncounter::AnomalyEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(3);
 
@@ -1406,7 +1421,8 @@ CharacterData AnomalyEncounter::getOptionResult(int i)
 /************************************************/
 //				ALIEN ENCOUNTER
 /************************************************/
-AlienEncounter::AlienEncounter()
+AlienEncounter::AlienEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -1494,6 +1510,83 @@ CharacterData AlienEncounter::getOptionResult(int i)
 //			END OF ALIEN ENCOUNTER
 /************************************************/
 
+/************************************************/
+//			PENTAGRAM ENCOUNTER
+/************************************************/
+PentagramEncounter::PentagramEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
+{
+	if (!states->pentagramMarked) {
+		opts = Options(2);
+		opts.ref(0) = "Let's do it! Sign the contract!";
+		opts.ref(1) = "Oops! Wrong room!";
+	}
+	else
+	{
+		opts = Options(1);
+		opts.ref(0) = "Nooooo!";
+	}
+
+}
+
+void PentagramEncounter::displayEncounter()
+{
+	if (!states->pentagramMarked) {
+		cout << "You enter a room, and you see a giant red circle drawn on the floor.\n"
+			<< "Closer examination reveals two details. The circle is drawn in blood, and\n"
+			<< "it contains a pentagram. In the center in an unfinished contract.\n"
+			<< "It does not contain a signature. If you hurry, you can sign your own\n"
+			<< "name before the original owner returns\n\n";
+	}
+	else {
+		cout << "A dark figure appears before you.\n"
+			<< "\"I'm sorry, Master, but your time is up. Your soul belongs to me now\"\n";
+	}
+}
+
+CharacterData PentagramEncounter::getOptionResult(int i)
+{
+	CharacterStats stats = CharacterStats();
+	if (!states->pentagramMarked) {
+		if (i == 0) {
+			cout << "You mischievously sign your own name on the contract. At first\n"
+				<< "you feel a wave of disappointment as nothing immediately happens.\n"
+				<< "Suddenly the room darkens and you find yourself standing in a black void\n"
+				<< "with nothing around you except the contract and the glowing crimson lines\n"
+				<< "of the demonic symbol in front of you.\n\n";
+
+			cout << "Suddenly, the symbols pulse and a dark figure rises out of the circle.\n"
+				<< "\"You are not the one I was expecting, but I suppose it cannot be helped now\n"
+				<< "You have signed the contract, and now I am yours to command\",\n"
+				<< "he says in a smooth tenor voice.\n"
+				<< "\"I will be your assistant in your service to the very end, but\n"
+				<< "know this. This contract comes with a price. Your skin will be marked\n"
+				<< "with a symbol, a constant reminder of our bargain. I am yours, and your\n"
+				<< "soul will be mine when the time comes\"\n";
+			states->pentagramMarked = true;
+			stats.intelligence = 6;
+			stats.time = 6;
+			stats.money = 6;
+		}
+		else {
+			cout << "You wisely decide not to engage in occult rituals.\n";
+		}
+	}
+	else {
+		cout << "\"You signed the contract and I have lived up to my end of the bargain.\n"
+			<< "It is time. I have waited so... long... to feed.\"\n"
+			<< "The figure rushes towards you, and everything goes black.";
+		result.gameFlags = SpecialDefeatFlag;
+	}
+
+
+	return CharacterData(stats,0);
+}
+
+/************************************************/
+//			END OF PENTAGRAM ENCOUNTER
+/************************************************/
+
 //===========================================================================================//
 //										GAME BREAKERS
 //===========================================================================================//
@@ -1501,7 +1594,8 @@ CharacterData AlienEncounter::getOptionResult(int i)
 /************************************************/
 //                CTHULHU ENCOUNTER            
 /************************************************/
-CthulhuEncounter::CthulhuEncounter()
+CthulhuEncounter::CthulhuEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 
@@ -1590,7 +1684,8 @@ CharacterData CthulhuEncounter::getOptionResult(int i)
 //                DRAGON ENCOUNTER            
 /************************************************/
 
-DragonEncounter::DragonEncounter()
+DragonEncounter::DragonEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates)
 {
 	opts = Options(4);
 

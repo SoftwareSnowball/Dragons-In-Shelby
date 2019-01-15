@@ -41,7 +41,7 @@ class Encounter
 {
 public:
 
-	Encounter();
+	Encounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 	virtual ~Encounter();
 
 	const string encounterName = "Default Encounter";
@@ -75,7 +75,7 @@ protected:
 class DebugEncounter : public Encounter //debug
 {
 public:
-	DebugEncounter();
+	DebugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 
@@ -94,7 +94,7 @@ private:
 class UndergraduateEncounter : public Encounter //Common
 {
 public:
-	UndergraduateEncounter();
+	UndergraduateEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -109,7 +109,7 @@ private:
 class WeekendEncounter : public Encounter //Common
 {
 public:
-	WeekendEncounter();
+	WeekendEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -122,7 +122,7 @@ private:
 class ProfessorEncounter : public Encounter //Common
 {
 public:
-	ProfessorEncounter();
+	ProfessorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -132,7 +132,7 @@ private:
 class VideoGameEncounter : public Encounter 
 {
 public:
-	VideoGameEncounter();
+	VideoGameEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -142,7 +142,7 @@ private:
 class CancelledClassEncounter : public Encounter
 {
 public:
-	CancelledClassEncounter();
+	CancelledClassEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -154,17 +154,17 @@ private:
 class NoisyNeighborsEncounter : public Encounter
 {
 public:
-	NoisyNeighborsEncounter();
+	NoisyNeighborsEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
 
-class EmailEncounter : public Encounter //incomplete
+class EmailEncounter : public Encounter //done
 {
 public:
-	EmailEncounter();
+	EmailEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -174,7 +174,7 @@ private:
 class AssignmentSetbackEncounter : public Encounter //incomplete
 {
 public:
-	AssignmentSetbackEncounter();
+	AssignmentSetbackEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -188,7 +188,7 @@ private:
 class BugEncounter : public Encounter
 {
 public:
-	BugEncounter();
+	BugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -199,7 +199,7 @@ private:
 class RefrigeratorEncounter : public Encounter
 {
 public:
-	RefrigeratorEncounter();
+	RefrigeratorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -211,7 +211,7 @@ private:
 class CharityEncounter : public Encounter
 {
 public:
-	CharityEncounter();
+	CharityEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -222,7 +222,7 @@ private:
 class SicknessEncounter : public Encounter //incomplete
 {
 public:
-	SicknessEncounter();
+	SicknessEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -232,7 +232,7 @@ private:
 class BrokenNinjaEncounter : public Encounter
 {
 public:
-	BrokenNinjaEncounter();
+	BrokenNinjaEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -242,7 +242,7 @@ private:
 class MedicalStudentEncounter : public Encounter //done
 {
 public:
-	MedicalStudentEncounter();
+	MedicalStudentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -252,7 +252,7 @@ private:
 class BossRoomEncounter : public Encounter //incomplete
 {
 public:
-	BossRoomEncounter();
+	BossRoomEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -262,7 +262,7 @@ private:
 class TestEncounter : public Encounter //incomplete
 {
 public:
-	TestEncounter();
+	TestEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -277,7 +277,7 @@ private:
 class TheDoctorEncounter : public Encounter //done
 {
 public:
-	TheDoctorEncounter();
+	TheDoctorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -287,7 +287,7 @@ private:
 class AnomalyEncounter : public Encounter //rare
 {
 public:
-	AnomalyEncounter();
+	AnomalyEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -297,17 +297,17 @@ private:
 class AlienEncounter : public Encounter //done
 {
 public:
-	AlienEncounter();
+	AlienEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
 	CharacterData getOptionResult(int i);
 };
 
-class PentagramEncounter : public Encounter // unfinished
+class PentagramEncounter : public Encounter // done
 {
 public:
-	PentagramEncounter();
+	PentagramEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -321,7 +321,7 @@ private:
 class CthulhuEncounter : public Encounter //Gamebreaker
 {
 public:
-	CthulhuEncounter();
+	CthulhuEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -335,7 +335,7 @@ private:
 class DragonEncounter : public Encounter //incomplete
 {
 public:
-	DragonEncounter();
+	DragonEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();

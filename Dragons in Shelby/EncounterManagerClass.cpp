@@ -35,7 +35,6 @@ EncounterResultPackage EncounterManagerClass::manageEncounter()
 
 	if (current)
 	{
-		current->linkInterfaces(menuInterface, pstates);
 		encounterEffects = current->run();
 	}
 	else
@@ -68,7 +67,7 @@ void EncounterManagerClass::generateEncounter()
 #if DEBUG_MODE
 
 
-	current = new EmailEncounter();
+	current = new PentagramEncounter(menuInterface, pstates);
 
 #else
 
@@ -80,7 +79,7 @@ void EncounterManagerClass::generateEncounter()
 		current = NULL;
 		cout << "Nothing happens.\n";
 	}
-	else if (roll < 60) //common encounter
+	else if (roll < 50) //common encounter
 	{
 
 		current = generateCommon();
@@ -90,7 +89,7 @@ void EncounterManagerClass::generateEncounter()
 			statusFlag = statusFlag | (FunctionErrorFlag);
 
 	}
-	else if (roll < 90) //uncommon encounter
+	else if (roll < 88) //uncommon encounter
 	{
 
 
@@ -135,22 +134,22 @@ Encounter * EncounterManagerClass::generateCommon()
 	switch (i)
 	{
 	case 0:
-		return new UndergraduateEncounter();
+		return new UndergraduateEncounter(menuInterface, pstates);
 
 	case 1:
-		return new WeekendEncounter();
+		return new WeekendEncounter(menuInterface, pstates);
 
 	case 2:
-		return new ProfessorEncounter();
+		return new ProfessorEncounter(menuInterface, pstates);
 
 	case 3:
-		return new VideoGameEncounter();
+		return new VideoGameEncounter(menuInterface, pstates);
 	
 	case 4:
-		return new CancelledClassEncounter();
+		return new CancelledClassEncounter(menuInterface, pstates);
 
 	case 5:
-		return new NoisyNeighborsEncounter();
+		return new NoisyNeighborsEncounter(menuInterface, pstates);
 	}
 
 	cout << "The generator was unable to create a common encounter type.\n";
@@ -167,16 +166,16 @@ Encounter * EncounterManagerClass::generateUncommon()
 	{
 
 	case 0:
-		return new BugEncounter();
+		return new BugEncounter(menuInterface, pstates);
 
 	case 1:
-		return new RefrigeratorEncounter();
+		return new RefrigeratorEncounter(menuInterface, pstates);
 
 	case 2:
-		return new CharityEncounter();
+		return new CharityEncounter(menuInterface, pstates);
 
 	case 3:
-		return new BrokenNinjaEncounter();
+		return new BrokenNinjaEncounter(menuInterface, pstates);
 	}
 
 
@@ -189,21 +188,21 @@ Encounter * EncounterManagerClass::generateUncommon()
 Encounter * EncounterManagerClass::generateRare()
 {
 
-	int i = rand() % 3;
+	int i = rand() % 4;
 
 	switch (i)
 	{
 	case 0:
-		return new AnomalyEncounter();
+		return new AnomalyEncounter(menuInterface, pstates);
 	case 1:
-		return new TheDoctorEncounter();
+		return new TheDoctorEncounter(menuInterface, pstates);
 	case 2:
-		return new AlienEncounter();
+		return new AlienEncounter(menuInterface, pstates);
+	case 3:
+		return new PentagramEncounter(menuInterface, pstates);
 	}
 
-
-
-	cout << "The generator was unable to create a common encounter type\n";
+	cout << "The generator was unable to create a rare encounter type\n";
 
 	return nullptr;
 }
@@ -216,7 +215,7 @@ Encounter * EncounterManagerClass::generateGameBreaker()
 	switch (i)
 	{
 	case 0:
-		return new CthulhuEncounter();
+		return new CthulhuEncounter(menuInterface, pstates);
 	}
 
 

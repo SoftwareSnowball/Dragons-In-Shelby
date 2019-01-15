@@ -51,11 +51,14 @@ files for comments about the purpose of each of these classes.
 
 */
 
-#define VersionNumber 0.85
+#define VersionNumber 0.90
 
 #ifdef _WIN32
 #include "stdafx.h"
+#include <Windows.h>
 #endif
+
+#define FONT_SIZE 25
 
 #include "resources.h"
 #include "MenuManagerClass.h"
@@ -64,8 +67,20 @@ files for comments about the purpose of each of these classes.
 #include "GameInstanceClass.h"
 #include "ScoreManagerClass.h"
 
+HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+
 int main()
 {
+#ifdef _WIN32 //code used from http://mycodecollection.blogspot.com/2015/01/c-console-change-font-size.html
+	PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx = new CONSOLE_FONT_INFOEX();
+	lpConsoleCurrentFontEx->cbSize = sizeof(CONSOLE_FONT_INFOEX);
+	GetCurrentConsoleFontEx(out, 0, lpConsoleCurrentFontEx);
+	lpConsoleCurrentFontEx->dwFontSize.X = FONT_SIZE;
+	lpConsoleCurrentFontEx->dwFontSize.Y = FONT_SIZE;
+	SetCurrentConsoleFontEx(out, 0, lpConsoleCurrentFontEx);
+
+	system("color F0");
+#endif
 
 	string name;
 

@@ -45,6 +45,7 @@ flag PlayerCharacterClass::affectStats(CharacterStats offset)
 	myStats.money += offset.money;
 	myStats.time += offset.time;
 
+	cout << endl;
 
 	if (offset.intelligence > 0)
 	{
@@ -100,7 +101,7 @@ flag PlayerCharacterClass::affectStats(CharacterStats offset)
 		statusFlags = statusFlags | DefeatByTimeFlag;
 	}
 
-
+	cout << endl;
 	return statusFlags; //I've spent way too much time in assembly
 
 }
