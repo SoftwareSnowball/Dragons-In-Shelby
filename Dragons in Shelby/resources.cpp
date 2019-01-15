@@ -51,7 +51,7 @@ Options::Options(int i)
 {
 	assert(i > 0 && i <= MaxOptions);
 
-	NumOfOptions = i;
+	num_options = i;
 
 }
 
@@ -61,13 +61,21 @@ Options::~Options()
 
 string & Options::ref(int i)
 {
-	assert(i >= 0 && i < NumOfOptions);
+	assert(i >= 0 && i < num_options);
 	return options[i];
 }
 
 int Options::giveNumOfOptions()
 {
-	return NumOfOptions;
+	return num_options;
+}
+
+void Options::append(const string& input)
+{
+	assert(num_options <= MaxOptions);
+
+	options[num_options] = string(input);
+	num_options++;
 }
 
 

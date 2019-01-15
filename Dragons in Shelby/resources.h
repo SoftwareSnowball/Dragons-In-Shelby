@@ -35,7 +35,7 @@ using std::cin;
 using std::endl;
 
 
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 
 /*
@@ -156,10 +156,11 @@ public:
 	~Options();
 	string& ref(int i);
 	int giveNumOfOptions();
+	void append(const string& input);
 
 private:
 	string options[MaxOptions];
-	int NumOfOptions;
+	int num_options;
 };
 
 
@@ -176,6 +177,9 @@ struct PersistentStateFlags
 {
 	bool hasSweetCoat = false;
 	bool cheatedMechanic = false;
+	bool pentagramMarked = false;
+	int emailBacklog = 0;
+
 	//int dishonestyPoints = 0;
 	//int charityPoints = 0;
 };

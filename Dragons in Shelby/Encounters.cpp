@@ -716,7 +716,67 @@ CharacterData NoisyNeighborsEncounter::getOptionResult(int i)
 /************************************************/
 //			EMAIL ENCOUNTER
 /************************************************/
+EmailEncounter::EmailEncounter() {
+	opts = Options(3);
 
+	opts.ref(0) = "Ugh. I don't really wanna do the work today.\n";
+	opts.ref(1) = "Okay. I really need to catch up on all of these.\n";
+	opts.ref(2) = "I'll hire a shady character to deal with them for me.";
+
+	if (states->pentagramMarked) {
+		opts.append("Assistant, can you do this?");
+	}
+}
+
+void EmailEncounter::displayEncounter() {
+	cout << "Your inbox is swamped with emails.\n";
+}
+
+CharacterData EmailEncounter::getOptionResult(int i) {
+	int roll;
+	CharacterStats stats;
+
+	switch (i) {
+	case 0 :
+		states->emailBacklog += 1;
+		cout << "You're starting to get a backlog of emails\n";
+
+		roll = rand() % 5 + 1;
+
+		if (roll <= states->emailBacklog) {
+			cout << "You missed a critical piece of information.\n";
+			stats.intelligence -= roll;
+		}
+		break;
+	case 1:
+		cout << "You get caught up on emails.\n";
+
+		roll = 1 + (rand() % 2);
+		stats.time -= roll + states->emailBacklog;
+		states->emailBacklog = 0;
+		break;
+	case 2:
+		roll = rand() % 3;
+		stats.money -= 2;
+		if (roll == 0) {
+			cout << "You hire an inept buffoon. None of the work gets done.\n";
+		}
+		else {
+			auto minus_zero = [](int a) {return (0 > a) ? 0 : a; };
+			states->emailBacklog = minus_zero(states->emailBacklog - roll);
+		}
+
+	case 3:
+		cout << "Of course, Master. If I couldn't do that for you, what kind of\n"
+			<< "assistant would I be?";
+		if (states->emailBacklog > 1) {
+			cout << "My you have quite the messy inbox. Let's clean this up a bit.\n";
+		}
+		states->emailBacklog = 0;
+	}
+
+	return CharacterData(stats,0);
+}
 /************************************************/
 //			END OF EMAIL ENCOUNTER
 /************************************************/
@@ -1093,15 +1153,47 @@ CharacterData BrokenNinjaEncounter::getOptionResult(int i)
 /************************************************/
 MedicalStudentEncounter::MedicalStudentEncounter()
 {
+	opts = Options(2);
+
+	opts.ref(0) = "Eep! No thanks!";
+	opts.ref(1) = "Ummm.... sure?";
 }
 
 void MedicalStudentEncounter::displayEncounter()
 {
+	cout << "You encounter a crazed nursing student brandishing a needle.\n"
+		<< "She wants to practice giving you a shot.\n";
 }
 
 CharacterData MedicalStudentEncounter::getOptionResult(int i)
 {
-	return CharacterData();
+	CharacterStats stats;
+	int roll;
+
+	if (i == 0) {
+		roll = rand() % 4;
+		if (roll >= 2) {
+			cout << "She cases you down the hall and stabs you with the needle.\n"
+				<< "You are mentally scarred.\n";
+			stats.intelligence -= roll;
+		}
+		else {
+			cout << "She sadly says okay as you walk away.\n";
+		}
+	}
+	else {
+		roll = rand() % 4;
+		if (roll != 0) {
+			cout << "She spends several minutes trying to find a vein\n";
+			stats.time -= roll;
+		}
+		else {
+			cout << "She quickly inserts the needle and injects what you hope\n"
+				<< "is a simple saline solution.\n";
+		}
+	}
+
+	return CharacterData(stats,0);
 }
 /************************************************/
 //			END OF MEDICAL STUDENT ENCOUNTER
@@ -1316,18 +1408,86 @@ CharacterData AnomalyEncounter::getOptionResult(int i)
 /************************************************/
 AlienEncounter::AlienEncounter()
 {
-	opts = Options(3);
+	opts = Options(4);
 
-	opts.ref(0) = "";
+	opts.ref(0) = "RUN!!!!";
+	opts.ref(1) = "We come in peace, alien?";
+	opts.ref(2) = "What on Earth are you?";
+	opts.ref(3) = "Shoot it with my handgun that I totally have in my backpack right now.";
 }
 
 void AlienEncounter::displayEncounter()
 {
+	std::cout << "You hear a faint sound in the walls behind you. At first you think it's\n"
+		<< "your imagination, the faint gurgling sounds slowly grows louder... and closer.\n"
+		<< "You turn your head but see nothing.You suddenly realize there's no one else\n"
+		<< "around. You're alone in the hallway.\n"
+		<< "Your heart begins to pound as you hear a faint scraping sound near on of the\n"
+		<< "vents. Then you hear the loud screech of tortured metal as the vent flies of\n"
+		<< "the wall crashing onto the floor below. A large black figure slithers out of\n"
+		<< "the vent and rises in front of you, its ominous form reaches nearly to the ceiling.\n"
+		<< "It opens in mouth revealing two sets of jaws. The outside jaw contains large jagged teeth.\n"
+		<< "As its inner mouth opens, you hear it scream and notice the dense thicket of horrible needles\n"
+		<< "that passes for its set of inner teeth.\n\n";
+
 }
 
 CharacterData AlienEncounter::getOptionResult(int i)
 {
-	return CharacterData();
+	int roll;
+	CharacterStats stats = CharacterStats();
+	switch (i) {
+	case 0:
+		roll = rand() % 4;
+		if (roll == 0) {
+			cout << "You manage to outrun the creature. You are now exhausted and need a cheetos and mountain Dew Break.\n";
+		}
+		else {
+			cout << "You see. This is why exercise is very important for a healthy lifestyle. You've been\n"
+				<< "slacking haven't you. For shame.\n"
+				<< "The creature chases you down while your heart pounds.\n"
+				<< "You run harder than you ever have in your life, but it isn't enough.\n"
+				<< "You feel a sharp pain in your side as the creature grabs you with its claws.\n"
+				<< "You turn your head to see an open maw.\n"
+				<< "The creature begins to feast.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+		break;
+	case 1:
+		cout << "Hmm. Full points for bravery I guess.\n";
+		roll = rand() % 20;
+		if (roll == 0) {
+			cout << "Ahh whatever. I guess I'll let it slide this time.\n";
+		}
+		else {
+			cout << "The alien murders you brutally.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+		break;
+
+	case 2:
+		cout << "Yes. Let's have a conversation with the evil death alien.\n";
+		roll = rand() % 10;
+		if (roll == 0) {
+			cout << "Ahh whatever. I guess I'll let it slide this time.\n";
+		}
+		else {
+			cout << "The alien murders you brutally.\n";
+			result.gameFlags = SpecialDefeatFlag;
+		}
+		break;
+
+	case 3:
+		cout << "That's cute, you think you have a... Oh wait. This is Texas.\n"
+			<< "Okay. You shoot the alien with the gun that you apparently had with you\n"
+			<< "at school this entire time.\n"
+			<< "Congratulations I guess.\n"
+			<< "You still get fined for having a gun at school.\n";
+		stats.money = -(2 + (rand() % 5));
+		break;
+	}
+
+	return CharacterData(stats, 0);
 }
 
 /************************************************/

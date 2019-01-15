@@ -239,10 +239,20 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
-class MedicalStudentEncounter : public Encounter //incomplete
+class MedicalStudentEncounter : public Encounter //done
 {
 public:
 	MedicalStudentEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class BossRoomEncounter : public Encounter //incomplete
+{
+public:
+	BossRoomEncounter();
 
 private:
 	void displayEncounter();
@@ -284,10 +294,20 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
-class AlienEncounter : public Encounter //incomplete
+class AlienEncounter : public Encounter //done
 {
 public:
 	AlienEncounter();
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
+class PentagramEncounter : public Encounter // unfinished
+{
+public:
+	PentagramEncounter();
 
 private:
 	void displayEncounter();

@@ -68,7 +68,7 @@ void EncounterManagerClass::generateEncounter()
 #if DEBUG_MODE
 
 
-	current = new DragonEncounter();
+	current = new EmailEncounter();
 
 #else
 
@@ -189,12 +189,16 @@ Encounter * EncounterManagerClass::generateUncommon()
 Encounter * EncounterManagerClass::generateRare()
 {
 
-	int i = rand() % 1;
+	int i = rand() % 3;
 
 	switch (i)
 	{
 	case 0:
 		return new AnomalyEncounter();
+	case 1:
+		return new TheDoctorEncounter();
+	case 2:
+		return new AlienEncounter();
 	}
 
 
