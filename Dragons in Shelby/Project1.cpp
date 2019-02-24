@@ -112,6 +112,8 @@ int main()
 #endif
 		cout << endl;
 
+		cout << "            Unholy Pact Edition\n";
+
 		cout << "================================================\n";
 		cout << "		Player: " << name << endl << endl;
 

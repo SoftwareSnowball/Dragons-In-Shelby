@@ -67,7 +67,7 @@ void EncounterManagerClass::generateEncounter()
 #if DEBUG_MODE
 
 
-	current = new PentagramEncounter(menuInterface, pstates);
+	current = new EasyAssigmentEncounter(menuInterface, pstates);
 
 #else
 
@@ -129,7 +129,7 @@ void EncounterManagerClass::generateEncounter()
 Encounter * EncounterManagerClass::generateCommon()
 {
 
-	int i = rand() % 6;
+	int i = rand() % 8;
 
 	switch (i)
 	{
@@ -150,7 +150,14 @@ Encounter * EncounterManagerClass::generateCommon()
 
 	case 5:
 		return new NoisyNeighborsEncounter(menuInterface, pstates);
+
+	case 6:
+		return new EmailEncounter(menuInterface, pstates);
+
+	case 7:
+		return new EasyAssigmentEncounter(menuInterface, pstates);
 	}
+
 
 	cout << "The generator was unable to create a common encounter type.\n";
 
@@ -160,7 +167,7 @@ Encounter * EncounterManagerClass::generateCommon()
 Encounter * EncounterManagerClass::generateUncommon()
 {
 
-	int i = rand() % 4;
+	int i = rand() % 6;
 
 	switch (i)
 	{
@@ -175,7 +182,13 @@ Encounter * EncounterManagerClass::generateUncommon()
 		return new CharityEncounter(menuInterface, pstates);
 
 	case 3:
+		return new SicknessEncounter(menuInterface, pstates);
+
+	case 4:
 		return new BrokenNinjaEncounter(menuInterface, pstates);
+
+	case 5:
+		return new MedicalStudentEncounter(menuInterface, pstates);
 	}
 
 

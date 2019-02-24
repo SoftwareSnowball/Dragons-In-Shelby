@@ -171,6 +171,16 @@ private:
 	CharacterData getOptionResult(int i);
 };
 
+class EasyAssigmentEncounter : public Encounter //done
+{
+public:
+	EasyAssigmentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+
+private:
+	void displayEncounter();
+	CharacterData getOptionResult(int i);
+};
+
 class AssignmentSetbackEncounter : public Encounter //incomplete
 {
 public:
@@ -219,7 +229,7 @@ private:
 
 };
 
-class SicknessEncounter : public Encounter //incomplete
+class SicknessEncounter : public Encounter //done
 {
 public:
 	SicknessEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);

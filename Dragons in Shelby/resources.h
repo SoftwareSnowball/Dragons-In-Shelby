@@ -74,10 +74,10 @@ and balance of certain game mechanics.
 
 // Affects PlayerCharacter stat generation
 #define StartIntRange 10 //Defines the difference between the max start intelligence and the minimum start intelligence
-#define MinStartInt 10
+#define MinStartInt 15
 
 #define StartMoneyRange 10
-#define MinStartMoney 10
+#define MinStartMoney 15
 
 #define StartTimeRange 10
 #define MinStartTime 15

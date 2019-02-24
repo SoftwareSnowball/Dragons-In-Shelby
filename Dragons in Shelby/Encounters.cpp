@@ -744,7 +744,15 @@ CharacterData EmailEncounter::getOptionResult(int i) {
 	switch (i) {
 	case 0 :
 		states->emailBacklog += 1;
-		cout << "You're starting to get a backlog of emails\n";
+		if (states->emailBacklog == 1) {
+			cout << "You're starting to get a backlog of emails\n";
+		}
+		else if (states->emailBacklog > 1 && states->emailBacklog <= 2) {
+			cout << "You've fallen further behind on your emails.\n";
+		}
+		else {
+			cout << "You're way behind on your emails.\n";
+		}
 
 		roll = rand() % 5 + 1;
 
@@ -786,6 +794,70 @@ CharacterData EmailEncounter::getOptionResult(int i) {
 }
 /************************************************/
 //			END OF EMAIL ENCOUNTER
+/************************************************/
+
+/************************************************/
+//			EASY ASSIGNMENT ENCOUNTER
+/************************************************/
+
+
+EasyAssigmentEncounter::EasyAssigmentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+	:Encounter(inputMenuInterface, instates) {
+	opts = Options(2);
+	opts.ref(0) = "Yay! Easy Week!";
+	opts.ref(1) = "Great! Let's catch up on things!";
+
+	if (states->emailBacklog > 0) {
+		opts.append("I should catch up on my emails\n");
+	}
+
+	if (states->pentagramMarked) {
+		opts.append("Assistant, help me get ahead!");
+	}
+}
+
+void EasyAssigmentEncounter::displayEncounter() {
+	cout << "You look at your agenda for the week and discover that\n"
+		<< "you really don't have all that much to do.\n";
+}
+
+
+CharacterData EasyAssigmentEncounter::getOptionResult(int i) {
+	CharacterStats stats = CharacterStats();
+	int roll = 0;
+	int position_offset = 0;
+
+	switch (i) {
+	case 0:
+		cout << "You bask in the rare chance to get a mental break.\n";
+		roll = 1 + rand() % 3;
+		stats.intelligence = roll;
+		break;
+	case 1:
+		cout << "You catch up on a lot of work. You feel that you're\n"
+			<< "much more caught up now.\n";
+		roll = 1 + rand() % 3;
+		stats.time = roll;
+		break;
+	case 2:
+		cout << "You manage to catch up on all your emails\n";
+		states->emailBacklog = 0;
+		break;
+	case 3:
+		cout << "\"Of course, master.\"\n"
+			<< "With your assistant's demonic help, you manage to get way ahead.\n";
+		position_offset = 1;
+		roll = 1 + rand() % 3;
+		stats.time = roll;
+		break;
+	}
+
+	return CharacterData(stats, position_offset);
+
+}
+
+/************************************************/
+//			END OF EASY ASSIGNMENT ENCOUNTER
 /************************************************/
 
 /************************************************/
@@ -1106,15 +1178,54 @@ CharacterData CharityEncounter::getOptionResult(int i)
 SicknessEncounter::SicknessEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
 	:Encounter(inputMenuInterface, instates)
 {
+	opts = Options(3);
+
+	opts.ref(0) = "Go to school anyway";
+	opts.ref(1) = "Stay home";
+	opts.ref(2) = "Refuse to believe you're getting sick.";
 }
 
 void SicknessEncounter::displayEncounter()
 {
+	cout << "It's morning and you just woke up. You know you should get ready but your body\n"
+		<< "feels strangely heavy, your nose is running, and your eyes are starting to sting.\n"
+		<< "It seems you're getting sick.\n";
 }
 
 CharacterData SicknessEncounter::getOptionResult(int i)
 {
-	return CharacterData();
+	CharacterStats stats;
+	int roll;
+
+	switch (i) {
+	case 0:
+		cout << "You do your best to make it through the day.\n";
+
+		roll = rand() % 5;
+
+		if (roll == 0) {
+			cout << "You manage to take it like a champ and get everything done.\n";
+		}
+		else {
+			cout << "You get through the day, but your runny nose constantly distracts you.\n"
+				<< "You're pretty sure you missed some things in the lecture.\n";
+			stats.intelligence = -roll;
+		}
+		break;
+
+	case 1:
+		cout << "You feel better staying home, but you fall behind on your work\n";
+		roll = 1 + rand() % 2;
+		stats.time = -roll;
+		break;
+
+	case 2:
+		cout << "This solves everything... not.";
+		stats.intelligence = -3;
+		break;
+	}
+
+	return CharacterData(stats, 0);
 }
 
 
@@ -1186,7 +1297,7 @@ CharacterData MedicalStudentEncounter::getOptionResult(int i)
 	if (i == 0) {
 		roll = rand() % 4;
 		if (roll >= 2) {
-			cout << "She cases you down the hall and stabs you with the needle.\n"
+			cout << "She chases you down the hall and stabs you with the needle.\n"
 				<< "You are mentally scarred.\n";
 			stats.intelligence -= roll;
 		}
@@ -1534,7 +1645,7 @@ void PentagramEncounter::displayEncounter()
 	if (!states->pentagramMarked) {
 		cout << "You enter a room, and you see a giant red circle drawn on the floor.\n"
 			<< "Closer examination reveals two details. The circle is drawn in blood, and\n"
-			<< "it contains a pentagram. In the center in an unfinished contract.\n"
+			<< "it contains a pentagram. In the center is an unfinished contract.\n"
 			<< "It does not contain a signature. If you hurry, you can sign your own\n"
 			<< "name before the original owner returns\n\n";
 	}
