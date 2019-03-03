@@ -45,10 +45,10 @@ public:
 	virtual ~Encounter();
 
 	const string encounterName = "Default Encounter";
-
 	void linkInterfaces(MenuManagerClass * inputMenuInterface, PersistentStateFlags * inStates);
-
 	EncounterResultPackage run();
+
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 
 protected:
@@ -76,6 +76,7 @@ class DebugEncounter : public Encounter //debug
 {
 public:
 	DebugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 
@@ -95,6 +96,7 @@ class UndergraduateEncounter : public Encounter //Common
 {
 public:
 	UndergraduateEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -110,6 +112,7 @@ class WeekendEncounter : public Encounter //Common
 {
 public:
 	WeekendEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -123,6 +126,7 @@ class ProfessorEncounter : public Encounter //Common
 {
 public:
 	ProfessorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -133,6 +137,7 @@ class VideoGameEncounter : public Encounter
 {
 public:
 	VideoGameEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -143,6 +148,7 @@ class CancelledClassEncounter : public Encounter
 {
 public:
 	CancelledClassEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -155,6 +161,7 @@ class NoisyNeighborsEncounter : public Encounter
 {
 public:
 	NoisyNeighborsEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -165,6 +172,7 @@ class EmailEncounter : public Encounter //done
 {
 public:
 	EmailEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -175,6 +183,7 @@ class EasyAssigmentEncounter : public Encounter //done
 {
 public:
 	EasyAssigmentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -185,6 +194,7 @@ class AssignmentSetbackEncounter : public Encounter //incomplete
 {
 public:
 	AssignmentSetbackEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -199,6 +209,7 @@ class BugEncounter : public Encounter
 {
 public:
 	BugEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -210,6 +221,7 @@ class RefrigeratorEncounter : public Encounter
 {
 public:
 	RefrigeratorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -222,6 +234,7 @@ class CharityEncounter : public Encounter
 {
 public:
 	CharityEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -233,6 +246,7 @@ class SicknessEncounter : public Encounter //done
 {
 public:
 	SicknessEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -243,6 +257,7 @@ class BrokenNinjaEncounter : public Encounter
 {
 public:
 	BrokenNinjaEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -253,6 +268,7 @@ class MedicalStudentEncounter : public Encounter //done
 {
 public:
 	MedicalStudentEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -263,6 +279,7 @@ class BossRoomEncounter : public Encounter //incomplete
 {
 public:
 	BossRoomEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -273,6 +290,7 @@ class TestEncounter : public Encounter //incomplete
 {
 public:
 	TestEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -288,6 +306,7 @@ class TheDoctorEncounter : public Encounter //done
 {
 public:
 	TheDoctorEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -298,6 +317,7 @@ class AnomalyEncounter : public Encounter //rare
 {
 public:
 	AnomalyEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -308,6 +328,7 @@ class AlienEncounter : public Encounter //done
 {
 public:
 	AlienEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -318,6 +339,7 @@ class PentagramEncounter : public Encounter // done
 {
 public:
 	PentagramEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -332,6 +354,7 @@ class CthulhuEncounter : public Encounter //Gamebreaker
 {
 public:
 	CthulhuEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();
@@ -346,6 +369,7 @@ class DragonEncounter : public Encounter //incomplete
 {
 public:
 	DragonEncounter(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
+	static Encounter* Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates);
 
 private:
 	void displayEncounter();

@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\EncounterManager">
+      <UniqueIdentifier>{786e8efe-3293-401a-a80e-94053058e4ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EncounterManager\Encounters">
+      <UniqueIdentifier>{49836925-d5d3-4c40-bce5-0f7216bafbde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{cce2743d-65f0-40f3-ad1e-406f5d17018f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -21,26 +30,29 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuManagerClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerCharacterClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameInstanceClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resources.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="EncounterList.h">
+      <Filter>Header Files\EncounterManager</Filter>
     </ClInclude>
     <ClInclude Include="EncounterManagerClass.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\EncounterManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManagerClass.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="resources.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="ScoreManagerClass.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Encounters.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\EncounterManager\Encounters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

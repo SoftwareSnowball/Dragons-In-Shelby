@@ -126,112 +126,53 @@ void EncounterManagerClass::generateEncounter()
 
 
 
-Encounter * EncounterManagerClass::generateCommon()
+Encounter * EncounterManagerClass::generateFromList(const NamedEncounter * encounter_list)
 {
-
-	int i = rand() % 8;
-
-	switch (i)
-	{
-	case 0:
-		return new UndergraduateEncounter(menuInterface, pstates);
-
-	case 1:
-		return new WeekendEncounter(menuInterface, pstates);
-
-	case 2:
-		return new ProfessorEncounter(menuInterface, pstates);
-
-	case 3:
-		return new VideoGameEncounter(menuInterface, pstates);
-	
-	case 4:
-		return new CancelledClassEncounter(menuInterface, pstates);
-
-	case 5:
-		return new NoisyNeighborsEncounter(menuInterface, pstates);
-
-	case 6:
-		return new EmailEncounter(menuInterface, pstates);
-
-	case 7:
-		return new EasyAssigmentEncounter(menuInterface, pstates);
+	if (!encounter_list) {
+		return nullptr;
 	}
 
+	int size = 0;
+	while (encounter_list[size].generate != nullptr) {
+		size++;
+	}
 
-	cout << "The generator was unable to create a common encounter type.\n";
+	int roll = rand() % size;
+	return encounter_list[roll].generate(menuInterface, pstates);
+}
 
-	return nullptr;
+Encounter * EncounterManagerClass::generateCommon()
+{
+	Encounter* e = generateFromList(COMMON_ENCOUNTER_LIST);
+	if (!e) {
+		cout << "The generator was unable to create a common encounter type.\n";
+	}
+	return e;
 }
 
 Encounter * EncounterManagerClass::generateUncommon()
 {
-
-	int i = rand() % 6;
-
-	switch (i)
-	{
-
-	case 0:
-		return new BugEncounter(menuInterface, pstates);
-
-	case 1:
-		return new RefrigeratorEncounter(menuInterface, pstates);
-
-	case 2:
-		return new CharityEncounter(menuInterface, pstates);
-
-	case 3:
-		return new SicknessEncounter(menuInterface, pstates);
-
-	case 4:
-		return new BrokenNinjaEncounter(menuInterface, pstates);
-
-	case 5:
-		return new MedicalStudentEncounter(menuInterface, pstates);
+	Encounter* e = generateFromList(UNCOMMON_ENCOUNTER_LIST);
+	if (!e) {
+		cout << "The generator was unable to create a uncommon encounter type.\n";
 	}
-
-
-
-	cout << "The generator was unable to create an uncommon encounter type.\n";
-
-	return nullptr;
+	return e;
 }
 
 Encounter * EncounterManagerClass::generateRare()
 {
-
-	int i = rand() % 4;
-
-	switch (i)
-	{
-	case 0:
-		return new AnomalyEncounter(menuInterface, pstates);
-	case 1:
-		return new TheDoctorEncounter(menuInterface, pstates);
-	case 2:
-		return new AlienEncounter(menuInterface, pstates);
-	case 3:
-		return new PentagramEncounter(menuInterface, pstates);
+	Encounter* e = generateFromList(RARE_ENCOUNTER_LIST);
+	if (!e) {
+		cout << "The generator was unable to create a rare encounter type.\n";
 	}
-
-	cout << "The generator was unable to create a rare encounter type\n";
-
-	return nullptr;
+	return e;
 }
 
 Encounter * EncounterManagerClass::generateGameBreaker()
 {
-
-	int i = rand() % 1;
-
-	switch (i)
-	{
-	case 0:
-		return new CthulhuEncounter(menuInterface, pstates);
+	Encounter* e = generateFromList(GAMEBREAKER_ENCOUNTER_LIST);
+	if (!e) {
+		cout << "The generator was unable to create a \"FUN\" encounter type.\n";
 	}
-
-
-	cout << "The generator was unable to create a \"FUN\" encounter type.\n";
-	return nullptr;
+	return e;
 }

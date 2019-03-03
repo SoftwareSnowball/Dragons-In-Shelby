@@ -92,6 +92,11 @@ DebugEncounter::DebugEncounter(MenuManagerClass * inputMenuInterface, Persistent
 	generateOptions();
 }
 
+Encounter * DebugEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new DebugEncounter(inputMenuInterface, instates);
+}
+
 void DebugEncounter::displayEncounter()
 {
 	cout << "Here we have a debug encounter thing.\n";
@@ -183,6 +188,11 @@ UndergraduateEncounter::UndergraduateEncounter(MenuManagerClass * inputMenuInter
 	generateOptions();
 }
 
+Encounter * UndergraduateEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new UndergraduateEncounter(inputMenuInterface, instates);
+}
+
 
 
 void UndergraduateEncounter::displayEncounter()
@@ -265,6 +275,11 @@ WeekendEncounter::WeekendEncounter(MenuManagerClass * inputMenuInterface, Persis
 	opts.ref(0) = "Yay! Weekend! Time for a much needed break.";
 	opts.ref(1) = "I could use this time to get some work done.";
 	opts.ref(2) = "DUDE! PARTY!!!";
+}
+
+Encounter * WeekendEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new WeekendEncounter(inputMenuInterface, instates);
 }
 
 void WeekendEncounter::displayEncounter()
@@ -356,6 +371,11 @@ ProfessorEncounter::ProfessorEncounter(MenuManagerClass * inputMenuInterface, Pe
 	opts.ref(2) = "Try to get more funding.";
 }
 
+Encounter * ProfessorEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new ProfessorEncounter(inputMenuInterface, instates);;
+}
+
 void ProfessorEncounter::displayEncounter()
 {
 	cout << "You encounter a professor in the hall\n";
@@ -441,6 +461,11 @@ VideoGameEncounter::VideoGameEncounter(MenuManagerClass * inputMenuInterface, Pe
 	opts.ref(1) = "Who cares? COMPUTER GAMES!";
 	opts.ref(2) = "Uh... no. I don't have time for this! Or money for that matter.";
 	opts.ref(3) = "What's a video game?";
+}
+
+Encounter * VideoGameEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new VideoGameEncounter(inputMenuInterface, instates);
 }
 
 void VideoGameEncounter::displayEncounter()
@@ -530,6 +555,11 @@ CancelledClassEncounter::CancelledClassEncounter(MenuManagerClass * inputMenuInt
 		opts.ref(2) = "Hmmm. I can't actually think of an option to put here.";
 	}
 
+}
+
+Encounter * CancelledClassEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new CancelledClassEncounter(inputMenuInterface, instates);
 }
 
 void CancelledClassEncounter::displayEncounter()
@@ -643,6 +673,11 @@ NoisyNeighborsEncounter::NoisyNeighborsEncounter(MenuManagerClass * inputMenuInt
 	
 }
 
+Encounter * NoisyNeighborsEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new NoisyNeighborsEncounter(inputMenuInterface, instates);
+}
+
 void NoisyNeighborsEncounter::displayEncounter()
 {
 	cout << "Ahhh. Finally after a long day of school you get to go\n";
@@ -733,6 +768,11 @@ EmailEncounter::EmailEncounter(MenuManagerClass * inputMenuInterface, Persistent
 	}
 }
 
+Encounter * EmailEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new EmailEncounter(inputMenuInterface, instates);
+}
+
 void EmailEncounter::displayEncounter() {
 	cout << "Your inbox is swamped with emails.\n";
 }
@@ -816,6 +856,11 @@ EasyAssigmentEncounter::EasyAssigmentEncounter(MenuManagerClass * inputMenuInter
 	}
 }
 
+Encounter * EasyAssigmentEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new EasyAssigmentEncounter(inputMenuInterface, instates);
+}
+
 void EasyAssigmentEncounter::displayEncounter() {
 	cout << "You look at your agenda for the week and discover that\n"
 		<< "you really don't have all that much to do.\n";
@@ -885,6 +930,11 @@ BugEncounter::BugEncounter(MenuManagerClass * inputMenuInterface, PersistentStat
 	opts.ref(1) = "WHAT IS THE DEV DOING!? FIX THIS NONSENSE RIGHT NOW!";
 	opts.ref(2) = "I wonder if I can exploit this?";
 	opts.ref(3) = "Try pesticide?";
+}
+
+Encounter * BugEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new BugEncounter(inputMenuInterface, instates);
 }
 
 void BugEncounter::displayEncounter()
@@ -972,6 +1022,11 @@ RefrigeratorEncounter::RefrigeratorEncounter(MenuManagerClass * inputMenuInterfa
 	opts.ref(1) = "Call a repairman.";
 	opts.ref(2) = "I don't have the money for this. I'll get a repairman but not pay him.";
 	opts.ref(3) = "I don't have time for this. I'll just eat out for a while.";
+}
+
+Encounter * RefrigeratorEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new RefrigeratorEncounter(inputMenuInterface, instates);
 }
 
 void RefrigeratorEncounter::displayEncounter()
@@ -1097,6 +1152,11 @@ CharityEncounter::CharityEncounter(MenuManagerClass * inputMenuInterface, Persis
 	opts.ref(3) = "GIVE THEM NO QUARTERS!!!";
 }
 
+Encounter * CharityEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new CharityEncounter(inputMenuInterface, instates);
+}
+
 void CharityEncounter::displayEncounter()
 {
 	cout << "A wild charity institution appears. They seek donations...\n";
@@ -1185,6 +1245,11 @@ SicknessEncounter::SicknessEncounter(MenuManagerClass * inputMenuInterface, Pers
 	opts.ref(2) = "Refuse to believe you're getting sick.";
 }
 
+Encounter * SicknessEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new SicknessEncounter(inputMenuInterface, instates);
+}
+
 void SicknessEncounter::displayEncounter()
 {
 	cout << "It's morning and you just woke up. You know you should get ready but your body\n"
@@ -1246,6 +1311,11 @@ BrokenNinjaEncounter::BrokenNinjaEncounter(MenuManagerClass * inputMenuInterface
 	opts.ref(1) = "y u no finish encounter?";
 }
 
+Encounter * BrokenNinjaEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new BrokenNinjaEncounter(inputMenuInterface, instates);
+}
+
 
 void BrokenNinjaEncounter::displayEncounter()
 {
@@ -1281,6 +1351,11 @@ MedicalStudentEncounter::MedicalStudentEncounter(MenuManagerClass * inputMenuInt
 
 	opts.ref(0) = "Eep! No thanks!";
 	opts.ref(1) = "Ummm.... sure?";
+}
+
+Encounter * MedicalStudentEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new MedicalStudentEncounter(inputMenuInterface, instates);
 }
 
 void MedicalStudentEncounter::displayEncounter()
@@ -1347,6 +1422,11 @@ TheDoctorEncounter::TheDoctorEncounter(MenuManagerClass * inputMenuInterface, Pe
 	opts.ref(1) = "Open the door and peek inside.";
 	opts.ref(2) = "CALL THE POLICE!!!";
 
+}
+
+Encounter * TheDoctorEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new TheDoctorEncounter(inputMenuInterface, instates);
 }
 
 void TheDoctorEncounter::displayEncounter()
@@ -1419,6 +1499,11 @@ AnomalyEncounter::AnomalyEncounter(MenuManagerClass * inputMenuInterface, Persis
 	opts.ref(0) = "Walk away. In fact run! Just get away from that thing.";
 	opts.ref(1) = "Study this strange new phenomenon. For science!";
 	opts.ref(2) = "Walk into the rift";
+}
+
+Encounter * AnomalyEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new AnomalyEncounter(inputMenuInterface, instates);
 }
 
 void AnomalyEncounter::displayEncounter()
@@ -1543,6 +1628,11 @@ AlienEncounter::AlienEncounter(MenuManagerClass * inputMenuInterface, Persistent
 	opts.ref(3) = "Shoot it with my handgun that I totally have in my backpack right now.";
 }
 
+Encounter * AlienEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new AlienEncounter(inputMenuInterface, instates);
+}
+
 void AlienEncounter::displayEncounter()
 {
 	std::cout << "You hear a faint sound in the walls behind you. At first you think it's\n"
@@ -1640,6 +1730,11 @@ PentagramEncounter::PentagramEncounter(MenuManagerClass * inputMenuInterface, Pe
 
 }
 
+Encounter * PentagramEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new PentagramEncounter(inputMenuInterface, instates);
+}
+
 void PentagramEncounter::displayEncounter()
 {
 	if (!states->pentagramMarked) {
@@ -1714,6 +1809,11 @@ CthulhuEncounter::CthulhuEncounter(MenuManagerClass * inputMenuInterface, Persis
 	opts.ref(1) = "Nope... Just nope. I'm out";
 	opts.ref(2) = "I will try to reason with it";
 	opts.ref(3) = "Throw money at it";
+}
+
+Encounter * CthulhuEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new CthulhuEncounter(inputMenuInterface, instates);
 }
 
 void CthulhuEncounter::displayEncounter()
@@ -1804,6 +1904,11 @@ DragonEncounter::DragonEncounter(MenuManagerClass * inputMenuInterface, Persiste
 	opts.ref(1) = "Eat me! Why!?";
 	opts.ref(2) = "Why don't we play a game of riddles instead?";
 	opts.ref(3) = "BRING IT! FIGHT ME!";
+}
+
+Encounter * DragonEncounter::Generate(MenuManagerClass * inputMenuInterface, PersistentStateFlags * instates)
+{
+	return new DragonEncounter(inputMenuInterface, instates);
 }
 
 
@@ -1993,3 +2098,4 @@ CharacterData DragonEncounter::reward()
 /************************************************/
 //                END OF DRAGON ENCOUNTER            
 /************************************************/
+

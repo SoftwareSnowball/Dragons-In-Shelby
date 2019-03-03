@@ -145,6 +145,7 @@
     <Text Include="TestResults.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EncounterList.h" />
     <ClInclude Include="EncounterManagerClass.h" />
     <ClInclude Include="Encounters.h" />
     <ClInclude Include="GameInstanceClass.h" />
